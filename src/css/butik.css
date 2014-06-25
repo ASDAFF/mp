@@ -1,0 +1,12 @@
+.catalog-menu{border-collapse: collapse;}
+.catalog-menu td{padding: 0px; margin: 0px; border: 1px solid #000; background-color: #f1f1f1; position: relative;}
+.catalog-menu td a{width: 150px !important; border: none !important; display: block; padding: 20px 10px 20px 60px !important; margin: 0px !important; color: #000; font-size: 14px !important; font-weight: 500; font-family: 'Open Sans', sans-serif;}
+.catalog-menu td a img{position: absolute; top:10px; left:15px; width:30px; height: auto;}
+.sf-menu ul{border:none !important;}
+.catalog-header{margin: 20px 0px 0px 17px;}
+.catalog-header h1{margin: 0px;}
+.custom-tags{position: relative; width:100%; padding: 30px 0px 0px 15px; font: 500 16px 'Open Sans', sans-serif;}
+.custom-tags img{width: 30px; height: auto; vertical-align: middle; margin: 0px 10px 0px 10px;}
+.custom-tags a{display: inline-block; margin: 5px; padding: 3px; text-decoration: none; color: #666;}
+.custom-tags a.active, .custom-tags a:hover{color: #f15824;}
+.custom-tags div.title{width: 210px; float: left; text-align: right; margin: 5px; padding: 3px;}
