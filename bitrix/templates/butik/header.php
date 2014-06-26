@@ -11,7 +11,8 @@
 	<script type="text/javascript" src="/src/javascript/superfish.js"></script>
 	<link rel="stylesheet" type="text/css" href="/src/jquery-ui-1.10.4.custom/css/custom-theme/jquery-ui-1.10.4.custom.css">
 	<script type="text/javascript" src="/src/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
-	<script type="text/javascript" src="/src/underscore-min.js"></script>	
+	<script type="text/javascript" src="/src/underscore-min.js"></script>
+	<script type="text/javascript" src="/src/javascript/custom.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.show-search').click(function(e){
@@ -24,11 +25,10 @@
 	
 </head>
 <body>
-<?$APPLICATION->ShowPanel()?>
+<?$APPLICATION->ShowPanel();?>
 
 <? require_once('cart.php'); ?>
 <? require_once($_SERVER['DOCUMENT_ROOT'].'/registration.php'); ?>
-
 <div class="all">
 	<div class="header2">
 		<div class="main">
@@ -52,6 +52,7 @@
 					';
 				}else{
 					echo '<a class="open-auth" href="/personal/">Вход</a> /<a class="open-reg" href="/registration/">Регистрация</a>';
+					// echo '<a class="open-reg" href="/personal/">Вход</a>';
 				}
 			?>	
 			</div>

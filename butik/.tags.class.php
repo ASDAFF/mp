@@ -283,15 +283,25 @@
 			}
 			
 			if(isset($_GET['facility'])){
-				$res = CIBlockElement::GetByID(intval($_GET['facility']));
-				if($ar_res = $res->GetNext())
-					return '<div class="custom-tags"><strong><img src="'.$this->elemIcons[intval($_GET["facility"])].'" />'.$ar_res['NAME'].'</strong>'.' </div><div style="clear:both;"></div>';
+				$res = CIBlockSection::GetByID(intval($_GET["facility"]));
+				if($ar_res = $res->GetNext()) {
+					if ($ar_res['DEPTH_LEVEL'] == 3) {
+						$res = CIBlockSection::GetByID($ar_res['IBLOCK_SECTION_ID']);
+						$ar_res = $res->GetNext();
+					}
+					return $this->drawSectionChain($ar_res['ID']);
+				}				
 			}
 			
 			if(isset($_GET['gift'])){
-				$res = CIBlockElement::GetByID(intval($_GET['gift']));
-				if($ar_res = $res->GetNext())
-					return '<div class="custom-tags"><strong><img src="'.$this->elemIcons[intval($_GET["gift"])].'" />'.$ar_res['NAME'].'</strong>'.' </div><div style="clear:both;"></div>';
+				$res = CIBlockSection::GetByID(intval($_GET["gift"]));
+				if($ar_res = $res->GetNext()) {
+					if ($ar_res['DEPTH_LEVEL'] == 3) {
+						$res = CIBlockSection::GetByID($ar_res['IBLOCK_SECTION_ID']);
+						$ar_res = $res->GetNext();
+					}
+					return $this->drawSectionChain($ar_res['ID']);
+				}				
 			}
 		}
 

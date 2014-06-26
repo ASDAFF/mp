@@ -21,6 +21,7 @@
 	$(document).ready(function(){
 		// Корзина
 		$('.cart').dialog({autoOpen: false, modal: true, width: 900, });
+		$('.cart-success').dialog({autoOpen: false, modal: true, width: 900, });
 		function updateCart(res){
 			$('.cart-items-handler').html('');
 			var cartItem = _.template(
@@ -69,6 +70,21 @@
 		$('.return-cart').click(function(e){
 			e.preventDefault();
 			$('.cart').dialog('close');
+			$('.cart-success').dialog('close');
+			return false;
+		});
+
+		$('.order-basket').click(function(e) {
+			e.preventDefault();
+			$('.cart').dialog('close');
+			$.ajax({
+				url: '/cart/order.php?order_basket=Y', 
+				success: function(res){ 
+					debugger;
+					console.log(res);
+					$('.cart-success').dialog('open');
+				} 
+			});
 			return false;
 		});
 		
@@ -87,7 +103,7 @@
 	});
 </script>
 
-<div class="cart" title="Корзина">
+<div class="cart" title="Корзина" style="display: none;">
 	<div class="cart-block">
 		<div class="cart-items-handler"></div>
 		<div class="itogo">
@@ -96,7 +112,19 @@
 		</div>
 		
 		<div class="more">
-			<a href="#" class="return-cart">Продолжить покупки</a> <a href="/order/">Оформить</a>
+			<a href="#" class="return-cart">Продолжить покупки</a> <a class="order-basket" href="javascript:;">Оформить</a>
+		</div>
+		
+		<div style="clear:both;"></div>
+	</div>
+</div>
+
+<div class="cart-success" title="Заказ оформлен" style="display: none;">
+		<p>Спасибо.</p>
+		<p>Для уточнения адреса и времени доставки и других пожеланий, мы свяжемся с вами в течение нескольких минут.</p>
+		
+		<div class="more">
+			<a href="#" class="return-cart">Продолжить покупки</a> 
 		</div>
 		
 		<div style="clear:both;"></div>
