@@ -1,13 +1,13 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Личный кабинет");
-if (isset($_POST['edit'])) {
-	global $USER;
-	global $APPLICATION;
-	$user = new CUser;
-	$user->Update($USER->GetId(), array('PERSONAL_STREET' => htmlspecialchars($_POST['PERSONAL_STREET'])));
-	LocalRedirect($APPLICATION->GetCurDir());
-}
+// if (isset($_POST['edit'])) {
+// 	global $USER;
+// 	global $APPLICATION;
+// 	$user = new CUser;
+// 	$user->Update($USER->GetId(), array('PERSONAL_STREET' => htmlspecialchars($_POST['PERSONAL_STREET'])));
+// 	LocalRedirect($APPLICATION->GetCurDir());
+// }
 ?>
 <?
 	global $USER;
@@ -30,49 +30,50 @@ if (isset($_POST['edit'])) {
 					<div class="cab-des">
 						
 						<h3><?=$arUser['NAME'];?></h3>
-						<p>Адрес доставки</p>
-						<form method="post" action="">
-							<input type="text" name="PERSONAL_STREET" value="<?=$arUser['PERSONAL_STREET']?>" placeholder="Адрес доставки">
-							<input type="submit" name="edit" value="Изменить">
-						</form>
-						<p>Телефон: <?=$arUser['PERSONAL_PHONE']?></p>
-						<p>Email адрес: <?=$arUser['EMAIL']?></p>
-						<!-- <p class="cash">Cash-счет: 390 р.</p> -->
-						<hr/>
-							<?$APPLICATION->IncludeComponent(
-							"bitrix:sale.personal.order",
-							"",
-							Array(
-								"ACTIVE_DATE_FORMAT" => "j F Y",
-								"SEF_MODE" => "N",
-								"CACHE_TYPE" => "A",
-								"CACHE_TIME" => "3600",
-								"CACHE_GROUPS" => "Y",
-								"ORDERS_PER_PAGE" => "20",
-								"PATH_TO_PAYMENT" => "payment.php",
-								"PATH_TO_BASKET" => "basket.php",
-								"SET_TITLE" => "Y",
-								"SAVE_IN_SESSION" => "Y",
-								"NAV_TEMPLATE" => "",
-								"CUSTOM_SELECT_PROPS" => array(""),
-								"HISTORIC_STATUSES" => array(),
-								"STATUS_COLOR_N" => "green",
-								"STATUS_COLOR_F" => "green",
-								"STATUS_COLOR_PSEUDO_CANCELLED" => "green"
-							)
-						);?>						
+						<p class="cash">Cash-счет: 390 р.</p>
+						<p><?=$arUser['PERSONAL_ZIP'];?></p>
+						<p><?=$arUser['PERSONAL_STATE']?></p>
+						<p><?=$arUser['PERSONAL_CITY']?></p>
+						<p><?=$arUser['PERSONAL_STREET']?></p>
+						<p><?=$arUser['PERSONAL_PHONE']?></p>
+						<p><?=$arUser['EMAIL']?></p>
+							<?$APPLICATION->IncludeComponent("bitrix:sale.personal.order", ".default", array(
+	"PROP_1" => array(
+	),
+	"ACTIVE_DATE_FORMAT" => "j F Y",
+	"SEF_MODE" => "N",
+	"SEF_FOLDER" => "/personal/",
+	"CACHE_TYPE" => "A",
+	"CACHE_TIME" => "3600",
+	"CACHE_GROUPS" => "Y",
+	"ORDERS_PER_PAGE" => "50",
+	"PATH_TO_PAYMENT" => "payment.php",
+	"PATH_TO_BASKET" => "basket.php",
+	"SET_TITLE" => "Y",
+	"SAVE_IN_SESSION" => "Y",
+	"NAV_TEMPLATE" => "",
+	"CUSTOM_SELECT_PROPS" => array(
+	),
+	"HISTORIC_STATUSES" => array(
+	),
+	"STATUS_COLOR_N" => "yellow",
+	"STATUS_COLOR_F" => "green",
+	"STATUS_COLOR_PSEUDO_CANCELLED" => "red"
+	),
+	false
+);?>						
 					</div>
 				</div>
 				<div class="cabinet-box2">
 					<ul>
-						<li><a class="active" href="/personal/">Профиль</a></li>
+						<!-- <li><a class="active" href="/personal/">Профиль</a></li> -->
 						<!-- <li><a href="/personal/orders/">Заказы</a></li> -->
 						<li><a href="/?logout=yes">Выход</a></li>
 					</ul>
 				</div>
 			</div>
 			
-			<div class="section">
+			<!-- <div class="section">
 
 			<ul class="tabs">
 				<li class="current">Понравилось</li>
@@ -95,7 +96,7 @@ if (isset($_POST['edit'])) {
 					<p>Созерцание осмысляет трансцендентальный бабувизм, хотя в официозе принято обратное. Бабувизм абстрактен. Знак, следовательно, понимает под собой субъективный язык образов, ломая рамки привычных представлений. Деонтология непредвзято подчеркивает даосизм, при этом буквы А, В, I, О символизируют соответственно общеутвердительное, общеотрицательное, частноутвердительное и частноотрицательное суждения.</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

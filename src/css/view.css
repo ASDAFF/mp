@@ -4,7 +4,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic);
 
-html{height:100%;position:relative;}
+html{font-family: 'Open Sans', sans-serif; height:100%;position:relative;}
 
 body{padding:0;margin:0;border:0 none;background:#fff url(../images/cl-02.jpg) left top repeat-x;height:100%;}
 body.bbg{padding:0;margin:0;border:0 none;background:#fff url(../images/cl-16.jpg) left top repeat-x;height:100%;}
@@ -288,10 +288,10 @@ border-radius: 100%;
 overflow:hidden;
 }
 
-.cab-des{float:left;margin:19px 0 0 22px;}
+.cab-des{float:left;margin:19px 0 0 22px; width: 620px;}
 .cab-des h3{margin:0;padding:0;line-height:0.7em;color:#a9a9a9;font-weight:300;font-size:35px;font-family: 'Open Sans', sans-serif;}
-.cab-des p{margin:10px 0 0 0;padding:0;color:#a9a9a9;font-weight:400;font-size:13px;font-family: 'Open Sans', sans-serif;}
-.cab-des p.cash{margin:9px 0 0 0;color:#000;font-weight:400;font-size:16px;font-family: 'Open Sans', sans-serif;}
+.cab-des p{margin:0px 0 0 0;padding:0;color:#a9a9a9;font-weight:400;font-size:13px;font-family: 'Open Sans', sans-serif;}
+.cab-des p.cash{margin:9px 0 10px 0;color:#000;font-weight:400;font-size:16px;font-family: 'Open Sans', sans-serif;}
 
 /************************tabs***********************/
 .section {

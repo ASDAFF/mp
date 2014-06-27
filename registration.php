@@ -431,9 +431,6 @@
 
 	?>
 
-</body>
-</html>
-
 	
 		<?$APPLICATION->IncludeComponent(
 			"bitrix:system.auth.form",
