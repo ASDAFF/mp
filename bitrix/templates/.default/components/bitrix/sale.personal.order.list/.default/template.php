@@ -95,7 +95,12 @@
 									<table style="width: 100%">
 										<?foreach ($order["BASKET_ITEMS"] as $item): ?>
 										<?
-										$element = CIBlockElement::GetById($item['PRODUCT_ID'])->Fetch();
+										$product = CCatalogSku::GetProductInfo($item['PRODUCT_ID']);
+										if (false === $product) {
+											$element = CIBlockElement::GetById($item['PRODUCT_ID'])->Fetch();
+										} else {
+											$element = CIBlockElement::GetById($product['ID'])->Fetch();
+										}
 										$item['DETAIL_PAGE_URL'] = '/butik/' . $element['CODE'] .'/';
 										$item['PREVIEW_PICTURE'] = CFile::ResizeImageGet($element['PREVIEW_PICTURE'], array('width' => 100, 'height' => 100));
 										?>

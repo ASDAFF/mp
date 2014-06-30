@@ -15,6 +15,10 @@ $APPLICATION->SetTitle("Товар");
 			<li><? $tags->drawFacility();?></li>			
 		</ul>
 	</div>	
+	<div class="cat-phone">
+		<p>т: 8-495-517-43-64</p>
+		<p>Мегафон, Москва</p>
+	</div>
 	<? $tags->setFilter();?>
 	<div style="clear:both;"></div>
 

@@ -64,8 +64,15 @@ $APPLICATION->SetTitle("Личный кабинет");
 );?>						
 					</div>
 				</div>
+				
 				<div class="cabinet-box2">
 					<ul>
+						<li style="height: 60px; margin-top:20px;">
+							<div class="cat-phone">
+								<p>т: 8-495-517-43-64</p>
+								<p>Мегафон, Москва</p>
+							</div>
+						</li>
 						<!-- <li><a class="active" href="/personal/">Профиль</a></li> -->
 						<!-- <li><a href="/personal/orders/">Заказы</a></li> -->
 						<li><a href="/?logout=yes">Выход</a></li>

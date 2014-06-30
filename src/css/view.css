@@ -20,7 +20,7 @@ body.bbg{padding:0;margin:0;border:0 none;background:#fff url(../images/cl-16.jp
 .header2{min-height:128px;background:#f15824;}
 
 ul.top-menu{padding:0;margin:0;position:absolute;top:50px;left:18px;}
-ul.top-menu li{padding:0;margin:0 26px 0 0;float:left;list-style:none;font-weight:500;font-size:20px;font-family: 'Ubuntu Condensed', sans-serif;}
+ul.top-menu li{padding:0;margin:0 57px 0 0;float:left;list-style:none;font-weight:500;font-size:20px;font-family: 'Ubuntu Condensed', sans-serif;}
 ul.top-menu li a{text-decoration:none;color:#fff;padding:0 0 42px 0;text-transform:uppercase;}
 ul.top-menu li a.active,
 ul.top-menu li a:hover{text-decoration:none;color:#fff;padding:0 0 40px 0;border-bottom:2px solid #efefef;}
@@ -226,9 +226,8 @@ text-align:center;
 
 color:#707070;font-weight:500;font-size:16px;font-family: 'Open Sans', sans-serif;
 }
-.more a:hover{background:#f15824;color:#fff;font-weight:500;font-size:14px;font-family: 'Open Sans', sans-serif;
-
-}
+.more a{background: #bfbfbf; color:#fff !important;font-weight:500;font-size:14px;font-family: 'Open Sans', sans-serif; }
+.more a:hover{background:#f15824;}
 
 /***************************************/
 
@@ -851,3 +850,6 @@ text-decoration:none;
 .soc {}
 .soc.fb-auth { width: 162px; height: 29px; background-image: url(/src/soc/auth/fb-active.png); }
 .soc.fb-auth:hover { background-image: url(/src/soc/auth/fb.png); }
+
+.cat-phone {background: url(/src/icons/apple.png) no-repeat left; float: right; width: 172px; margin-top: -12px; background-size: 21px;}
+.cat-phone p {line-height: 4px; padding-left: 37px; font-size: 13px;}

@@ -21,7 +21,7 @@
 	$(document).ready(function(){
 		// Корзина
 		$('.cart').dialog({autoOpen: false, modal: true, width: 900, });
-		$('.cart-success').dialog({autoOpen: false, modal: true, width: 900, });
+		$('.cart-success').dialog({autoOpen: false, modal: true, width: 500});
 		function updateCart(res){
 			$('.cart-items-handler').html('');
 			var cartItem = _.template(
@@ -119,12 +119,11 @@
 	</div>
 </div>
 
-<div class="cart-success" title="Заказ оформлен" style="display: none;">
-		<p>Спасибо.</p>
-		<p>Для уточнения адреса и времени доставки и других пожеланий, мы свяжемся с вами в течение нескольких минут.</p>
+<div class="cart-success" title="Заказ оформлен, спасибо." style="display: none;">
+		<p>В течение нескольких минут мы свяжемся с вами для уточнения адреса, способа и времени доставки.</p>
 		
-		<div class="more">
-			<a href="#" class="return-cart">Продолжить покупки</a> 
+		<div class="more" style="padding-left: 110px;">
+			<a href="#" class="return-cart">Вернуться на сайт</a> 
 		</div>
 		
 		<div style="clear:both;"></div>

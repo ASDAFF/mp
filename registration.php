@@ -79,15 +79,15 @@
 		
 		
 		$('#reg-handler').dialog({
-			width: 880,
+			width: 600,
 			height: 550,
       		modal: true,
 			autoOpen: false,
 		});
 		
 		$('#auth-handler').dialog({
-			width: 880,
-			height: 550,
+			width: 600,
+			height: 300,
       		modal: true,
 			autoOpen: false,
 		});
@@ -109,6 +109,10 @@
 </script>
 
 <style type="text/css">
+	/*.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+		border-bottom-right-radius: 0;
+		background: #E9E9E9;
+	}*/
 	.modal-logo{
 		position: absolute;
 		top:-50px;
@@ -149,7 +153,7 @@
 	}
 	
 	.right-column .reg-field input{
-		width:330px;
+		width:360px;
 		margin: 0px;
 		padding: 5px;
 		border:1px solid #999;
@@ -165,118 +169,121 @@
 		background-color: #f15824;
 		border: none;
 		padding: 10px 0px;
-		width: 340px;
+		width: 373px;
 		border-radius: 5px;
 		font-size: 14px;
 		cursor: pointer;
 	}
+	.head-text {color: #000; font-size: 19px; }
 </style>
 
-<div id="reg-handler">
-	<div class="modal-logo"><img src="/src/images/muchmore.jpg" style="width:70px;" /></div>
-	<div class="modal-header">MUCHMORE МАГАЗИН БЕЗГРАНИЧНЫХ ВОЗМОЖНОСТЕЙ.<br />Москва, Осенняя 23, тел, Wiber, WatsUp: +7 495 517 43 64</div>
-	<div class="left-column">
+<div id="reg-handler" style="height: 550px;">
+	<!-- <div class="modal-logo"><img src="/src/images/muchmore.jpg" style="width:70px;" /></div> -->
+	<!-- <div class="modal-header" style="width: 278px;">MUCHMORE МАГАЗИН БЕЗГРАНИЧНЫХ ВОЗМОЖНОСТЕЙ.<br />Москва, Осенняя 23, тел, Wiber, WatsUp: +7 495 517 43 64</div> -->
+	<!-- <div class="left-column">
 		<p class="orange">Пожалуйста, заполните эти поля <br />и вы получите полный <br />функционал сайта.</p>
 		<p>Вам будет удобнее покупать, <br />формировать Вишлисты и отмечать <br />понравившиеся товары.</p>
 		<p>Вы получите доступ к разделам <br />«Маркетплейс» Территория<br /> Уникальных Товаров и «Эврика»<br /> Территория Уникальных Идей.</p>
-	</div>
+	</div> -->
 	
-	<div class="right-column">
+	<div class="right-column" style="margin-top: -35px; float: none; margin:-35px auto; padding: 0;">
+		<p class="head-text">Пожалуйста, заполните эти поля и пользуйтесь всеми возможностями сайта.</p>
 		<?php
-		    global $APPLICATION;
-			$client_id = '681312905274770'; // Client ID
-			$client_secret = 'af8718f44710325e293bc2068368dd96'; // Client secret
-			$redirect_uri = 'http://mm.wrdev.ru' . $APPLICATION->GetCurPageParam('', array('code', 'ELEMENT_CODE', 'section', 'catalog')); // Redirect URIs
+		 //    global $APPLICATION;
+			// $client_id = '681312905274770'; // Client ID
+			// $client_secret = 'af8718f44710325e293bc2068368dd96'; // Client secret
+			// $redirect_uri = 'http://mm.wrdev.ru' . $APPLICATION->GetCurPageParam('', array('code', 'ELEMENT_CODE', 'section', 'catalog')); // Redirect URIs
 
-			$url = 'https://www.facebook.com/dialog/oauth';
+			// $url = 'https://www.facebook.com/dialog/oauth';
 
-			$params = array(
-			    'client_id'     => $client_id,
-			    'redirect_uri'  => $redirect_uri,
-			    'response_type' => 'code',
-			    'scope'         => 'email,user_birthday'
-			);
+			// $params = array(
+			//     'client_id'     => $client_id,
+			//     'redirect_uri'  => $redirect_uri,
+			//     'response_type' => 'code',
+			//     'scope'         => 'email,user_birthday'
+			// );
 
-			echo $link = '<a href="' . $url . '?' . urldecode(http_build_query($params)) . '"><div class="soc fb-auth"></div></a>';
+			// echo $link = '<a href="' . $url . '?' . urldecode(http_build_query($params)) . '"><div class="soc fb-auth"></div></a>';
 
-			if (isset($_GET['code'])) {
-			    $result = false;
+			// if (isset($_GET['code'])) {
+			//     $result = false;
 
-			    $params = array(
-			        'client_id'     => $client_id,
-			        'redirect_uri'  => $redirect_uri,
-			        'client_secret' => $client_secret,
-			        'code'          => $_GET['code']
-			    );
+			//     $params = array(
+			//         'client_id'     => $client_id,
+			//         'redirect_uri'  => $redirect_uri,
+			//         'client_secret' => $client_secret,
+			//         'code'          => $_GET['code']
+			//     );
 
-			    $url = 'https://graph.facebook.com/oauth/access_token';
+			//     $url = 'https://graph.facebook.com/oauth/access_token';
 
-			    $tokenInfo = null;
-			    parse_str(file_get_contents($url . '?' . http_build_query($params)), $tokenInfo);
+			//     $tokenInfo = null;
+			//     parse_str(file_get_contents($url . '?' . http_build_query($params)), $tokenInfo);
 
-			    if (count($tokenInfo) > 0 && isset($tokenInfo['access_token'])) {
-			        $params = array('access_token' => $tokenInfo['access_token']);
+			//     if (count($tokenInfo) > 0 && isset($tokenInfo['access_token'])) {
+			//         $params = array('access_token' => $tokenInfo['access_token']);
 
-			        $userInfo = json_decode(file_get_contents('https://graph.facebook.com/me' . '?' . urldecode(http_build_query($params))), true);
+			//         $userInfo = json_decode(file_get_contents('https://graph.facebook.com/me' . '?' . urldecode(http_build_query($params))), true);
 
-			        if (isset($userInfo['id'])) {
-			            $userInfo = $userInfo;
-						$bitrixUser = CUser::GetByLogin($userInfo['email'])->Fetch();
-						if (false !== $bitrixUser) {
-							global $USER;
-							$USER->Authorize($bitrixUser['ID']);
-							LocalRedirect($APPLICATION->GetCurPageParam('', array('code')));
-						} else {
-							LocalRedirect($APPLICATION->GetCurPageParam('user[name]=' . $userInfo['name'] . '&user[email]=' . $userInfo['email'], array('code')));
-						}
-			            $result = true;
-			        }
-			    }
-			}
+			//         if (isset($userInfo['id'])) {
+			//             $userInfo = $userInfo;
+			// 			$bitrixUser = CUser::GetByLogin($userInfo['email'])->Fetch();
+			// 			if (false !== $bitrixUser) {
+			// 				global $USER;
+			// 				$USER->Authorize($bitrixUser['ID']);
+			// 				LocalRedirect($APPLICATION->GetCurPageParam('', array('code')));
+			// 			} else {
+			// 				LocalRedirect($APPLICATION->GetCurPageParam('user[name]=' . $userInfo['name'] . '&user[email]=' . $userInfo['email'], array('code')));
+			// 			}
+			//             $result = true;
+			//         }
+			//     }
+			// }
 		?>
 		<?php
 		if(!empty($errors)){
 			echo '<p style="color:#f00;">'.implode('<br />', $errors).'</p>';
 		}
 		
-		if(!empty($result)){
-			echo '<p style="color:#11934c;">'.$result.'</p>';
+		if(!empty($result)) {
+			echo '<p style="color:#11934c;">' . $result . '</p>';
 		}
 		?>
 		<form method="post">
 			<p class="reg-field">
 				<!-- <label for="user_name">Имя</label><br /> -->
 				<input id="user_name" type="text" value="<?=$userInfo['name'];?>" name="user[name]" placeholder="Имя, Город" /><br />
-				<span>Как к вам обращаться и куда доставить заказ.</span>
+				<!-- <span>Как к вам обращаться и куда доставить заказ.</span> -->
 			</p>
 	
 			<p class="reg-field">
 				<!-- <label for="user_email">Email</label><br /> -->
 				<input id="user_email" type="text" value="<?=$userInfo['email'];?>" name="user[email]" placeholder="Email" /><br />
-				<span>Для получения электронного чека и гарантии.</span>
+				<!-- <span>Для получения электронного чека и гарантии.</span> -->
 			</p>
 	
 			<p class="reg-field">
 				<!-- <label for="user_phone">Телефон</label><br /> -->
 				<input id="user_phone" type="text" value="<?=$userInfo['phone'];?>" name="user[phone]" placeholder="Телефон" /><br />
-				<span>Для подтверждения заказа.</span>
+				<!-- <span>Для подтверждения заказа.</span> -->
 			</p>
 			</hr>
-			<p>Уже зарегистрированы? <a href="javascript:;" class="change-auth">Войти</a></p>
+			<p><small style="font-size: 13px;">Регистрировались раньше? <a href="javascript:;" class="change-auth">Войти</a></small></p>
 			<p class="reg-submit">
 				<input type="submit" value="Зарегистрироваться" />
 			</p>
 		</form>
+		<small style="color: #999; font-size: 13px; line-height: 20px;">Вам будет удобнее покупать, формировать Вишлисты и отмечать понравившиеся товары. Вы получите доступ к разделам «Маркетплейс» Территория Уникальных Товаров и «Эврика»Территория Уникальных Идей.</small>
 	</div>
 	<div style="clear:both;"></div>
 </div>
 
 <div id="auth-handler">
-	<div class="modal-logo"><img src="/src/images/muchmore.jpg" style="width:70px;" /></div>
-	<div class="modal-header">MUCHMORE МАГАЗИН БЕЗГРАНИЧНЫХ ВОЗМОЖНОСТЕЙ.<br />Москва, Осенняя 23, тел, Wiber, WatsUp: +7 495 517 43 64</div>
-	<div class="left-column">
+	<!-- <div class="modal-logo"><img src="/src/images/muchmore.jpg" style="width:70px;" /></div> -->
+	<!-- <div class="modal-header" style="width: 278px;">MUCHMORE МАГАЗИН БЕЗГРАНИЧНЫХ ВОЗМОЖНОСТЕЙ.<br />Москва, Осенняя 23, тел, Wiber, WatsUp: +7 495 517 43 64</div> -->
+	<!-- <div class="left-column"> -->
 		<?php
-		    global $APPLICATION;
+		    /*global $APPLICATION;
 			$client_id = '681312905274770'; // Client ID
 			$client_secret = 'af8718f44710325e293bc2068368dd96'; // Client secret
 			$redirect_uri = 'http://mm.wrdev.ru' . $APPLICATION->GetCurPageParam('', array('code', 'ELEMENT_CODE', 'section', 'catalog')); // Redirect URIs
@@ -325,12 +332,12 @@
 			            $result = true;
 			        }
 			    }
-			}
+			}*/
 		?>
 		 
-	</div>
+	<!-- </div> -->
 	
-	<div class="right-column">
+	<div class="right-column" style="margin-top: -35px; float: none; margin:-35px auto; padding: 0;">
 	<?php
 	   /* $client_id = '4431649'; // ID приложения
 	    $client_secret = '1eNcuku7lIF5JtmMeo5H'; // Защищённый ключ
@@ -442,7 +449,7 @@
 				"SHOW_ERRORS" => "Y"
 			)
 		);?>
-		<p>Не регистрировались раньше? <a href="javascript:;" class="change-reg">Зарегистрироваться</a></p>
+		<p><small style="font-size: 13px;">Не регистрировались раньше? <a href="javascript:;" class="change-reg">Зарегистрироваться</a></small></p>
 	</div>
 </div>
 <?

@@ -33,18 +33,34 @@
 					<div class="soc">
 						<ul>
 							<li>
-<script type="text/javascript">(function() {
-  if (window.pluso)if (typeof window.pluso.start == "function") return;
-  if (window.ifpluso==undefined) { window.ifpluso = 1;
-    var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
-    s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
-    var h=d[g]('body')[0];
-    h.appendChild(s);
-  }})();</script>
-<div class="pluso" data-background="transparent" data-options="medium,square,line,horizontal,nocounter,theme=04" data-services="facebook,vkontakte,twitter,email"></div>
+							<!-- Put this script tag to the <head> of your page -->
+							<script type="text/javascript" src="//vk.com/js/api/openapi.js?113"></script>
 
-</li>
+							<script type="text/javascript">
+							  VK.init({apiId: 4438261, onlyWidgets: true});
+							</script>
+
+							<!-- Put this div tag to the place, where the Like block will be -->
+							<div id="vk_like"></div>
+							<script type="text/javascript">
+							VK.Widgets.Like("vk_like", {type: "mini"});
+							</script>
+							</li>
+							<li>
+								<div id="fb-root"></div>
+								<script>(function(d, s, id) {
+								  var js, fjs = d.getElementsByTagName(s)[0];
+								  if (d.getElementById(id)) return;
+								  js = d.createElement(s); js.id = id;
+								  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=681312905274770&version=v2.0";
+								  fjs.parentNode.insertBefore(js, fjs);
+								}(document, 'script', 'facebook-jssdk'));</script>
+								<div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-width="22" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+							</li>
+							<li>
+								<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://mm.wrdev.ru/" data-text="Muchmore" data-via="muchmore" data-lang="ru" data-related="muchmore" data-hashtags="muchmore">Твитнуть</a>
+								<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+							</li>
 
 							<li><a href="#">Добавить в Wishlist</a></li>
 						</ul>
@@ -82,7 +98,7 @@
 								<?if ($USER->isAuthorized()) : ?>
 									<a class="buy-link" href="<?=$arResult['BUY_URL']?>">Купить</a>
 								<? else : ?>
-									<a class="open-auth save-buy" href="/personal/">Купить</a>
+									<a class="open-reg save-buy" href="/personal/">Купить</a>
 								<?endif; ?>
 							</li>							
 						</ul>
