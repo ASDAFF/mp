@@ -89,7 +89,8 @@
 		});
 		
 		function setOffer(target){
-			$('.buy-link').attr('href', target.val());
+			// $('.buy-link').attr('href', target.val());
+			$('.buy-sku').attr('href', target.val());
 		}
 		
 		setOffer($('.offers:eq(0)'));

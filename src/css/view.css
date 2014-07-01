@@ -125,7 +125,7 @@ a.link-all{display:block;width:360px;text-align:center;margin:0 auto 60px auto;f
 .f-02 ul li a{color:#ccc;font-weight:500;font-size:14px;font-family: 'PT Sans', sans-serif;text-decoration:none;line-height:0.7em;}
 .f-02 ul li a:hover{text-decoration:underline;}
 
-.f-03{position:absolute;top:94px;left:416px;width:100px;}
+.f-03{position:absolute;top:94px;left:416px;width:150px;}
 .f-03 h4{color:#999;font-weight:700;font-size:16px;font-family: 'PT Sans', sans-serif;line-height:0.7em;margin:0;padding:0;}
 .f-03 ul{margin:17px 0 0 0;padding:0;}
 .f-03 ul li{margin:0 0 13px 0;padding:0;list-style:none;}
@@ -435,7 +435,7 @@ margin: 0 0 0 35px;}
 
 /*********************************/
 
-.cat-menu{margin:0px 0 0 18px; padding: 28px 0px 0px 0px;}
+.cat-menu{margin:0px 0 61px 18px; padding: 28px 0px 0px 0px;}
 
 ul.sf-menu {position:relative; z-index:99;padding:0;margin: 0;}
 ul.sf-menu li {padding:0;margin:0 9px 0 0;list-style:none;float:left;text-align:center;position:relative;background:url(../images/icon_arrow_preview2.png) right no-repeat;}
@@ -582,12 +582,7 @@ overflow:hidden;
 .cabinet-box3{clear:both;padding:14px 0 0 0;}
 .cabinet-box3 ul{padding:0;margin:0;}
 .cabinet-box3 ul li{padding:0;margin:0;list-style:none;}
-.cabinet-box3 ul li a{width:211px;display:block;line-height:0.7em;padding:19px 0 19px 0;margin:0 0 21px 0;background:/* #bfbfbf */#f15824; text-align:center;
-color:#fff;font-weight:400;font-size:16px;font-family: 'Open Sans', sans-serif;text-decoration:none;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
-}
+.cabinet-box3 ul li a{width:211px;display:block;line-height:0.7em;padding:19px 0 19px 0;margin:0 0 21px 0;background: #bfbfbf; text-align:center; color:#fff;font-weight:400;font-size:16px;font-family: 'Open Sans', sans-serif;text-decoration:none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 .cabinet-box3 ul li a:hover{background:#f15824;}
 
 .tprice{color:#f15824;font-weight:500;font-size:24px;font-family: 'Open Sans', sans-serif;text-decoration:none;line-height:1em;}
@@ -851,5 +846,5 @@ text-decoration:none;
 .soc.fb-auth { width: 162px; height: 29px; background-image: url(/src/soc/auth/fb-active.png); }
 .soc.fb-auth:hover { background-image: url(/src/soc/auth/fb.png); }
 
-.cat-phone {background: url(/src/icons/apple.png) no-repeat left; float: right; width: 172px; margin-top: -12px; background-size: 21px;}
+.cat-phone {background: url(/src/icons/apple.png) no-repeat left; float: right; width: 172px; margin-top: -3px; background-size: 21px;}
 .cat-phone p {line-height: 4px; padding-left: 37px; font-size: 13px;}

@@ -8,7 +8,8 @@ if ($arResult['SHOW_ERRORS'] == 'Y' && $arResult['ERROR']) {
 	ShowMessage($arResult['ERROR_MESSAGE']);
 	?>
 	<script>
-		$('.open-auth').click();
+		// $('.open-auth').click();
+		$('#auth-handler').dialog('open');
 	</script>
 	<?
 } else {

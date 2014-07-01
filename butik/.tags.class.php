@@ -120,6 +120,24 @@
 			}	
 			echo '</table></ul>';					
 		}
+
+		public function drawBrands(){
+			$brands = $this->getElements(9);
+			$i = 0;
+			$k = $this->getK($brands);
+				
+			echo '<a href="/butik/">'.(isset($_GET['gift']) && isset($brands[$_GET['gift']])?'<span style="color:#f15824;">Мануфактуры</span>':'Мануфактуры').'</a>';
+			echo '<ul><table class="catalog-menu">';
+			
+			
+			foreach($brands as $key => $value){	
+				$i++;
+				if(($i%$k)==1) echo '<tr>';		
+				echo '<td><a href="/butik/?brand='.$key.'"><img src="'.$this->elemIcons[$key].'" />'.$value.'</a></td>';
+				if(($i%$k)==0) echo '</tr>';	
+			}	
+			echo '</table></ul>';					
+		}
 		
 		/* ------------------- */
 		
@@ -214,6 +232,11 @@
 				$arrFilter['PROPERTY_CATALOG'] = intval($_GET['catalog']);
 			}
 			
+			if(isset($_GET['brand'])){
+				$arrFilter['PROPERTY_BRAND'] = intval($_GET['brand']);
+			}
+			
+
 			if(isset($_GET['facility'])){
 				$arrFilter['PROPERTY_FACILITY'] = intval($_GET['facility']);
 			}
@@ -233,7 +256,7 @@
 				$res = CIBlockSection::GetByID(intval($_GET["catalog"]));
 				if($ar_res = $res->GetNext()){
 					$sections = $this->drawSections();	
-					return '<div class="custom-tags"><div class="title"><strong><img src="'.$this->sectIcons[intval($_GET["catalog"])].'" />'.$ar_res['NAME'].($sections!=''?':':'').'</strong></div> '.$sections.' </div><div style="clear:both;"></div>';
+					return '<div class="custom-tags"><div class="title"><strong>'.$ar_res['NAME'].($sections!=''?':':'').'</strong></div> '.$sections.' </div><div style="clear:both;"></div>';
 				}				
 			}
 			
@@ -274,7 +297,12 @@
 			if(isset($_GET['section'])) {
 				$res = CIBlockSection::GetByID(intval($_GET["section"]));
 				if($ar_res = $res->GetNext()) {
-					if ($ar_res['DEPTH_LEVEL'] == 3) {
+					if ($ar_res['DEPTH_LEVEL'] == 4) {
+						$res = CIBlockSection::GetByID($ar_res['IBLOCK_SECTION_ID']);
+						$ar_res = $res->GetNext();
+						$res = CIBlockSection::GetByID($ar_res['IBLOCK_SECTION_ID']);
+						$ar_res = $res->GetNext();
+					} elseif ($ar_res['DEPTH_LEVEL'] == 3) {
 						$res = CIBlockSection::GetByID($ar_res['IBLOCK_SECTION_ID']);
 						$ar_res = $res->GetNext();
 					}
@@ -305,4 +333,93 @@
 			}
 		}
 
+		/**
+		 * Категории типаов товаров (3-й уровень)
+		 * @return string HTML код на вывод
+		 */
+		public function subSubTags()
+		{
+			if(isset($_GET['section'])) {
+				$res = CIBlockSection::GetByID(intval($_GET["section"]));
+				if($ar_res = $res->GetNext()) {
+					if ($ar_res['DEPTH_LEVEL'] > 3) {
+						$res = CIBlockSection::GetByID($ar_res['IBLOCK_SECTION_ID']);
+						$ar_res = $res->GetNext();
+					} elseif ($ar_res['DEPTH_LEVEL'] < 3) {
+						return;
+					}
+					return $this->drawSectionChain($ar_res['ID']);
+				}				
+			}
+			
+			if(isset($_GET['facility'])){
+				$res = CIBlockSection::GetByID(intval($_GET["facility"]));
+				if($ar_res = $res->GetNext()) {
+					if ($ar_res['DEPTH_LEVEL'] == 3) {
+						$res = CIBlockSection::GetByID($ar_res['IBLOCK_SECTION_ID']);
+						$ar_res = $res->GetNext();
+					}
+					return $this->drawSectionChain($ar_res['ID']);
+				}				
+			}
+			
+			if(isset($_GET['gift'])){
+				$res = CIBlockSection::GetByID(intval($_GET["gift"]));
+				if($ar_res = $res->GetNext()) {
+					if ($ar_res['DEPTH_LEVEL'] == 3) {
+						$res = CIBlockSection::GetByID($ar_res['IBLOCK_SECTION_ID']);
+						$ar_res = $res->GetNext();
+					}
+					return $this->drawSectionChain($ar_res['ID']);
+				}				
+			}
+		}
+
+
+		public function getBrands() {
+			if (!isset($_GET['section']) || !isset($_GET['catalog'])) {
+				return false;
+			}
+			$catalogBrands = array();
+			$sectionId = isset($_GET['section']) ? $_GET['section'] : $_GET['catalog'];
+			$rsItems = CIBlockElement::GetList(false, array(
+				'IBLOCK_ID' => 1,
+				'PROPERTY_CATALOG' => $sectionId,
+				'ACTIVE' => 'Y'
+				), false, false, array('PROPERTY_BRAND'));
+			while ($item = $rsItems->Fetch()) {
+				if (!in_array($item['PROPERTY_BRAND_VALUE'], $catalogBrands)) {
+					$catalogBrands[] = $item['PROPERTY_BRAND_VALUE'];
+				}
+			}
+			if (empty($catalogBrands)) {
+				return false;
+			}
+			$rsItems = CIBlockElement::GetList(array('SORT' => 'ASC'), array(
+				'IBLOCK_ID' => 9,
+				'ACTIVE' => 'Y',
+				'ID' => $catalogBrands
+				), false, false, array(
+				'ID', 'NAME', 'CODE'
+				));
+			while ($item = $rsItems->Fetch()) {
+				$brands[$item['ID']] = array(
+					'id' => $item['ID'],
+					'name' => $item['NAME'],
+					'code' => $item['CODE']
+					);
+			}
+			/**
+			 * Рисуем HTML
+			 */
+			global $APPLICATION;
+			$html = array();
+			$html[] = '<div class="custom-tags">
+				<div class="title"><strong>Мануфактуры:</strong></div>';
+			foreach ($brands as $id => $brand) {
+				$html[] = '<a href="' . $APPLICATION->GetCurPageParam('brand=' . $brand['id'], array('brand')) . '" class="' . (($_GET['brand'] == $id) ? 'active' : '')  . '">' . $brand['name'] . '</a>';
+			}
+			$html[] = '</div>';
+			return implode('', $html);
+		}
 	}	

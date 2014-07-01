@@ -96,9 +96,9 @@
 						<ul>
 							<li>
 								<?if ($USER->isAuthorized()) : ?>
-									<a class="buy-link" href="<?=$arResult['BUY_URL']?>">Купить</a>
+									<a class="buy-link buy-sku" style="background: #f15824;" href="<?=$arResult['BUY_URL']?>">Купить</a>
 								<? else : ?>
-									<a class="open-reg save-buy" href="/personal/">Купить</a>
+									<a class="open-reg save-buy" style="background: #f15824;" href="/personal/">Купить</a>
 								<?endif; ?>
 							</li>							
 						</ul>
@@ -133,6 +133,9 @@
 										break;
 									case 11:
 										$url .= '?facility='.$ar_res['ID'];
+										break;
+									case 9:
+										$url .= '?brand='.$ar_res['ID'];
 										break;
 								}
 								$result[] = '<a href="'.$url.'">'.$ar_res['NAME'].'</a>';
@@ -176,7 +179,15 @@
 				<ul class="r-menu">
 					<?=getProductAllTags($arResult);?>
 				</ul>
-				
+				<script>
+					$(document).ready(function () {
+						$('.r-rec').hover(function () {
+							$(this).find('div.cabinet-box3').fadeIn();
+						}, function () {
+							$(this).find('div.cabinet-box3').fadeOut();
+						})	
+					});
+				</script>
 				<?
 				if(!empty($arResult['PROPERTIES']['RECOMMEND']['VALUE'])){
 					require_once($_SERVER['DOCUMENT_ROOT'].'/.index.items.php');
@@ -187,16 +198,24 @@
 						$result=array();						
 						foreach($target as $item){
 							$data = $prod->getProduct($item);
+							
 							//echo '<pre>'; print_r($data); echo '</pre>';				
 							//$file = CFile::ResizeImageGet($item['PREVIEW_PICTURE'], array('width'=>217*1.5, 'height'=>144*1.5), BX_RESIZE_IMAGE_EXACT, true);
 														
 							$result[] = '
 								<div class="r-rec">
-									<a href="/butik/'.$data['CODE'].'/" style="text-decoration:none; color:#000;">
+									<a href="/butik/x'.$data['CODE'].'/" style="text-decoration:none; color:#000;">
 										<img src="'.$data['PREVIEW_PICTURE'].'" style="width:217px; height:144px;" alt="">
 										<p>'.$data['NAME'].(!empty($data['TEXT'])?': '.$data['TEXT']:'').'</p>
 									</a>
 									<p class="rprice">'.$data['PRICE'].' р.</p>
+									<div class="cabinet-box3" style="float: right; margin-top: -71px; display: none;">
+											<ul>
+												<li>
+													<a style="width: 130px;" class="buy-link" href="/butik/'.$data['CODE'].'/?action=BUY&amp;id='.$item.'&amp;ELEMENT_CODE='.$data['CODE'].'">В корзину</a>
+												</li>							
+											<ul>
+									</div>
 								</div>
 							';
 						}

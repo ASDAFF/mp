@@ -14,13 +14,18 @@ $APPLICATION->SetTitle("Товар");
 			<li><? $tags->drawGifts();?></li>
 			<li><? $tags->drawFacility();?></li>			
 		</ul>
-	</div>	
-	<div class="cat-phone">
-		<p>т: 8-495-517-43-64</p>
-		<p>Мегафон, Москва</p>
+		<div class="cat-phone">
+			<p>т: 8-495-517-43-64</p>
+			<p>Мегафон, Москва</p>
+		</div>
 	</div>
 	<? $tags->setFilter();?>
 	<div style="clear:both;"></div>
+	<?if ($_GET['spec'] == 'sku') : ?>
+	<div style="width: 75%; height: 30px; padding: 1px 0 9px 28px; color: #f15824; font-size: 15px;">
+		<p>Товар содержит характеристики. Пожалуйста, выберете какой именно вы покупаете.</p>
+	</div>
+	<?endif;?>
 
 <?$APPLICATION->IncludeComponent("bitrix:catalog.element", "butik-tovar", array(
 	"IBLOCK_TYPE" => "1c_catalog",

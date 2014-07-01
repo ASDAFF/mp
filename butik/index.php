@@ -2,7 +2,6 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Бутик");
 ?>
-
 	<?
 	require_once('.tags.class.php');
 	$tags = new WRTags();
@@ -13,6 +12,7 @@ $APPLICATION->SetTitle("Бутик");
 			<li><? $tags->drawCatalog();?></li>
 			<li><? $tags->drawGifts();?></li>
 			<li><? $tags->drawFacility();?></li>			
+			<li><? $tags->drawBrands();?></li>			
 		</ul>
 		<div class="cat-phone">
 			<p>т: 8-495-517-43-64</p>
@@ -24,6 +24,8 @@ $APPLICATION->SetTitle("Бутик");
 	<?=$tags->getName();?>
 	<div style="clear:both;"></div>
 	<?=$tags->subTags();?>
+	<div style="clear:both;"></div>
+	<?=$tags->getBrands();?>
 
 <?$APPLICATION->IncludeComponent("bitrix:catalog.section", "butik_main", array(
 	"IBLOCK_TYPE" => "1c_catalog",

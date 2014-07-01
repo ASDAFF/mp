@@ -1,6 +1,15 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die(); ?>
 
 <!-- <pre><?=print_r($arResult)?></pre> -->
+<script>
+	$(document).ready(function () {
+		$('.item-block2').hover(function () {
+			$(this).find('div.cabinet-box3').fadeIn();
+		}, function () {
+			$(this).find('div.cabinet-box3').fadeOut();
+		});
+	});
+</script>
 
 <div class="items2">
 <?
@@ -16,6 +25,18 @@
 		</div>				
 		<a href="/butik/<?=$arItem['CODE']?>/" class="cat-link"><?=!empty($arItem['PREVIEW_TEXT'])?$arItem['NAME'].': '.$arItem['PREVIEW_TEXT']:$arItem['NAME']?></a>
 		<div class="price"><?=(!empty($arItem['OFFERS']))?number_format($arItem['OFFERS'][0]['CATALOG_PRICE_1'], -1, ',', ' ' ):number_format($arItem['CATALOG_PRICE_1'], -1, ',', ' ' );?> р.</div>
+		<div class="cabinet-box3" style="float: right; margin-top: -46px; display: none;">
+				<ul>
+					<li>
+						<?if (empty($arItem['OFFERS'])) : ?>
+							<a style="width: 160px;" class="buy-link" href="/butik/<?=$arItem['CODE']?>/?action=BUY&amp;id=<?=$arItem['ID']?>&amp;ELEMENT_CODE=<?=$arItem['CODE']?>">В корзину</a>
+						<?else : ?>
+							<a style="width: 160px;" href="/butik/<?=$arItem['CODE']?>/?spec=sku">В корзину</a>
+						<?endif;?>
+					</li>							
+				<ul>
+		</div>
+
 		<p><?=implode(' / ',$arItem['PROPERTIES']['TAGS']['VALUE']);?></p>
 		
 	</div>

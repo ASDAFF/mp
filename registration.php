@@ -56,11 +56,34 @@
 	}
 	
 	$userInfo = null;
+	$eventSent = $forgetError = false;
 	if(isset($_POST['user'])){
 		$userInfo = $_POST['user'];
 		$errors = registerUser($_POST['user']);
 	} elseif (isset($_GET['user'])) {
 		$userInfo = $_GET['user'];
+	} elseif (isset($_POST['forget'])) {
+		if (!$_POST['forget']['email']) {
+			$forgetError = 'Неверно указан почтовый адрес';
+		} else {
+			$user = CUser::GetList(($by = "id"), ($order = "desc"), array('EMAIL' => $_POST['forget']['email'], 'ACTIVE' => 'Y'))->Fetch();
+			if (!$user) {
+				$forgetError = 'Неверно указан почтовый адрес';
+			} else {
+				$objUser = new CUser;
+				$password = make_password(8);
+				$objUser->Update($user['ID'], array(
+					'PASSWORD' => $password,
+					'CONFIRM_PASSWORD' => $password
+					));
+				$eventFields = array(
+					'NAME' => $user['NAME'],
+					'PASSWORD' => $password,
+					'EMAIL' => $user['EMAIL']
+					);
+				$eventSent = CEvent::Send('FORGET_PASS', 's1', $eventFields);
+			}
+		}
 	}
 ?>
 <script type="text/javascript">
@@ -87,24 +110,54 @@
 		
 		$('#auth-handler').dialog({
 			width: 600,
-			height: 300,
+			// height: 400,
       		modal: true,
 			autoOpen: false,
 		});
 
-		$('.change-auth').on('click', function () {
+		$('#forget-handler').dialog({
+			width: 600,
+			// height: 300,
+      		modal: true,
+			autoOpen: false,
+		});
+
+		function closeModals() {
 			$('#reg-handler').dialog('close');
+			$('#forget-handler').dialog('close');
+			$('#auth-handler').dialog('close');
+		}
+
+		$('.change-auth').on('click', function () {
+			closeModals();
 			$('#auth-handler').dialog('open');
 		});
 
 		$('.change-reg').on('click', function () {
+			closeModals();
 			$('#reg-handler').dialog('open');
-			$('#auth-handler').dialog('close');
+		});
+
+		$('.change-forget').on('click', function () {
+			closeModals();
+			$('#forget-handler').dialog('open');
 		});
 		
-		<?if(!is_null($userInfo)) : ?>
+		<?if (!is_null($userInfo)) : ?>
+			closeModals();
 			$('#reg-handler').dialog('open');
 		<?endif;?>
+		
+		<?if (isset($_POST['forget']) && false === $forgetError) : ?>
+			closeModals();
+			$('#forget-handler').dialog('open');
+		<?endif;?>
+
+		<?if (isset($_POST['forget']) && false !== $eventSent) : ?>
+			closeModals();
+			$('#auth-handler').dialog('open');
+		<?endif;?>
+
 	});
 </script>
 
@@ -174,8 +227,26 @@
 		font-size: 14px;
 		cursor: pointer;
 	}
+	.right-column p.explain {line-height: 4px;}
 	.head-text {color: #000; font-size: 19px; }
 </style>
+
+<div id="forget-handler" style="height: 550px; padding-bottom: 50px;">
+	<div class="right-column" style="margin-top: -35px; float: none; margin:-35px auto; padding: 0;">
+		<!-- <p class="head-text">Пожалуйста, заполните эти поля и пользуйтесь всеми возможностями сайта.</p> -->
+		<form method="post">
+			<p class="reg-field">
+				<!-- <label for="user_name">Имя</label><br /> -->
+				<input id="user_name" type="text" value="<?=$userInfo['name'];?>" name="forget[email]" placeholder="Email адрес" /><br />
+				<!-- <span>Как к вам обращаться и куда доставить заказ.</span> -->
+			</p>
+			<!-- <p><small style="font-size: 13px;">Уже впомнили пароль? <a href="javascript:;" class="change-auth">Войти</a></small></p> -->
+			<p class="reg-submit">
+				<input type="submit" name="forget[submit]" value="Выслать пароль" />
+			</p>
+		</form>
+	</div>
+</div>
 
 <div id="reg-handler" style="height: 550px;">
 	<!-- <div class="modal-logo"><img src="/src/images/muchmore.jpg" style="width:70px;" /></div> -->
@@ -278,7 +349,7 @@
 	<div style="clear:both;"></div>
 </div>
 
-<div id="auth-handler">
+<div id="auth-handler" style="padding-bottom: 50px;">
 	<!-- <div class="modal-logo"><img src="/src/images/muchmore.jpg" style="width:70px;" /></div> -->
 	<!-- <div class="modal-header" style="width: 278px;">MUCHMORE МАГАЗИН БЕЗГРАНИЧНЫХ ВОЗМОЖНОСТЕЙ.<br />Москва, Осенняя 23, тел, Wiber, WatsUp: +7 495 517 43 64</div> -->
 	<!-- <div class="left-column"> -->
@@ -438,7 +509,12 @@
 
 	?>
 
-	
+		<?
+		if (isset($_POST['forget']) && false !== $eventSent) {
+			unset($_POST['forget']);
+			echo '<p> Пароль отправлен на ваш email. Скопируйте его и используйте для входа на сайт.</p>';	
+		}
+		?>
 		<?$APPLICATION->IncludeComponent(
 			"bitrix:system.auth.form",
 			"butik-auth",
@@ -449,7 +525,8 @@
 				"SHOW_ERRORS" => "Y"
 			)
 		);?>
-		<p><small style="font-size: 13px;">Не регистрировались раньше? <a href="javascript:;" class="change-reg">Зарегистрироваться</a></small></p>
+		<p class="explain"><small style="font-size: 13px;">Не регистрировались раньше? <a href="javascript:;" class="change-reg">Зарегистрироваться</a></small></p>
+		<p class="explain"><small style="font-size: 13px;">Не сохранили пароль? <a href="javascript:;" class="change-forget">Выслать новый пароль</a></small></p>
 	</div>
 </div>
 <?
