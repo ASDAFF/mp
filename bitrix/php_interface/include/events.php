@@ -2,6 +2,10 @@
 AddEventHandler("main", "OnAfterUserAdd", "OnBeforeUserRegisterHandler"); 
 AddEventHandler("main", "OnAfterUserUpdate", "OnAfterUserUpdateHandler"); 
 
+AddEventHandler("sale", "OnOrderPaySendEmail", "OnOrderPaySendEmailHandler"); 
+AddEventHandler("sale", "OnOrderDeliverSendEmail", "OnOrderDeliverSendEmailHandler"); 
+
+
     function OnBeforeUserRegisterHandler(&$arFields)
     {
       CModule::IncludeModule('sale');
@@ -59,5 +63,27 @@ AddEventHandler("main", "OnAfterUserUpdate", "OnAfterUserUpdateHandler");
             $x = CSaleOrderUserPropsValue::Update($propId, $prop);
          }
       }
+    }
+
+    function OnOrderPaySendEmailHandler($orderId, &$eventName, &$arFields) {
+      $eventName = 'ORDER_PAYED';
+      $order = CSaleOrder::GetByID($orderId);
+      $user = CUser::GetByID($order['USER_ID'])->Fetch();
+      $eventFields = array(
+      'NAME' => $user['NAME'],
+      'EMAIL' => $user['EMAIL']
+      );
+      $arFields = $eventFields;
+    }
+
+    function OnOrderDeliverSendEmailHandler($orderId, &$eventName, &$arFields) {
+      $order = CSaleOrder::GetByID($orderId);
+      $user = CUser::GetByID($order['USER_ID'])->Fetch();
+      $eventFields = array(
+      'NAME' => $user['NAME'],
+      'EMAIL' => $user['EMAIL']
+      );
+      $arFields = $eventFields;
+      $eventName = ($user['PERSONAL_CITY'] == 'Москва') ? 'ORDER_IN_DELIVERY_MOSCOW' : 'ORDER_IN_DELIVERY_RUSSIA' ;
     }
 ?>

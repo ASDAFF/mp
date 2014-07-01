@@ -39,6 +39,25 @@
 		<?foreach($arResult["ORDER_BY_STATUS"] as $key => $group):?>
 
 			<?foreach($group as $k => $order):?>
+				<?
+				var_dump($arResult["INFO"]["STATUS"][$key]);
+				$deliveryId = false;
+				$delivery = false;
+				$rs = CSaleOrderPropsValue::GetOrderProps($order['ORDER']['ID']);
+				while ($x = $rs->Fetch()) {
+					if ($x['CODE'] == 'delivery_id') {
+						$deliveryId = $x['VALUE'];
+						break;
+					}
+				}
+
+				if(intval($order["ORDER"]["DELIVERY_ID"])) {
+					$delivery = $arResult["INFO"]["DELIVERY"][$order["ORDER"]["DELIVERY_ID"]]["NAME"];
+				} elseif(strpos($order["ORDER"]["DELIVERY_ID"], ":") !== false) {
+					$arId = explode(":", $order["ORDER"]["DELIVERY_ID"]);
+					$delivery = $arResult["INFO"]["DELIVERY_HANDLERS"][$arId[0]]["NAME"] . '(' . $arResult["INFO"]["DELIVERY_HANDLERS"][$arId[0]]["PROFILES"][$arId[1]]["TITLE"] . ')';
+				}
+				?>
 
 				<?if(!$k):?>
 
@@ -58,7 +77,15 @@
 							<tr>
 								<td><?=GetMessage('SPOL_ORDER')?> <?=GetMessage('SPOL_NUM_SIGN')?><?=$order["ORDER"]["ACCOUNT_NUMBER"]?> <?=GetMessage('SPOL_FROM')?> <?=$order["ORDER"]["DATE_INSERT_FORMATED"];?></td>
 								<td style="text-align: center;">
-									<div style="margin: 0;" class="bx_my_order_status <?=$arResult["INFO"]["STATUS"][$key]['COLOR']?><?/*yellow*/ /*red*/ /*green*/ /*gray*/?>"><?=$arResult["INFO"]["STATUS"][$key]["NAME"]?></div>
+									<?if ($delivery) : ?>
+										<div style="margin: 0;" class="bx_my_order_status green<?/*yellow*/ /*red*/ /*green*/ /*gray*/?>">
+											<?if ($delivery) : ?><?=$delivery?><?endif;?><?if ($deliveryId && $delivery) : ?> (<?=$deliveryId?>) <?endif;?>
+										</div>
+									<?else : ?>
+										<div style="margin: 0;" class="bx_my_order_status <?=$arResult["INFO"]["STATUS"][$key]['COLOR']?><?/*yellow*/ /*red*/ /*green*/ /*gray*/?>">
+											<?=$arResult["INFO"]["STATUS"][$key]["NAME"]?><?if ($delivery) : ?> - <?=$delivery?><?endif;?><?if ($deliveryId && $delivery) : ?> (<?=$deliveryId?>) <?endif;?>
+										</div>
+									<?endif;?>
 									<!-- <a href="<?=$order["ORDER"]["URL_TO_DETAIL"]?>"><?=GetMessage('SPOL_ORDER_DETAIL')?></a> -->
 								</td>
 							</tr>
@@ -71,24 +98,6 @@
 									<? // PAY SYSTEM ?>
 									<?if(intval($order["ORDER"]["PAY_SYSTEM_ID"])):?>
 										<!-- <strong><?=GetMessage('SPOL_PAYSYSTEM')?>:</strong> <?=$arResult["INFO"]["PAY_SYSTEM"][$order["ORDER"]["PAY_SYSTEM_ID"]]["NAME"]?> <br /> -->
-									<?endif?>
-
-									<? // DELIVERY SYSTEM ?>
-									<?if($order['HAS_DELIVERY']):?>
-
-										<strong><?=GetMessage('SPOL_DELIVERY')?>:</strong>
-
-										<?if(intval($order["ORDER"]["DELIVERY_ID"])):?>
-										
-											<?=$arResult["INFO"]["DELIVERY"][$order["ORDER"]["DELIVERY_ID"]]["NAME"]?> <br />
-										
-										<?elseif(strpos($order["ORDER"]["DELIVERY_ID"], ":") !== false):?>
-										
-											<?$arId = explode(":", $order["ORDER"]["DELIVERY_ID"])?>
-											<?=$arResult["INFO"]["DELIVERY_HANDLERS"][$arId[0]]["NAME"]?> (<?=$arResult["INFO"]["DELIVERY_HANDLERS"][$arId[0]]["PROFILES"][$arId[1]]["TITLE"]?>) <br />
-
-										<?endif?>
-
 									<?endif?>
 
 									<!-- <strong><?=GetMessage('SPOL_BASKET')?>:</strong> -->

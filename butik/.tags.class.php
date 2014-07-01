@@ -236,6 +236,9 @@
 				$arrFilter['PROPERTY_BRAND'] = intval($_GET['brand']);
 			}
 			
+			if(isset($_GET['seller'])){
+				$arrFilter['PROPERTY_SELLER'] = intval($_GET['seller']);
+			}
 
 			if(isset($_GET['facility'])){
 				$arrFilter['PROPERTY_FACILITY'] = intval($_GET['facility']);
@@ -377,18 +380,30 @@
 
 
 		public function getBrands() {
-			if (!isset($_GET['section']) || !isset($_GET['catalog'])) {
+			if (!isset($_GET['section']) && !isset($_GET['gift']) && !isset($_GET['facility']) && !isset($_GET['catalog'])) {
 				return false;
 			}
 			$catalogBrands = array();
-			$sectionId = isset($_GET['section']) ? $_GET['section'] : $_GET['catalog'];
+			if (isset($_GET['section'])) {
+				$sectionId = $_GET['section'];
+				$propertyCode = 'CATALOG';
+			} elseif (isset($_GET['gift'])) {
+				$sectionId = $_GET['gift'];
+				$propertyCode = 'GIFT';
+			} elseif (isset($_GET['facility'])) {
+				$sectionId = $_GET['facility'];
+				$propertyCode = 'FACILITY';
+			} else {
+				$sectionId = $_GET['catalog'];
+				$propertyCode = 'CATALOG';
+			}
 			$rsItems = CIBlockElement::GetList(false, array(
 				'IBLOCK_ID' => 1,
-				'PROPERTY_CATALOG' => $sectionId,
+				'PROPERTY_' . $propertyCode => $sectionId,
 				'ACTIVE' => 'Y'
 				), false, false, array('PROPERTY_BRAND'));
 			while ($item = $rsItems->Fetch()) {
-				if (!in_array($item['PROPERTY_BRAND_VALUE'], $catalogBrands)) {
+				if (!in_array($item['PROPERTY_BRAND_VALUE'], $catalogBrands) && $item['PROPERTY_BRAND_VALUE']) {
 					$catalogBrands[] = $item['PROPERTY_BRAND_VALUE'];
 				}
 			}
@@ -415,7 +430,7 @@
 			global $APPLICATION;
 			$html = array();
 			$html[] = '<div class="custom-tags">
-				<div class="title"><strong>Мануфактуры:</strong></div>';
+				<div class="title"><strong>Бренд:</strong></div>';
 			foreach ($brands as $id => $brand) {
 				$html[] = '<a href="' . $APPLICATION->GetCurPageParam('brand=' . $brand['id'], array('brand')) . '" class="' . (($_GET['brand'] == $id) ? 'active' : '')  . '">' . $brand['name'] . '</a>';
 			}

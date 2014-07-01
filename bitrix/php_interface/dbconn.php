@@ -24,4 +24,6 @@ define("BX_FILE_PERMISSIONS", 0644);
 define("BX_DIR_PERMISSIONS", 0755);
 @umask(~BX_DIR_PERMISSIONS);
 define("BX_DISABLE_INDEX_PAGE", true);
+
+define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/log.txt");
 ?>

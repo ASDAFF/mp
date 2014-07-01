@@ -44,5 +44,11 @@
 		);
 		CSaleOrderPropsValue::Add($ar);
 		CSaleBasket::OrderBasket($orderId, $_SESSION["SALE_USER_ID"], SITE_ID);
+		$eventFields = array(
+			'NAME' => $USER->getName(),
+			'EMAIL' => $USER->getEmail()
+			);
+		$eventName = ($user['PERSONAL_CITY'] == 'Москва') ? 'NEW_ORDER_MOSCOW' : 'NEW_ORDER_RUSSIA' ;
+		CEvent::Send($eventName, SITE_ID, $eventFields);
 		return true;
 	}

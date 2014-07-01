@@ -12,7 +12,6 @@ $APPLICATION->SetTitle("Бутик");
 			<li><? $tags->drawCatalog();?></li>
 			<li><? $tags->drawGifts();?></li>
 			<li><? $tags->drawFacility();?></li>			
-			<li><? $tags->drawBrands();?></li>			
 		</ul>
 		<div class="cat-phone">
 			<p>т: 8-495-517-43-64</p>

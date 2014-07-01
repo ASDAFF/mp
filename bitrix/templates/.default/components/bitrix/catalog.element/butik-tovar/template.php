@@ -19,7 +19,7 @@
 							if($ar_res = $res->GetNext()){
 								$file = CFile::ResizeImageGet($ar_res['PREVIEW_PICTURE'], array('width'=>150, 'height'=>150), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 								?>
-								<div class="tpad"><div class="cab-img2"><a href="#" title="<?=$ar_res['NAME'];?>"><img style="width:100px;" src="<?=$file['src']?>" alt=""></a></div></div>
+								<div class="tpad"><div class="cab-img2"><a href="/butik/?seller=<?=$ar_res['ID'];?>" title="<?=$ar_res['NAME'];?>"><img style="width:100px;" src="<?=$file['src']?>" alt=""></a></div></div>
 								<?
 							}
 						}
@@ -123,6 +123,9 @@
 				<?
 					function getProductTags($values){
 						$result = array();
+						if (!is_array($values)) {
+							$values = array($values);
+						}
 						foreach($values as $ID){
 							$res = CIBlockElement::GetByID($ID);
 							if($ar_res = $res->GetNext()){
@@ -136,6 +139,9 @@
 										break;
 									case 9:
 										$url .= '?brand='.$ar_res['ID'];
+										break;
+									case 3:
+										$url .= '?seller='.$ar_res['ID'];
 										break;
 								}
 								$result[] = '<a href="'.$url.'">'.$ar_res['NAME'].'</a>';
@@ -163,12 +169,13 @@
 					
 					function getProductAllTags($arResult){
 						$allTags = array();
-						$tag_iblock_el = array('CATALOG', 'BRAND','GIFT','FACILITY');
+						$tag_iblock_el = array('CATALOG', 'BRAND','GIFT','FACILITY', 'SELLER');
 						foreach($tag_iblock_el as $iblock){
 							if($iblock == 'CATALOG')
 								$tags = getProductCat($arResult['PROPERTIES'][$iblock]['VALUE']);
-							else
+							else {
 								$tags = getProductTags($arResult['PROPERTIES'][$iblock]['VALUE']);
+							}
 							$allTags = array_merge($allTags, $tags);
 						}
 						

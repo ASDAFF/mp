@@ -39,6 +39,7 @@ $APPLICATION->SetTitle("Личный кабинет");
 						<p><?=$arUser['EMAIL']?></p>
 							<?$APPLICATION->IncludeComponent("bitrix:sale.personal.order", ".default", array(
 	"PROP_1" => array(
+		0 => "3",
 	),
 	"ACTIVE_DATE_FORMAT" => "j F Y",
 	"SEF_MODE" => "N",
@@ -55,6 +56,7 @@ $APPLICATION->SetTitle("Личный кабинет");
 	"CUSTOM_SELECT_PROPS" => array(
 	),
 	"HISTORIC_STATUSES" => array(
+		0 => "F",
 	),
 	"STATUS_COLOR_N" => "yellow",
 	"STATUS_COLOR_F" => "green",
