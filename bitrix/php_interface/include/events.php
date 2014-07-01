@@ -4,6 +4,7 @@ AddEventHandler("main", "OnAfterUserUpdate", "OnAfterUserUpdateHandler");
 
 AddEventHandler("sale", "OnOrderPaySendEmail", "OnOrderPaySendEmailHandler"); 
 AddEventHandler("sale", "OnOrderDeliverSendEmail", "OnOrderDeliverSendEmailHandler"); 
+AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler"); 
 
 
     function OnBeforeUserRegisterHandler(&$arFields)
@@ -85,5 +86,9 @@ AddEventHandler("sale", "OnOrderDeliverSendEmail", "OnOrderDeliverSendEmailHandl
       );
       $arFields = $eventFields;
       $eventName = ($user['PERSONAL_CITY'] == 'Москва') ? 'ORDER_IN_DELIVERY_MOSCOW' : 'ORDER_IN_DELIVERY_RUSSIA' ;
+    }
+
+    function OnOrderStatusSendEmailHandler($ID, &$eventName, &$arFields, $val) {
+     return false;
     }
 ?>

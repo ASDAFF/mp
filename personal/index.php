@@ -11,9 +11,11 @@ $APPLICATION->SetTitle("Личный кабинет");
 ?>
 <?
 	global $USER;
+	CModule::IncludeModule('sale');
 	$rsUser = CUser::GetByID($USER->GetID());
 	$arUser = $rsUser->Fetch();
 	$avatar = CFile::ResizeImageGet($arUser["PERSONAL_PHOTO"], Array("width" => 170, "height" => 170));
+	$buyer = CSaleUserAccount::GetByUserID($USER->GetID(), 'RUB');
 ?>
 	<script src="/src/javascript/tabs.js"></script>
 	<div class="block-gr">
@@ -30,7 +32,7 @@ $APPLICATION->SetTitle("Личный кабинет");
 					<div class="cab-des">
 						
 						<h3><?=$arUser['NAME'];?></h3>
-						<p class="cash">Cash-счет: 390 р.</p>
+						<p class="cash">Cash-счет: <?=number_format($buyer['CURRENT_BUDGET'], 0, ',', ' ') ?> р.</p>
 						<p><?=$arUser['PERSONAL_ZIP'];?></p>
 						<p><?=$arUser['PERSONAL_STATE']?></p>
 						<p><?=$arUser['PERSONAL_CITY']?></p>

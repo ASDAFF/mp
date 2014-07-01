@@ -40,7 +40,6 @@
 
 			<?foreach($group as $k => $order):?>
 				<?
-				var_dump($arResult["INFO"]["STATUS"][$key]);
 				$deliveryId = false;
 				$delivery = false;
 				$rs = CSaleOrderPropsValue::GetOrderProps($order['ORDER']['ID']);
@@ -77,13 +76,13 @@
 							<tr>
 								<td><?=GetMessage('SPOL_ORDER')?> <?=GetMessage('SPOL_NUM_SIGN')?><?=$order["ORDER"]["ACCOUNT_NUMBER"]?> <?=GetMessage('SPOL_FROM')?> <?=$order["ORDER"]["DATE_INSERT_FORMATED"];?></td>
 								<td style="text-align: center;">
-									<?if ($delivery) : ?>
+									<?if ($delivery && $arResult["INFO"]["STATUS"][$key]['ID'] != "F") : ?>
 										<div style="margin: 0;" class="bx_my_order_status green<?/*yellow*/ /*red*/ /*green*/ /*gray*/?>">
 											<?if ($delivery) : ?><?=$delivery?><?endif;?><?if ($deliveryId && $delivery) : ?> (<?=$deliveryId?>) <?endif;?>
 										</div>
 									<?else : ?>
 										<div style="margin: 0;" class="bx_my_order_status <?=$arResult["INFO"]["STATUS"][$key]['COLOR']?><?/*yellow*/ /*red*/ /*green*/ /*gray*/?>">
-											<?=$arResult["INFO"]["STATUS"][$key]["NAME"]?><?if ($delivery) : ?> - <?=$delivery?><?endif;?><?if ($deliveryId && $delivery) : ?> (<?=$deliveryId?>) <?endif;?>
+											<?=$arResult["INFO"]["STATUS"][$key]["NAME"]?>
 										</div>
 									<?endif;?>
 									<!-- <a href="<?=$order["ORDER"]["URL_TO_DETAIL"]?>"><?=GetMessage('SPOL_ORDER_DETAIL')?></a> -->
