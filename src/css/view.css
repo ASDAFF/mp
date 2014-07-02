@@ -680,8 +680,8 @@ outline:none;
 }
 
 
-.ticon{background:url(../images/tovar_21.jpg) left 3px no-repeat;padding:0 0 0 30px;color:#000;font-weight:500;font-size:13px;font-family: 'Open Sans', sans-serif;
-}
+.ticon{background:url(../icons/r2.png) left 3px no-repeat; background-size: 20px;padding:0 0 0 30px;color:#999;font-weight:500;font-size:13px;font-family: 'Open Sans', sans-serif; }
+.ticon_no{background:url(../icons/ch2.png) left 3px no-repeat; background-size: 20px; padding:0 0 0 30px;color:#999;font-weight:500;font-size:13px;font-family: 'Open Sans', sans-serif; }
 
 .soc ul{padding:0 0 30px 0;margin:0;overflow:hidden;}
 .soc ul li{padding:0;margin:0 23px 0 0;list-style:none;float:left;}
@@ -785,7 +785,7 @@ ul.tabs2 {
 
 .comm-none{color:#a8a8a8;font-weight:700;font-size:18px;font-family: 'Open Sans', sans-serif;padding:22px 0 0 0;}
 
-.blox-comm{padding:22px 0 20px 0; /*width:98%; */color:#a8a8a8;font-size:11px;overflow:hidden;}
+.blox-comm{padding:22px 0 20px 0; width:98%; color:#a8a8a8;font-size:11px;overflow:hidden;}
 .blox-comm a.like2{background:url(../images/like.jpg) left  no-repeat;padding:0 0 0 17px;color:#f15824;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;text-decoration:none;}
 .blox-comm a.new{background:url(../images/time.jpg) left  no-repeat;padding:0 0 0 17px;color:#a8a8a8;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;text-decoration:none;}
 .blox-comm span.pad-comm{padding:0 10px 0 10px;}

@@ -13,10 +13,22 @@
 
 <div class="items2">
 <?
-	foreach($arResult['ITEMS'] as $arItem){
+	foreach($arResult['ITEMS'] as $arItem) {
+		$opacity = true;
+		if (empty($arItem['OFFERS'])) {
+			if ($arItem['CATALOG_QUANTITY'] > 0) {
+				$opacity = false;
+			}
+		} else {
+			foreach ($arItem['OFFERS'] as $offer) {
+				if ($offer['CATALOG_QUANTITY'] > 0) {
+					$opacity = false;
+				}
+			}
+		}
 ?>
 	
-	<div class="item-block2">
+	<div class="item-block2" <?if (true === $opacity) :?>style="opacity: 0.5;"<?endif;?>>
 		<?
 			$file = CFile::ResizeImageGet($arItem['PREVIEW_PICTURE']['ID'], array('width'=>300*1.5, 'height'=>200*1.5), BX_RESIZE_IMAGE_EXACT, true, false, false, 100);
 		?>

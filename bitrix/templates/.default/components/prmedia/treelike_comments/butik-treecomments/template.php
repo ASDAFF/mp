@@ -59,9 +59,9 @@
 			<div class="user-img-comm">
 				<div class="cab-img3">
 					<?if ($COMMENT['USER']['PERSONAL_PHOTO']) : ?>
-						<img src="<?= $COMMENT['USER']['PERSONAL_PHOTO']; ?>" alt="" width="40" height="40">
+						<img src="<?= $COMMENT['USER']['PERSONAL_PHOTO']; ?>" alt="" width="40" height="40" style="border-radius: 50%;">
 					<?else : ?>
-						<img src="<?= $this->__folder ?>/images/nophoto.gif" alt="" width="40" height="40">
+						<img src="<?= $this->__folder ?>/images/nophoto.gif" alt="" width="40" height="40" style="border-radius: 50%;">
 					<?endif;?>
 				</div>	
 			</div>

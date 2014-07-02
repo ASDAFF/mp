@@ -19,6 +19,13 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 	unset($_SESSION['COMMENTS']['ADD']);
 }
 ?>
+<script>
+	$(document).ready(function () {
+		<?if (true === $showComments) : ?>
+			$('.comments-tab').click();
+		<?endif;?>
+	});
+</script>
 <style>
 	.play-btn {width: 160px; opacity: 0.9; display: block; line-height: 0.7em; padding: 19px 0 19px 0; margin: 0 0 21px 0; background: #bfbfbf url(/src/icons/play48.png) no-repeat left; background-origin: content-box; text-align: center; color: #fff;  font-weight: 400; font-size: 24px; font-family: 'Open Sans', sans-serif; text-decoration: none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;position: absolute; top: 181px; left: 391px; padding-left: 12px;}
 	.play-btn:hover {background: #f15824 url(/src/icons/play48.png) no-repeat left; background-origin: content-box;}
@@ -53,7 +60,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					<?
 						if(intval($arResult['PROPERTIES']['SELLER']['VALUE'])){
 							$res = CIBlockElement::GetByID($arResult['PROPERTIES']['SELLER']['VALUE']);
-							if($ar_res = $res->GetNext()){
+							if($ar_res = $res->GetNext()) {
 								$file = CFile::ResizeImageGet($ar_res['PREVIEW_PICTURE'], array('width'=>150, 'height'=>150), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 								?>
 								<div class="tpad"><div class="cab-img2"><a href="/butik/?seller=<?=$ar_res['ID'];?>" title="<?=$ar_res['NAME'];?>"><img style="width:100px;" src="<?=$file['src']?>" alt=""></a></div></div>
@@ -64,7 +71,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					
 				</div>
 				<div class="col-02">
-					<div class="like">14</div>
+					<!-- <div class="like">14</div> -->
 					<h1><?=$arResult['NAME']?></h1>
 					<p><?=$arResult['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT']?></p>
 					<div class="soc">
@@ -110,12 +117,16 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 						$price = 0;
 						if(!empty($arResult['OFFERS'])){
 							foreach($arResult['OFFERS'] as $offer){
+								if (!$offerQuantity) {
+									$offerQuantity = $offer['CATALOG_QUANTITY'];
+								}
 								$offen_name = array();
 								foreach($offer['PROPERTIES']['CML2_ATTRIBUTES']['VALUE'] as $key => $value){
 									$offen_name[] = $value;
 								}
-								$offers[$offer['ID']] = '<option value="'.$offer['BUY_URL'].'">'.implode(', ', $offen_name).'</option>';
+								$offers[$offer['ID']] = '<option data-quantity="' . $offer["CATALOG_QUANTITY"] .'" value="'.$offer['BUY_URL'].'">'.implode(', ', $offen_name).'</option>';
 								$price = $offer['CATALOG_PRICE_1'];
+								$quanityHelper[$offer['ID']] = '<input class="quantity-helper" type="hidden" value="'.$offer['BUY_URL'].'" data-quantity="' . $offer["CATALOG_QUANTITY"] .'" />';
 							}
 						}else{
 							$price = $arResult['CATALOG_PRICE_1'];
@@ -128,6 +139,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 							<?=implode('', $offers);?>
 						</select>
 					</div>
+					<?=implode('', $quanityHelper);?>
 					<? }?>
 					<div class="cabinet-box3">
 						<ul>
@@ -139,52 +151,82 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 								<?endif; ?>
 							</li>							
 						</ul>
-					</div>	
-					<div class="ticon">C точки зрения банальной эрудиции. (статусы наличия с иконками)</div>
+					</div>
+					<!-- 1) Товар в наличии 
+					под кнопкой купить - иконка Ракета и надпись "В наличии. Доставим в течение суток, в любое удобное время. 
+
+					2) Нет в наличии. 
+					под Купить - Черепаха и "Обычно доставка 2-3 дня. В других случаях до 3-х недель. -->
+					<script>
+						window.offerQuantity = 0;
+						$(document).ready(function () {
+							$('.offers').on('change', function () {
+								window.quantityValue = $(this).val();
+								$.each($('.quantity-helper'), function (k,item) {
+									if (item.value == window.quantityValue) {
+										window.offerQuantity = item.dataset.quantity;
+									}
+								});
+								if (window.offerQuantity == 0) {
+									quantityDiv = '<div class="ticon_no">Ожидается. Доставим в течение 1-3 недель. Хотя, в 90% случаях - 2-3 дня.</div>';
+								} else {
+									quantityDiv = '<div class="ticon">В наличии. Доставим в течение суток, в любое удобное время.</div>';
+								}
+								$('.quantity').html(quantityDiv);
+							});
+						});
+					</script>
+					<div class="quantity">
+						<?if ($offerQuantity == 0) : ?>
+							<div class="ticon_no">Обычно доставка 2-3 дня. В других случаях до 3-х недель.</div>
+						<? else : ?>
+							<div class="ticon">В наличии. Доставим в течение суток, в любое удобное время.</div>
+						<?endif;?>
+					</div>
 				</div>
 			</div>
 			<div class="col-04">
 				<div class="section2">
 					<ul class="tabs2">
 						<li class="current2">Описание</li>
-						<li>Комментарии <span class="comm"><?=$commentsCounter?></span></li>
+						<li class="comments-tab">Комментарии <span class="comm"><?=$commentsCounter?></span></li>
 					</ul>
-					<div class="box2 visible" <?if (true === $showComments) : ?>style="display: none;"<?endif;?>>
+					<div class="box2 visible">
 						<div class="cat-text">
 							<?=$arResult['DETAIL_TEXT'];?>
 						</div>
 					</div>
-					<div class="box2" <?if (false === $showComments) : ?>style="display: none;"<?endif;?>>
+					<div class="box2" style="display: none;">
 					<div class="cat-text">
-						<?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", Array(
-							"LEFT_MARGIN" => "50",	// Отступ для дочерних комментариев
-							"MAX_DEPTH_LEVEL" => "5",	// Максимальный уровень вложенности
-							"ASNAME" => "login",	// Показывать в качестве имени
-							"SHOW_USERPIC" => "Y",	// Показывать аватар
-							"SHOW_DATE" => "Y",	// Показывать дату комментария
-							"SHOW_COMMENT_LINK" => "N",	// Показывать ссылку на комментарий
-							"DATE_FORMAT" => "d.m.Y",	// Формат даты
-							"SHOW_COUNT" => "Y",	// Показывать количество комментариев
-							"OBJECT_ID" => "",	// ID объекта комментирования
-							"CAN_MODIFY" => "N",	// Разрешить редактирование комментария
-							"PREMODERATION" => "Y",	// Включить премодерацию
-							"ALLOW_RATING" => "Y",	// Разрешить рейтинг
-							"NON_AUTHORIZED_USER_CAN_COMMENT" => "N",	// Разрешить неавторизованным пользователям добавлять комменарии
-							"USE_CAPTCHA" => "NO",	// Показывать CAPTCHA
-							"FORM_MIN_TIME" => "3",	// Минимальное время заполнения формы
-							"NO_FOLLOW" => "N",	// Добавить атрибут rel="nofollow" к ссылкам в комментариях
-							"NO_INDEX" => "N",	// Не индексировать комментарии
-							"SEND_TO_USER_AFTER_ANSWERING" => "Y",	// Отправлять  пользователю письмо при ответе на комментарий
-							"SEND_TO_USER_AFTER_MENTION_NAME" => "Y",	// Отправлять  пользователю письмо при упоминании его логина в комментариях
-							"SEND_TO_ADMIN_AFTER_ADDING" => "Y",	// Отправлять  письмо администратору при добавлении новых комментариев
-							"SEND_TO_USER_AFTER_ACTIVATE" => "Y",	// Отправлять письмо пользователю после активации
-							"AUTH_PATH" => "/personal/",	// Путь до страницы авторизации
-							"TO_USERPAGE" => "/users/#USER_LOGIN#/",	// Путь до страницы пользователя
-							"CACHE_TYPE" => "A",	// Тип кеширования
-							"CACHE_TIME" => "3600",	// Время кеширования (сек.)
-							),
-							false
-						); ?>
+						<?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
+	"LEFT_MARGIN" => "50",
+	"MAX_DEPTH_LEVEL" => "5",
+	"ASNAME" => "login",
+	"SHOW_USERPIC" => "Y",
+	"SHOW_DATE" => "Y",
+	"SHOW_COMMENT_LINK" => "N",
+	"DATE_FORMAT" => "d.m.Y",
+	"SHOW_COUNT" => "Y",
+	"OBJECT_ID" => "",
+	"CAN_MODIFY" => "N",
+	"PREMODERATION" => "Y",
+	"ALLOW_RATING" => "Y",
+	"NON_AUTHORIZED_USER_CAN_COMMENT" => "N",
+	"USE_CAPTCHA" => "NO",
+	"FORM_MIN_TIME" => "3",
+	"NO_FOLLOW" => "N",
+	"NO_INDEX" => "N",
+	"SEND_TO_USER_AFTER_ANSWERING" => "Y",
+	"SEND_TO_USER_AFTER_MENTION_NAME" => "Y",
+	"SEND_TO_ADMIN_AFTER_ADDING" => "Y",
+	"SEND_TO_USER_AFTER_ACTIVATE" => "Y",
+	"AUTH_PATH" => "/personal/",
+	"TO_USERPAGE" => "/users/#USER_LOGIN#/",
+	"CACHE_TYPE" => "N",
+	"CACHE_TIME" => "3600"
+	),
+	false
+); ?>
 					</div>
 					</div>
 				</div>		

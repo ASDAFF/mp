@@ -232,7 +232,7 @@ div.prmedia_tc_def div.comments_block form img {
 	vertical-align:middle;
 }
 
-.comment_submit {width: 160px; opacity: 0.9; display: block; line-height: 0.7em; padding: 10px 0; margin: 0 0 21px 0; background: #bfbfbf ; text-align: center; color: #fff;  font-weight: 400; font-size: 19px; font-family: 'Open Sans', sans-serif; text-decoration: none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border: 0; cursor: pointer; margin-top: 10px;}
+.comment_submit {float: right; width: 160px; opacity: 0.9; display: block; line-height: 0.7em; padding: 10px 0; margin: 0 0 21px 0; background: #bfbfbf ; text-align: center; color: #fff;  font-weight: 400; font-size: 15px; font-family: 'Open Sans', sans-serif; text-decoration: none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border: 0; cursor: pointer; margin-top: 10px;}
 .comment_submit:hover {background: #f15824; }
 
 /*.comment_submit {
