@@ -168,7 +168,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 									}
 								});
 								if (window.offerQuantity == 0) {
-									quantityDiv = '<div class="ticon_no">Ожидается. Доставим в течение 1-3 недель. Хотя, в 90% случаях - 2-3 дня.</div>';
+									quantityDiv = '<div class="ticon_no">Ожидается. Обычно доставка 2-3 дня. В других случаях до 3-х недель.</div>';
 								} else {
 									quantityDiv = '<div class="ticon">В наличии. Доставим в течение суток, в любое удобное время.</div>';
 								}
@@ -178,7 +178,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					</script>
 					<div class="quantity">
 						<?if ($offerQuantity == 0) : ?>
-							<div class="ticon_no">Обычно доставка 2-3 дня. В других случаях до 3-х недель.</div>
+							<div class="ticon_no">Ожидается. Обычно доставка 2-3 дня. В других случаях до 3-х недель.</div>
 						<? else : ?>
 							<div class="ticon">В наличии. Доставим в течение суток, в любое удобное время.</div>
 						<?endif;?>
