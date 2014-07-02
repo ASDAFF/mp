@@ -1,0 +1,77 @@
+div.last_comments_light_block {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	border:#d9dde0 1px solid;
+}
+
+div.last_comments_light_block div, div.last_comments_light_block dl, div.last_comments_light_block dt, div.last_comments_light_block dd, div.last_comments_light_block ul, div.last_comments_light_block ol, div.last_comments_light_block li, div.last_comments_light_block h1, div.last_comments_light_block h2, div.last_comments_light_block h3, div.last_comments_light_block h4, div.last_comments_light_block h5, div.last_comments_light_block h6, div.last_comments_light_block pre, div.last_comments_light_block form, div.last_comments_light_block fieldset, div.last_comments_light_block input, div.last_comments_light_block textarea, div.last_comments_light_block p, div.last_comments_light_block blockquote, div.last_comments_light_block th, div.last_comments_light_block td { 
+	margin:0;
+	padding:0;
+}
+
+div.last_comments_light_block img {
+	border:none;
+}
+
+div.last_comments_light_block br.clear {
+	clear:both;
+	height:0;
+	line-height:0;
+	font-size:0;
+}
+
+div.last_comments_light_block a {
+	color:#1160d7;
+}
+
+div.last_comments_light_block a:hover {
+	text-decoration:none;
+}
+
+div.last_comments_light_block p.last_comments_light_block_title {
+	font-size:24px;
+	color:#444444;
+	padding:15px 20px 0 20px;
+	display:block;
+}
+
+div.last_comments_light_block p.last_comments_light_block_title img {
+	vertical-align:middle;
+}
+
+div.last_comments_light_block div.comments_list {
+	margin:10px 0 10px 0;
+}
+
+div.last_comments_light_block div.divider {
+	height:1px;
+	border-style:none;
+	border-top:1px solid #d9dde0;
+	background-color:transparent;
+	margin:0;
+	padding:0;
+	line-height:0;
+	font-size:0;
+}
+
+div.last_comments_light_block div.comment_item {
+	padding:5px 20px 5px 20px;
+	overflow:auto;
+}
+
+div.last_comments_light_block div.comment_item p {
+	line-height:150%;
+	color:#898989;
+}
+
+div.last_comments_light_block div.comment_item a.comment_item_author {
+	color:#444444;
+}
+
+div.last_comments_light_block div.comment_item p img {
+	vertical-align:middle;
+}
+
+div.last_comments_block div.comment_item p.text {
+	padding:3px 3px 3px 0;
+}

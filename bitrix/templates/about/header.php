@@ -6,6 +6,8 @@
 	<meta name="Description" content="Главная">
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
 	<link rel="stylesheet" type="text/css" href="/src/css/view.css">
+	<link rel="stylesheet" type="text/css" href="/src/javascript/fancybox/jquery.fancybox.css">
+	<script type="text/javascript" src="/src/javascript/fancybox/jquery.fancybox.js"></script>
 
 </head>
 <body>

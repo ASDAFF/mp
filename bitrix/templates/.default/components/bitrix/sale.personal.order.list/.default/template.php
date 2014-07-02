@@ -35,7 +35,9 @@
 	</div>
 
 	<?if(!empty($arResult['ORDERS'])):?>
-
+		<?
+		$flag = false; 
+		?>
 		<?foreach($arResult["ORDER_BY_STATUS"] as $key => $group):?>
 
 			<?foreach($group as $k => $order):?>
@@ -58,16 +60,19 @@
 				}
 				?>
 
-				<?if(!$k):?>
+				<? if(!$k): ?>
 
 					<div class="bx_my_order_status_desc">
-						<h2>Заказы и статусы</h2>
-						<!-- <h2><?=GetMessage("SPOL_STATUS")?> "<?=$arResult["INFO"]["STATUS"][$key]["NAME"] ?>"</h2> -->
-						<!-- <div class="bx_mos_desc"><?=$arResult["INFO"]["STATUS"][$key]["DESCRIPTION"] ?></div> -->
+						<?if (false === $flag) : ?>
+							<h2>Заказы и статусы</h2>
+						<?else : ?>
+							<h2><?=GetMessage("SPOL_STATUS")?> "<?=$arResult["INFO"]["STATUS"][$key]["NAME"] ?>"</h2>
+							<div class="bx_mos_desc"><?=$arResult["INFO"]["STATUS"][$key]["DESCRIPTION"] ?></div>
+						<?endif;?>
 
 					</div>
 
-				<?endif?>
+				<?$flag = true; endif;?>
 
 				<div class="bx_my_order">
 					

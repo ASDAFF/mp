@@ -1,0 +1,17 @@
+<?
+$arTooltips = array(
+	"AUTH_PATH" => GetMessage("AUTH_PATH_TIP"),
+	"OBJECT_ID" => GetMessage("OBJECT_ID_TIP"),
+	"COMMENTS_IBLOCK_ID" => GetMessage("COMMENTS_IBLOCK_ID_TIP"),
+	"LEFT_MARGIN" => GetMessage("LEFT_MARGIN_TIP"),
+	"NO_FOLLOW" => GetMessage("NO_FOLLOW_TIP"),
+	"NO_INDEX" => GetMessage("NO_INDEX_TIP"),
+	"TO_USERPAGE" => GetMessage("TO_USERPAGE_TIP"),
+	"PREMODERATION" => GetMessage("PREMODERATION_TIP"),
+	"JQUERY" => GetMessage("JQUERY_TIP"),
+	"ALLOW_RATING" => GetMessage("ALLOW_RATING_TIP"),
+	"NON_AUTHORIZED_USER_CAN_COMMENT" => GetMessage("NON_AUTHORIZED_USER_CAN_COMMENT_TIP"),
+	"USE_CAPTCHA" => GetMessage("USE_CAPTCHA_TIP"),
+	"MAX_DEPTH_LEVEL" => GetMessage("MAX_DEPTH_LEVEL_TIP"),
+);
+?>

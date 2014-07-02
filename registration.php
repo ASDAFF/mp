@@ -231,7 +231,7 @@
 	.head-text {color: #000; font-size: 19px; }
 </style>
 
-<div id="forget-handler" style="height: 550px; padding-bottom: 50px;">
+<div id="forget-handler" style="display: none; height: 550px; padding-bottom: 50px;">
 	<div class="right-column" style="margin-top: -35px; float: none; margin:-35px auto; padding: 0;">
 		<!-- <p class="head-text">Пожалуйста, заполните эти поля и пользуйтесь всеми возможностями сайта.</p> -->
 		<form method="post">
@@ -248,7 +248,7 @@
 	</div>
 </div>
 
-<div id="reg-handler" style="height: 550px;">
+<div id="reg-handler" style="display: none;  height: 550px;">
 	<!-- <div class="modal-logo"><img src="/src/images/muchmore.jpg" style="width:70px;" /></div> -->
 	<!-- <div class="modal-header" style="width: 278px;">MUCHMORE МАГАЗИН БЕЗГРАНИЧНЫХ ВОЗМОЖНОСТЕЙ.<br />Москва, Осенняя 23, тел, Wiber, WatsUp: +7 495 517 43 64</div> -->
 	<!-- <div class="left-column">
@@ -349,7 +349,7 @@
 	<div style="clear:both;"></div>
 </div>
 
-<div id="auth-handler" style="padding-bottom: 50px;">
+<div id="auth-handler" style="display: none; padding-bottom: 50px;">
 	<!-- <div class="modal-logo"><img src="/src/images/muchmore.jpg" style="width:70px;" /></div> -->
 	<!-- <div class="modal-header" style="width: 278px;">MUCHMORE МАГАЗИН БЕЗГРАНИЧНЫХ ВОЗМОЖНОСТЕЙ.<br />Москва, Осенняя 23, тел, Wiber, WatsUp: +7 495 517 43 64</div> -->
 	<!-- <div class="left-column"> -->

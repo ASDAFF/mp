@@ -14,7 +14,7 @@ $APPLICATION->SetTitle("Личный кабинет");
 	CModule::IncludeModule('sale');
 	$rsUser = CUser::GetByID($USER->GetID());
 	$arUser = $rsUser->Fetch();
-	$avatar = CFile::ResizeImageGet($arUser["PERSONAL_PHOTO"], Array("width" => 170, "height" => 170));
+	$avatar = CFile::ResizeImageGet($arUser["PERSONAL_PHOTO"], Array("width" => 170, "height" => 170), BX_RESIZE_IMAGE_PROPORTIONAL_ALT );
 	$buyer = CSaleUserAccount::GetByUserID($USER->GetID(), 'RUB');
 ?>
 	<script src="/src/javascript/tabs.js"></script>
@@ -61,7 +61,7 @@ $APPLICATION->SetTitle("Личный кабинет");
 		0 => "F",
 	),
 	"STATUS_COLOR_N" => "yellow",
-	"STATUS_COLOR_F" => "green",
+	"STATUS_COLOR_F" => "gray",
 	"STATUS_COLOR_PSEUDO_CANCELLED" => "red"
 	),
 	false

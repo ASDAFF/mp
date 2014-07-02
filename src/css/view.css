@@ -780,6 +780,30 @@ ul.tabs2 {
 
 
 .cat-text{color:#333333;font-weight:500;font-size:16px;font-family: 'Open Sans', sans-serif;padding:18px 28px;}
+.cat-text input{width:98%;padding:12px 0 12px 10px;border:1px solid #d5d5d5; color:#a8a8a8;font-weight:500;font-size:12px;font-family: 'Open Sans', sans-serif;}
+.cat-text input:hover{outline:none;}
+
+.comm-none{color:#a8a8a8;font-weight:700;font-size:18px;font-family: 'Open Sans', sans-serif;padding:22px 0 0 0;}
+
+.blox-comm{padding:22px 0 20px 0; /*width:98%; */color:#a8a8a8;font-size:11px;overflow:hidden;}
+.blox-comm a.like2{background:url(../images/like.jpg) left  no-repeat;padding:0 0 0 17px;color:#f15824;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;text-decoration:none;}
+.blox-comm a.new{background:url(../images/time.jpg) left  no-repeat;padding:0 0 0 17px;color:#a8a8a8;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;text-decoration:none;}
+.blox-comm span.pad-comm{padding:0 10px 0 10px;}
+.blox-comm .user-comm{text-align:justify;padding:25px 0 21px 0;color:#333333;font-weight:500;font-size:13px;font-family: 'Open Sans', sans-serif;}
+
+.blox-comm-sub{padding:10px 0 0 0;width:90%;color:#a8a8a8;font-size:11px;overflow:hidden;margin:0 0 0 40px;border-top:1px solid #d5d5d5;}
+.blox-comm-suba.like2{background:url(../images/like.jpg) left  no-repeat;padding:0 0 0 17px;color:#f15824;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;text-decoration:none;}
+.blox-comm-sub a.new{background:url(../images/time.jpg) left  no-repeat;padding:0 0 0 17px;color:#a8a8a8;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;text-decoration:none;}
+.blox-comm-sub span.pad-comm{padding:0 10px 0 10px;}
+.blox-comm-sub .user-comm{text-align:justify;padding:15px 0 21px 0;color:#333333;font-weight:500;font-size:13px;font-family: 'Open Sans', sans-serif;}
+
+.user-img-comm{float:left;}
+
+.user-img-name{float:left;margin:10px 0 0 10px;color:#f15824;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;}
+.user-img-name span{color:#a8a8a8;}
+
+.answer{float:right;color:#a8a8a8;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;margin:10px 0 0 0;}
+.answer a{color:#a8a8a8;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;}
 
 .comm{
 border:1px solid #444444;padding:3px 12px 3px 12px;line-height:0.7em;color:#222222;font-weight:500;font-size:12px;font-family: 'Open Sans', sans-serif;

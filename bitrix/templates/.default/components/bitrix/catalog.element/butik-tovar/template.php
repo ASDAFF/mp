@@ -1,14 +1,51 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>			
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>	
+<?
+$arResult['FANCYBOX'] = false;
+if (is_array($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
+	foreach ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'] as $photo) {
+		$arResult['FANCYBOX'][] = array(
+			'thumb' => CFile::ResizeImageGet($photo, array('width' => 100, 'height' => 100), BX_RESIZE_IMAGE_PROPORTIONAL, true),
+			'normal' => CFile::ResizeImageGet($photo, array('width' => 800, 'height' => 800), BX_RESIZE_IMAGE_PROPORTIONAL, true)
+			);
+	}
+}
+
+CModule::IncludeModule('prmedia.treelikecomments');
+$arFilter = array("OBJECT_ID_NUMBER" => $arResult['ID']);
+$commentsCounter = CTreelikeComments::GetList(array("ID" => "DESC"), $arFilter)->SelectedRowsCount();
+$showComments = false;
+if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
+	$showComments = true;
+	unset($_SESSION['COMMENTS']['ADD']);
+}
+?>
+<style>
+	.play-btn {width: 160px; opacity: 0.9; display: block; line-height: 0.7em; padding: 19px 0 19px 0; margin: 0 0 21px 0; background: #bfbfbf url(/src/icons/play48.png) no-repeat left; background-origin: content-box; text-align: center; color: #fff;  font-weight: 400; font-size: 24px; font-family: 'Open Sans', sans-serif; text-decoration: none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;position: absolute; top: 181px; left: 391px; padding-left: 12px;}
+	.play-btn:hover {background: #f15824 url(/src/icons/play48.png) no-repeat left; background-origin: content-box;}
+	.back-to-photos {cursor: pointer;}
+	.black {background: #000 !important;}
+</style>	
 			<div class="block-t">
 				<div class="slider">
-				<?
-					if(intval($arResult['DETAIL_PICTURE']['ID'])){
-						$file = CFile::ResizeImageGet($arResult['DETAIL_PICTURE']['ID'], array('width'=>960*1.5, 'height'=>10000), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true, false, false, 100);
-				?>
-					<!-- Видео (vimeo) + фото (https://grandst.com/p/toymailco) --><img src="<?=$file['src']?>" style="width:960px;" alt="">
-				<?
-					}
-				?>
+					<? if(intval($arResult['DETAIL_PICTURE']['ID'])) : ?>
+						<? $file = CFile::ResizeImageGet($arResult['DETAIL_PICTURE']['ID'], array('width'=>960*1.5, 'height'=>10000), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true, false, false, 100); ?>
+						<img src="<?=$file['src']?>" style="width:960px;" alt="" class="detail-photo" style="cursor: pointer;">
+						<?if ($arResult['PROPERTIES']['VIDEO']['VALUE']) :?>
+							<div  style="display: none; width: 640px; margin: 0 auto;" class="detail-video">
+								<iframe width="640" height="360" src="//www.youtube.com/embed/<?=$arResult['PROPERTIES']['VIDEO']['VALUE']?>" frameborder="0" allowfullscreen></iframe>
+							</div>
+							<a class="play-btn" href="#" style="display: none;">Play</a>
+						<?endif;?>
+						<?if (false !== $arResult['FANCYBOX']) : ?>
+							<div style="position: absolute; right: 0; top: 275px;background: #ccc; padding: 6px;" class="more-photo">
+								<?foreach ($arResult['FANCYBOX'] as $photo) : ?>
+									<a class="fancybox" rel="product-gallery" href="<?=$photo['normal']['src']?>" title="<?=$arResult['NAME']?>">
+										<img src="<?=$photo['thumb']['src']?>" alt="" />
+									</a>
+								<?endforeach;?>
+							</div>
+						<?endif;?>
+					<? endif; ?>
 				</div>
 				<div class="col-01">
 					<!-- (Инвестор и продавец, отдельны инфоблок с описанием, и возможностью фильтрации по ним) -->
@@ -110,12 +147,45 @@
 				<div class="section2">
 					<ul class="tabs2">
 						<li class="current2">Описание</li>
-						<li>Комментарии <span class="comm">28</span></li>
+						<li>Комментарии <span class="comm"><?=$commentsCounter?></span></li>
 					</ul>
-					<div class="box2 visible">
+					<div class="box2 visible" <?if (true === $showComments) : ?>style="display: none;"<?endif;?>>
 						<div class="cat-text">
 							<?=$arResult['DETAIL_TEXT'];?>
 						</div>
+					</div>
+					<div class="box2" <?if (false === $showComments) : ?>style="display: none;"<?endif;?>>
+					<div class="cat-text">
+						<?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", Array(
+							"LEFT_MARGIN" => "50",	// Отступ для дочерних комментариев
+							"MAX_DEPTH_LEVEL" => "5",	// Максимальный уровень вложенности
+							"ASNAME" => "login",	// Показывать в качестве имени
+							"SHOW_USERPIC" => "Y",	// Показывать аватар
+							"SHOW_DATE" => "Y",	// Показывать дату комментария
+							"SHOW_COMMENT_LINK" => "N",	// Показывать ссылку на комментарий
+							"DATE_FORMAT" => "d.m.Y",	// Формат даты
+							"SHOW_COUNT" => "Y",	// Показывать количество комментариев
+							"OBJECT_ID" => "",	// ID объекта комментирования
+							"CAN_MODIFY" => "N",	// Разрешить редактирование комментария
+							"PREMODERATION" => "Y",	// Включить премодерацию
+							"ALLOW_RATING" => "Y",	// Разрешить рейтинг
+							"NON_AUTHORIZED_USER_CAN_COMMENT" => "N",	// Разрешить неавторизованным пользователям добавлять комменарии
+							"USE_CAPTCHA" => "NO",	// Показывать CAPTCHA
+							"FORM_MIN_TIME" => "3",	// Минимальное время заполнения формы
+							"NO_FOLLOW" => "N",	// Добавить атрибут rel="nofollow" к ссылкам в комментариях
+							"NO_INDEX" => "N",	// Не индексировать комментарии
+							"SEND_TO_USER_AFTER_ANSWERING" => "Y",	// Отправлять  пользователю письмо при ответе на комментарий
+							"SEND_TO_USER_AFTER_MENTION_NAME" => "Y",	// Отправлять  пользователю письмо при упоминании его логина в комментариях
+							"SEND_TO_ADMIN_AFTER_ADDING" => "Y",	// Отправлять  письмо администратору при добавлении новых комментариев
+							"SEND_TO_USER_AFTER_ACTIVATE" => "Y",	// Отправлять письмо пользователю после активации
+							"AUTH_PATH" => "/personal/",	// Путь до страницы авторизации
+							"TO_USERPAGE" => "/users/#USER_LOGIN#/",	// Путь до страницы пользователя
+							"CACHE_TYPE" => "A",	// Тип кеширования
+							"CACHE_TIME" => "3600",	// Время кеширования (сек.)
+							),
+							false
+						); ?>
+					</div>
 					</div>
 				</div>		
 			</div>
@@ -208,10 +278,15 @@
 							
 							//echo '<pre>'; print_r($data); echo '</pre>';				
 							//$file = CFile::ResizeImageGet($item['PREVIEW_PICTURE'], array('width'=>217*1.5, 'height'=>144*1.5), BX_RESIZE_IMAGE_EXACT, true);
-														
+							global $USER;
+							if ($USER->isAuthorized()) {
+								$basketHtml = '<a style="width: 130px;" class="buy-link" href="/butik/'.$data['CODE'].'/?action=BUY&amp;id='.$item.'&amp;ELEMENT_CODE='.$data['CODE'].'">В корзину</a>';
+							} else {
+								$basketHtml = '<a class="open-reg" style="background: #f15824; width: 160px;" href="/personal/">Купить</a>';
+							}
 							$result[] = '
 								<div class="r-rec">
-									<a href="/butik/x'.$data['CODE'].'/" style="text-decoration:none; color:#000;">
+									<a href="/butik/'.$data['CODE'].'/" style="text-decoration:none; color:#000;">
 										<img src="'.$data['PREVIEW_PICTURE'].'" style="width:217px; height:144px;" alt="">
 										<p>'.$data['NAME'].(!empty($data['TEXT'])?': '.$data['TEXT']:'').'</p>
 									</a>
@@ -219,8 +294,9 @@
 									<div class="cabinet-box3" style="float: right; margin-top: -71px; display: none;">
 											<ul>
 												<li>
-													<a style="width: 130px;" class="buy-link" href="/butik/'.$data['CODE'].'/?action=BUY&amp;id='.$item.'&amp;ELEMENT_CODE='.$data['CODE'].'">В корзину</a>
-												</li>							
+												'.
+													$basketHtml
+												.'</li>							
 											<ul>
 									</div>
 								</div>

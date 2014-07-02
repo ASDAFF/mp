@@ -13,6 +13,7 @@ $APPLICATION->SetTitle("Товар");
 			<li><? $tags->drawCatalog();?></li>
 			<li><? $tags->drawGifts();?></li>
 			<li><? $tags->drawFacility();?></li>			
+			<li style="background: none;"><p class="back-to-photos" style="display: none; margin-left: 90px; color: #f15824; font-size: 13px;"><< Вернуть фото</p></li>			
 		</ul>
 		<div class="cat-phone">
 			<p>т: 8-495-517-43-64</p>

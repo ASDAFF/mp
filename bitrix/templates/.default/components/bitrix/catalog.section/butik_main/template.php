@@ -28,7 +28,9 @@
 		<div class="cabinet-box3" style="float: right; margin-top: -46px; display: none;">
 				<ul>
 					<li>
-						<?if (empty($arItem['OFFERS'])) : ?>
+						<?if (!$USER->isAuthorized()) : ?>
+							<a class="open-reg" style="background: #f15824; width: 160px;" href="/personal/">Купить</a>
+						<?elseif (empty($arItem['OFFERS'])) : ?>
 							<a style="width: 160px;" class="buy-link" href="/butik/<?=$arItem['CODE']?>/?action=BUY&amp;id=<?=$arItem['ID']?>&amp;ELEMENT_CODE=<?=$arItem['CODE']?>">В корзину</a>
 						<?else : ?>
 							<a style="width: 160px;" href="/butik/<?=$arItem['CODE']?>/?spec=sku">В корзину</a>

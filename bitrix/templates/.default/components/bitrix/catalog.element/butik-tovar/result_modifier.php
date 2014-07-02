@@ -470,4 +470,7 @@ if (!empty($arResult['DISPLAY_PROPERTIES']))
 
 $arResult['SKU_PROPS'] = $arSKUPropList;
 $arResult['DEFAULT_PICTURE'] = $arEmptyPreview;
+
+
+
 ?>

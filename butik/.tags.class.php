@@ -380,19 +380,13 @@
 
 
 		public function getBrands() {
-			if (!isset($_GET['section']) && !isset($_GET['gift']) && !isset($_GET['facility']) && !isset($_GET['catalog'])) {
+			if (!isset($_GET['section']) && !isset($_GET['catalog'])) {
 				return false;
 			}
 			$catalogBrands = array();
 			if (isset($_GET['section'])) {
 				$sectionId = $_GET['section'];
 				$propertyCode = 'CATALOG';
-			} elseif (isset($_GET['gift'])) {
-				$sectionId = $_GET['gift'];
-				$propertyCode = 'GIFT';
-			} elseif (isset($_GET['facility'])) {
-				$sectionId = $_GET['facility'];
-				$propertyCode = 'FACILITY';
 			} else {
 				$sectionId = $_GET['catalog'];
 				$propertyCode = 'CATALOG';
