@@ -583,8 +583,10 @@ overflow:hidden;
 .cabinet-box3{clear:both;padding:14px 0 0 0;}
 .cabinet-box3 ul{padding:0;margin:0;}
 .cabinet-box3 ul li{padding:0;margin:0;list-style:none;}
-.cabinet-box3 ul li a{width:211px;display:block;line-height:0.7em;padding:19px 0 19px 0;margin:0 3px 21px 0;background: #bfbfbf; text-align:center; color:#fff;font-weight:400;font-size:16px;font-family: 'Open Sans', sans-serif;text-decoration:none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.cabinet-box3 ul li a{box-shadow: 3px -3px 3px #ccc; margin: 1px 4px 20px -1px; width:211px;display:block;line-height:0.7em;padding:19px 0 19px 0; margin: 1px 4px 20px -1px; background: #bfbfbf; text-align:center; color:#fff;font-weight:400;font-size:16px;font-family: 'Open Sans', sans-serif;text-decoration:none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 .cabinet-box3 ul li a:hover{background:#f15824;}
+.cabinet-box3 ul li a:active{margin: 0px 4px 21px 0px;box-shadow: none}
+
 
 .tprice{color:#f15824;font-weight:500;font-size:24px;font-family: 'Open Sans', sans-serif;text-decoration:none;line-height:1em;}
 
@@ -784,7 +786,7 @@ ul.tabs2 {
 .cat-text input{width:98%;padding:12px 0 12px 10px;border:1px solid #d5d5d5; color:#a8a8a8;font-weight:500;font-size:12px;font-family: 'Open Sans', sans-serif;}
 .cat-text input:hover{outline:none;}
 
-.comm-none{color:#a8a8a8;font-weight:700;font-size:18px;font-family: 'Open Sans', sans-serif;padding:22px 0 0 0;}
+.comm-none{color:#a8a8a8;font-weight:700;font-size:18px;font-family: 'Open Sans', sans-serif;padding:9px 0 0 0;}
 
 .blox-comm{padding:22px 0 20px 0; width:98%; color:#a8a8a8;font-size:11px;overflow:hidden;}
 .blox-comm a.like2{background:url(../images/like.jpg) left  no-repeat;padding:0 0 0 17px;color:#f15824;font-weight:500;font-size:11px;font-family: 'Open Sans', sans-serif;text-decoration:none;}

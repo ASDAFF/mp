@@ -128,7 +128,8 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 								$price = $offer['CATALOG_PRICE_1'];
 								$quanityHelper[$offer['ID']] = '<input class="quantity-helper" type="hidden" value="'.$offer['BUY_URL'].'" data-quantity="' . $offer["CATALOG_QUANTITY"] .'" />';
 							}
-						}else{
+						} else {
+							$offerQuantity = $arResult['CATALOG_QUANTITY'];
 							$price = $arResult['CATALOG_PRICE_1'];
 						}
 					?>
