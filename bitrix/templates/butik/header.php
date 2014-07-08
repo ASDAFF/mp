@@ -44,7 +44,7 @@
 				<li><a <?=strstr($APPLICATION->sDirPath, 'butik')?'class="active"':'';?> href="/butik/">Магазин<span> покупать</span></a></li>
 				<!-- <li><a href="#">Магазин<span>покупать</span></a></li> -->
 				<li><a <?=strstr($APPLICATION->sDirPath, 'evrika')?'class="active"':'';?> href="/evrika/">ЭВРИКА<span>находить ниши</span></a></li>
-				<li class="bl"><a href="#">ЛАЙФХАК<span>знать и уметь</span></a></li>
+				<li class="bl"><a <?=strstr($APPLICATION->sDirPath, 'lifehack')?'class="active"':'';?> href="/lifehack/">ЛАЙФХАК<span>знать и уметь</span></a></li>
 				<li class="bl"><a href="/about/">ЧТО ТАКОЕ MUCHMORE<span>сотрудничать и инвестировать</span></a></li>
 			</ul>
 			
