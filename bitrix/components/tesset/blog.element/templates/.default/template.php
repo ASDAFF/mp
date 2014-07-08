@@ -6,7 +6,7 @@
         <div class="blog-item-info">
             <span class="fa fa-clock-o"> <?=$item['date']?></span>
             <span class="fa fa-eye"> <?=$item['shows']?></span>
-            <span class="fa fa-heart-o blog-item-like blog-item-active-info <?=($item['likes']['already_liked']) ? 'active-like' : ''?>" data-object="<?=$item['id']?>"> <?=$item['likes']['value']?></span>
+            <span class="fa fa-heart-o blog-item-like blog-item-active-info <?=($item['likes']['already_liked']) ? 'active-like' : ''?>" data-object="<?=$item['id']?>" data-ib="<?=$item['iblockId']?>"> <?=$item['likes']['value']?></span>
             <span class="fa fa-comment-o blog-item-comments blog-item-active-info"> <?=$item['comments']?></span>
         </div>
         <div class="blog-item-picture">

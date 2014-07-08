@@ -13,7 +13,7 @@
             <a class="more-link" href="<?=$item['url']?>">Подробнее</a>
             <div class="info">
                 <span class="fa fa-eye"> <?=$item['shows']?></span>
-                <span class="fa fa-heart-o blog-like blog-item-like"> <?=$item['likes']?></span>
+                <span class="fa fa-heart-o blog-like blog-item-like" data-element="<?=$item['id']?>" data-ib="<?=$item['iblockId']?>"> <?=$item['likes']?></span>
             </div>
         </div>
     <?endforeach;?>

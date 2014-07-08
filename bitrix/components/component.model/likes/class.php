@@ -4,8 +4,16 @@
  */
 class Likes
 {
+    const DEFAULT_IBLOCK_ID = 17;
+
+    /**
+     * ID инфоблока лайков
+     * @var int
+     */
+    private $iblockId;
     
-    public function __construct() {
+    public function __construct($iblockId = false) {
+        $this->iblockId = (false === $iblockId) ? DEFAULT_IBLOCK_ID : $iblockId;
         CModule::IncludeModule('iblock');
     }
 
@@ -19,6 +27,7 @@ class Likes
             false, array(
                 'IBLOCK_ID' => 17,
                 'PROPERTY_OBJECT_ID' => $id,
+                'PROPERTY_IBLOCK_ID' => $this->iblockId,
                 'ACTIVE' => 'Y'
                 ),
             false, false, 
@@ -37,6 +46,7 @@ class Likes
             false,
             array(
                 'IBLOCK_ID' => 17,
+                'PROPTERTY_IBLOCK_ID' => $this->iblockId,
                 'PROPERTY_OBJECT_ID' => $id,
                 'PROPERTY_HASH' => $_COOKIE['muchmore-blog-like'],
                 'PROPERTY_IP' => $_SERVER['REMOTE_ADDR'],

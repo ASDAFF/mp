@@ -5,7 +5,8 @@ CModule::IncludeModule('iblock');
 CBitrixComponent::includeComponentClass("component.model:likes");
 
 $objElement = new CIBlockElement;
-$likes = new Likes();
+$likes = new Likes($_POST['ib']);
+
 $like = $likes->isLikedByCurrent($_POST['element']);
 if (false === $like) {
 	$result['plus'] = true;
@@ -17,7 +18,8 @@ if (false === $like) {
 		'PROPERTY_VALUES' => array(
 			'IP' => $_SERVER['REMOTE_ADDR'],
 			'HASH' => $hash, //setCookie
-			'OBJECT_ID' => $_POST['element'] 
+			'OBJECT_ID' => $_POST['element'],
+			'IBLOCK_ID' => $_POST['ib']
 			) 
 		));\
 	// var_dump($objElement->LAST_ERROR);

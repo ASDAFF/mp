@@ -44,7 +44,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: '/ajax/like.php',
-            data: {element: $(this).data('object')},
+            data: {element: $(this).data('object'), ib: $(this).data('ib')},
             success: function (result) {
                 result = JSON.parse(result);
                 if (true === result.plus) {

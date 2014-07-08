@@ -31,6 +31,7 @@ class EvrikaBlogList extends CBitrixComponent
      */
     private $select = array(
         'ID',
+        'IBLOCK_ID',
         'NAME',
         'DETAIL_PICTURE',
         'DETAIL_TEXT',
@@ -85,7 +86,7 @@ class EvrikaBlogList extends CBitrixComponent
         if (!$this->arParams["ELEMENT_CODE"]) {
             return false;
         }
-        $this->likes = new Likes();
+        $this->likes = new Likes($this->arParams["IBLOCK_ID"]);
         return true;
     }
 
@@ -156,6 +157,7 @@ class EvrikaBlogList extends CBitrixComponent
     {
         $x = array(
             'id' => $item->field('ID'),
+            'iblockId' => $item->field('IBLOCK_ID'),
             'name' => $item->field('NAME'),
             'picture' => $item->src('DETAIL_PICTURE', $resized = false),
             'text' => $item->field('DETAIL_TEXT'),

@@ -12,6 +12,12 @@ $arUrlRewrite = array(
 		"ID" => "",
 		"PATH" => "/lifehack/detail.php",
 	),
+	array(
+		"CONDITION" => "#^/evrika/([^\\/]*)/.*#",
+		"RULE" => "ELEMENT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/evrika/detail.php",
+	),
 );
 
 ?>

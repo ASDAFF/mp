@@ -28,6 +28,7 @@ class EvrikaBlogList extends CBitrixComponent
      */
     private $select = array(
         'ID',
+        'IBLOCK_ID',
         'NAME',
         'PREVIEW_PICTURE',
         'PREVIEW_TEXT',
@@ -82,7 +83,7 @@ class EvrikaBlogList extends CBitrixComponent
                 "nTopCount" => $this->arParams["ITEMS_COUNT"],
             );
         }
-        $this->likes = new Likes();
+        $this->likes = new Likes($this->arParams["IBLOCK_ID"]);
         return true;
     }
 
@@ -151,6 +152,7 @@ class EvrikaBlogList extends CBitrixComponent
     {
         $x = array(
             'id' => $item->field('ID'),
+            'iblockId' => $item->field('IBLOCK_ID'),
             'name' => $item->field('NAME'),
             'picture' => $item->src('PREVIEW_PICTURE', $resized = false),
             'anounce' => $item->field('PREVIEW_TEXT'),
