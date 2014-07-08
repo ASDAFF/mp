@@ -30,4 +30,31 @@ $(document).ready(function () {
 		closeEffect	: 'none'
 	});
 
+
+	$('.blog-item-comments').on('click', function () {
+        $("html, body").animate({ scrollTop: $('#comments').offset().top-40 }, 1000);
+    });
+    
+    /**
+     * Likes in blog
+     * @return {null} NULL
+     */
+    $('.blog-item-like').on('click', function () {
+        window.likedObj = $(this);
+        $.ajax({
+            type: 'POST',
+            url: '/ajax/like.php',
+            data: {element: $(this).data('object')},
+            success: function (result) {
+                result = JSON.parse(result);
+                if (true === result.plus) {
+                    window.likedObj.addClass('active-like');
+                } else {
+                    window.likedObj.removeClass('active-like');
+                }
+                window.likedObj.html(' ' + result.val);
+            }
+        });
+    });
+
 });

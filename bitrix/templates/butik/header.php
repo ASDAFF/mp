@@ -6,6 +6,7 @@
 	<meta name="Description" content="Главная">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/src/css/view.css">
+	<link rel="stylesheet" type="text/css" href="/src/css/fa.css">
 	<!-- <script type="text/javascript" src="/src/javascript/jquery-1.6.min.js"></script> -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="/src/javascript/superfish.js"></script>
@@ -42,7 +43,7 @@
 				<li><a href="/"><img src="/src/images/icon_build_preview.png" style="height:80px;" alt=""></a></li>
 				<li><a <?=strstr($APPLICATION->sDirPath, 'butik')?'class="active"':'';?> href="/butik/">Магазин<span> покупать</span></a></li>
 				<!-- <li><a href="#">Магазин<span>покупать</span></a></li> -->
-				<li><a href="#">ЭВРИКА<span>находить ниши</span></a></li>
+				<li><a <?=strstr($APPLICATION->sDirPath, 'evrika')?'class="active"':'';?> href="/evrika/">ЭВРИКА<span>находить ниши</span></a></li>
 				<li class="bl"><a href="#">ЛАЙФХАК<span>знать и уметь</span></a></li>
 				<li class="bl"><a href="/about/">ЧТО ТАКОЕ MUCHMORE<span>сотрудничать и инвестировать</span></a></li>
 			</ul>

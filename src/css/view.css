@@ -875,3 +875,35 @@ text-decoration:none;
 
 .cat-phone {background: url(/src/icons/apple.png) no-repeat left; float: right; width: 172px; margin-top: -3px; background-size: 21px;}
 .cat-phone p {line-height: 4px; padding-left: 37px; font-size: 13px;}
+
+/*BLOG*/
+.content-blog {margin-top: 20px;}
+.blog-item { width:300px; height:400px; float:left; margin:0 15px 30px 15px;}
+/*.blog-item:hover {box-shadow: 0px 2px 20px #999; border-radius: 5px;}*/
+.blog-item img {max-width: 100%; height: auto;}
+.blog-item img:hover{-webkit-transform: scale(1.05); -moz-transform: scale(1.05); -o-transform: scale(1.05); transform: scale(1.05); opacity: .8; margin: 0; -webkit-transition: opacity .3s ease,-webkit-transform .3s ease; -moz-transition: opacity .3s ease,-moz-transform .3s ease; -o-transition: opacity .3s ease,-o-transform .3s ease; transition: opacity .3s ease,transform .3s ease; -webkit-backface-visibility: hidden; max-width: 100%;}
+.blog-item div.date {margin: 10px 0 10px; font-size: 14px;}
+.blog-item a.name {font-size: 20px; color: #000; text-decoration: none; font-weight: bold;}
+.blog-item a.name:hover {color: #f15824;}
+.blog-item div.anounce {margin-top: 10px; color: #999;}
+.blog-item a.more-link {color: #f15824; text-decoration: none;}
+.blog-item a.more-link:hover {background-color: #f15824;color: #fff; padding: 2px; border-radius: 4px;}
+.blog-item div.info {margin-top: 10px;}
+.blog-item div.info span {margin-right: 20px;}
+.blog-item div.info span.blog-like{cursor: pointer;}
+.blog-item div.info span.blog-like:hover{color: #999;}
+
+.content-blog-item {margin-top: 20px;}
+.content-blog-item div.blog-item-header {text-align: center;}
+.content-blog-item div.blog-item-header h1 {font-size: 50px; font-weight: normal; margin-bottom: 0;}
+.content-blog-item div.blog-item-header div.blog-item-info {margin: 10px 0 40px 0; color: #999;}
+.content-blog-item div.blog-item-header div.blog-item-info span {margin-left: 20px;}
+.content-blog-item div.blog-item-header div.blog-item-info span:first-child {margin: 0;}
+.content-blog-item div.blog-item-header div.blog-item-info .blog-item-active-info {cursor: pointer;}
+.content-blog-item div.blog-item-header div.blog-item-info .blog-item-active-info:hover {color: #ccc;}
+.content-blog-item div.blog-item-header div.blog-item-info span.blog-item-like {}
+.content-blog-item div.blog-item-header div.blog-item-info .active-like {color: #f15824;}
+.content-blog-item div.blog-item-header div.blog-item-info span.blog-item-comments {}
+.content-blog-item div.blog-item-header div.blog-item-picture {margin: 10px 10px 0;}
+.content-blog-item div.blog-item-header div.blog-item-picture img {}
+.content-blog-item div.blog-item-text {text-align: left;}
