@@ -7,6 +7,8 @@
 	<meta name="Description" content="Главная">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/src/css/view.css">
+	<link rel="stylesheet" type="text/css" href="/src/css/fa.css">
+	<link rel="stylesheet" type="text/css" href="/src/css/butik.css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="/src/javascript/superfish.js"></script>
 		<link rel="stylesheet" type="text/css" href="/src/jquery-ui-1.10.4.custom/css/custom-theme/jquery-ui-1.10.4.custom.css">
@@ -22,8 +24,20 @@
 				$('.search').slideToggle();				
 				return false;
 			});
-			
-			
+
+			$('.open-offer').click(function(e){
+				e.preventDefault();
+				$('#offer-handler').dialog('open');
+				return false;
+			});
+
+			$('#offer-handler').dialog({
+			width: 600,
+			height: 550,
+      		modal: true,
+			autoOpen: false,
+		});
+				
 		});
 	</script>
 </head>
@@ -33,6 +47,25 @@
 <? require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/templates/butik/cart.php'); ?>
 <? require_once($_SERVER['DOCUMENT_ROOT'].'/registration.php'); ?>
 
+<style type="text/css">
+	.left-column{
+		width:100%;
+		text-align: center;
+		font-size: 18px;
+		line-height: 25px;
+		padding: 0px 50px 0px 0px;
+		color: #999;
+		font-weight: 300;
+	}
+</style>
+
+<div id="offer-handler" style="display: none;  height: 550px;">
+	<div class="left-column">
+		<p>Отправьте предложение на почтовый адрес</p>
+		<p>offer@muchmore.ru</p>
+	</div>
+</div>
+
 <div class="all">
 	<div class="header">
 		<div class="main">
@@ -40,7 +73,7 @@
 				<li><a href="/"><img src="/src/images/icon_build_preview.png" style="height:80px;" alt=""></a></li>
 				<li><a <?=strstr($APPLICATION->sDirPath, 'butik')?'class="active"':'';?> href="/butik/">Магазин<span> покупать</span></a></li>
 				<!-- <li><a href="#">Магазин<span>покупать</span></a></li> -->
-				<li><a <?=strstr($APPLICATION->sDirPath, 'evrika')?'class="active"':'';?> href="/evrika/">ЭВРИКА<span>находить ниши</span></a></li>
+				<li><a href="#">ЭВРИКА<span>находить ниши</span></a></li>
 				<li class="bl"><a <?=strstr($APPLICATION->sDirPath, 'lifehack')?'class="active"':'';?> href="/lifehack/">ЛАЙФХАК<span>знать и уметь</span></a></li>
 				<li class="bl"><a href="/about/">ЧТО ТАКОЕ MUCHMORE<span>сотрудничать и инвестировать</span></a></li>
 			</ul>
@@ -64,33 +97,12 @@
 			</div>
 
 			<div class="text">
-			МАГАЗИН  БЕЗГРАНИЧНЫХ<br>ВОЗМОЖНОСТЕЙ
+			 НИШИ, ИДЕИ, <br>ВОЗМОЖНОСТИ
 			</div>
-			
-			<?
-				require_once('butik/.tags.class.php');
-				$tags = new WRTags();
-			?>
-			<link rel="stylesheet" type="text/css" href="/src/css/butik.css" />
-			<ul class="top-menu2">
-			<!-- 	<? $tags->drawFacilityIndex();?> -->
-			
-	<div class="cat-menu" style="padding-top:0px;">
-		<ul class="sf-menu">
-			<li class="index-cat-li"><? $tags->drawCatalog2();?></li>
-			<li class="index-cat-li"><? $tags->drawGifts2();?></li>
-			<li class="index-cat-li"><? $tags->drawFacility2();?></li>			
-		</ul>
-	</div>	
-	<div style="clear:both;"></div>
-				<!--
-<li><a href="#">Быть</a></li>
-				<li><a href="#">Отличаться</a></li>
-				<li><a href="#">Наслаждаться</a></li>
-				<li><a href="#">Превзойти</a></li>
--->
-			</ul>
-			
+			<div style="position: absolute; top: 333px; width: 100%; text-align: center;">
+				<a class="index-cat-evrika open-offer" href="/butik/">ПРЕДЛОЖИТЬ</a>
+			</div>
+			<div style="clear:both;"></div>
 		</div>
 	</div>
 	
@@ -103,11 +115,4 @@
 				<p>Поиск по названию или описанию</p><!--  (Поиск по всем категориям изначально, с последующей фильтрацией) -->
 				<input type="submit" style="position:absolute; opacity:0;" />
 				</form>
-			</div>
-		
-		<?
-	require_once($_SERVER['DOCUMENT_ROOT'].'/butik/.tags.class.php');
-	$tags = new WRTags();
-	?>
-	
-		
+			</div>		

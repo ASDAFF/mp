@@ -450,6 +450,9 @@ ul.sf-menu li a:hover{color:#f15824;}
 
 .index-cat-li ul{top:60px !important;}
 
+.index-cat-evrika{ text-transform:uppercase; color:#fff !important; border:1px solid #fff !important; padding: 13px; text-decoration: none; }
+.index-cat-evrika:hover {color: #993816 !important; border: 1px solid #993816 !important;}
+
 ul.sf-menu ul {
 	margin:0;
 	padding:0;
