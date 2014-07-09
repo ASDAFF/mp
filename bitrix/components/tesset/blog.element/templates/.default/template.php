@@ -16,7 +16,11 @@
     <div class="blog-item-text">
         <?=$item['text']?>
     </div>
+    <div style="width: 300px; text-align: center; margin: 0 auto;">
+        <a class="index-cat-evrika" style="color: #999 !important; border-color: #999 !important;" href="mailto:office@muchmore.ru">СВЯЗАТЬСЯ С АВТОРОМ</a>
+    </div>
     <div class="cat-text" id="comments">
+        <h3>Комментарии</h3>
         <?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
             "LEFT_MARGIN" => "50",
             "MAX_DEPTH_LEVEL" => "5",

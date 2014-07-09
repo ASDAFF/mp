@@ -10,7 +10,7 @@
             <div class="date"><span class="fa fa-clock-o"> <?=$item['date']?></span></div>
             <a class="name" href="<?=$item['url']?>"><?=$item['name']?></a>
             <div class="anounce"><?=$item['anounce']?></div>
-            <a class="more-link" href="<?=$item['url']?>">Подробнее</a>
+            <!-- <a class="more-link" href="<?=$item['url']?>">Подробнее</a> -->
             <div class="info">
                 <span class="fa fa-eye"> <?=$item['shows']?></span>
                 <span class="fa fa-heart-o blog-like blog-item-like" data-element="<?=$item['id']?>" data-ib="<?=$item['iblockId']?>"> <?=$item['likes']?></span>

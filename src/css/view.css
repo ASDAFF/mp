@@ -909,4 +909,4 @@ text-decoration:none;
 .content-blog-item div.blog-item-header div.blog-item-info span.blog-item-comments {}
 .content-blog-item div.blog-item-header div.blog-item-picture {margin: 10px 10px 0;}
 .content-blog-item div.blog-item-header div.blog-item-picture img {}
-.content-blog-item div.blog-item-text {text-align: left;}
+.content-blog-item div.blog-item-text {text-align: left; padding: 0 50px;}

@@ -6,7 +6,7 @@
 	<meta name="Description" content="Главная">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/src/css/view.css">
-	<link rel="stylesheet" type="text/css" href="/src/css/fa.css">
+	<link rel="stylesheet" type="text/css" href="/src/css/font-awesome.min.css">
 	<!-- <script type="text/javascript" src="/src/javascript/jquery-1.6.min.js"></script> -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="/src/javascript/superfish.js"></script>

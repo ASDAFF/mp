@@ -7,7 +7,7 @@
 	<meta name="Description" content="Главная">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/src/css/view.css">
-	<link rel="stylesheet" type="text/css" href="/src/css/fa.css">
+	<link rel="stylesheet" type="text/css" href="/src/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/src/css/butik.css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="/src/javascript/superfish.js"></script>
@@ -23,20 +23,7 @@
 				e.preventDefault();
 				$('.search').slideToggle();				
 				return false;
-			});
-
-			$('.open-offer').click(function(e){
-				e.preventDefault();
-				$('#offer-handler').dialog('open');
-				return false;
-			});
-
-			$('#offer-handler').dialog({
-			width: 600,
-			height: 550,
-      		modal: true,
-			autoOpen: false,
-		});
+			});+
 				
 		});
 	</script>
@@ -58,13 +45,6 @@
 		font-weight: 300;
 	}
 </style>
-
-<div id="offer-handler" style="display: none;  height: 550px;">
-	<div class="left-column">
-		<p>Отправьте предложение на почтовый адрес</p>
-		<p>offer@muchmore.ru</p>
-	</div>
-</div>
 
 <div class="all">
 	<div class="header">
@@ -97,16 +77,16 @@
 			</div>
 
 			<div class="text">
-			 НИШИ, ИДЕИ, <br>ВОЗМОЖНОСТИ
+			 ИДЕИ
 			</div>
-			<div style="position: absolute; top: 333px; width: 100%; text-align: center;">
-				<a class="index-cat-evrika open-offer" href="/butik/">ПРЕДЛОЖИТЬ</a>
+			<div style="position: absolute; top: 300px; width: 100%; text-align: center;">
+				<a class="index-cat-evrika" href="mailto:office@muchmore.ru">ПРЕДЛОЖИТЬ</a>
 			</div>
 			<div style="clear:both;"></div>
 		</div>
 	</div>
 	
-	<div class="container">
+	<div class="container" style="min-height: 500px;">
 		<div class="main">
 		
 		<div class="search" style="margin: 0px 20px 28px 20px;">

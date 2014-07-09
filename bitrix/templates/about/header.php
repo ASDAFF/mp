@@ -19,7 +19,7 @@
 				<li><a href="/"><img src="/src/images/icon_build_preview.png" style="height:80px;" alt=""></a></li>
 				<li><a <?=strstr($APPLICATION->sDirPath, 'butik')?'class="active"':'';?> href="/butik/">Магазин<span> покупать</span></a></li>
 				<!-- <li><a href="#">Магазин<span>покупать</span></a></li> -->
-				<li><a href="#">ЭВРИКА<span>находить ниши</span></a></li>
+				<li><a <?=strstr($APPLICATION->sDirPath, '/evrika/')?'class="active"':'';?> href="/evrika/">ЭВРИКА<span>находить ниши</span></a></li>
 				<li class="bl"><a <?=strstr($APPLICATION->sDirPath, 'lifehack')?'class="active"':'';?> href="/lifehack/">ЛАЙФХАК<span>знать и уметь</span></a></li>
 				<li class="bl"><a href="/about/">ЧТО ТАКОЕ MUCHMORE<span>сотрудничать и инвестировать</span></a></li>
 			</ul>
@@ -34,7 +34,10 @@
 					<a class="show-cart" href="#"><img src="/src/icons/basket18.png" style="width:30px;" /></a>
 					';
 				}else{
-					echo '<a href="/personal/">Вход</a> /<a href="/registration/">Регистрация</a>';
+					echo '<a class="open-reg" href="/registration/"><img src="/src/icons/user.png" style="width:30px;" /></a>';
+					echo '<a class="show-cart" href="#"><img src="/src/icons/basket18.png" style="width:30px;" /></a>';
+					// echo '<a class="open-reg" href="/registration/">Регистрация</a> / <a class="open-auth" href="/personal/">Вход</a>';
+					// echo '<a class="open-reg" href="/personal/">Вход</a>';
 				}
 			?>
 			</div>
