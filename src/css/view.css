@@ -690,7 +690,7 @@ outline:none;
 .ticon_no{background:url(../icons/ch2.png) left 3px no-repeat; background-size: 20px; padding:0 0 0 30px;color:#999;font-weight:500;font-size:13px;font-family: 'Open Sans', sans-serif; }
 
 .soc ul{padding:0 0 30px 0;margin:0;overflow:hidden;}
-.soc ul li{padding:0;margin:0 23px 0 0;list-style:none;float:left;}
+.soc ul li{padding:0;margin:0 23px 0 0;list-style:none;float:left; width: 100px; height: 32px;}
 .soc a{color:#f15824;font-weight:500;font-size:15px;font-family: 'Open Sans', sans-serif; text-decoration:none;}
 
 .col-04{float:left;width:671px;background:#fff;min-height:550px;margin:21px 0 52px 21px;}
@@ -895,6 +895,8 @@ text-decoration:none;
 .blog-item div.info span {margin-right: 20px;}
 .blog-item div.info span.blog-like{cursor: pointer;}
 .blog-item div.info span.blog-like:hover{color: #999;}
+.blog-item ul.blog-item-social {}
+.blog-item ul.blog-item-social li{}
 
 .content-blog-item {margin-top: 20px;}
 .content-blog-item div.blog-item-header {text-align: center;}
@@ -910,3 +912,7 @@ text-decoration:none;
 .content-blog-item div.blog-item-header div.blog-item-picture {margin: 10px 10px 0;}
 .content-blog-item div.blog-item-header div.blog-item-picture img {}
 .content-blog-item div.blog-item-text {text-align: left; padding: 0 50px;}
+.content-blog-item ul.blog-item-social {float: right; margin-right: 90px;}
+.content-blog-item ul.blog-item-social li {float: left; width: 108px; height: 32px; display: inline;}
+.share-fb {position: absolute; width: 32px; height: 32px; background: url(/src/icons/share-fb.png) no-repeat; background-size: 32px;}
+.share-tw {position: absolute; width: 32px; height: 32px; background: url(/src/icons/share-tw.png) no-repeat; background-size: 32px;}

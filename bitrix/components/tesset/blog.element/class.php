@@ -35,6 +35,7 @@ class EvrikaBlogList extends CBitrixComponent
         'NAME',
         'DETAIL_PICTURE',
         'DETAIL_TEXT',
+        'PREVIEW_TEXT',
         'SHOW_COUNTER',
         'DATE_CREATE',
         'PROPERTY_LIKES',
@@ -59,10 +60,15 @@ class EvrikaBlogList extends CBitrixComponent
             return false;
         }
         global $USER;
+        global $APPLICATION;
         $cache = $this->navParams . bitrix_sessid_get() . $USER->GetID();
         
         if ($this->startResultCache(0, $cache)) {
             $this->arResult = $this->GetItems();
+            $APPLICATION->SetTitle($this->arResult['name']);
+            $APPLICATION->SetPageProperty('description', $this->arResult['anounce']);
+            $APPLICATION->AddHeadString('<meta property="og:title" content="' . $this->arResult['name'] . '"/>');
+            $APPLICATION->AddHeadString('<meta property="og:description" content="' . $this->arResult['anounce'] . '"/>');
             $this->includeComponentTemplate();
         }
     }
@@ -161,6 +167,7 @@ class EvrikaBlogList extends CBitrixComponent
             'name' => $item->field('NAME'),
             'picture' => $item->src('DETAIL_PICTURE', $resized = false),
             'text' => $item->field('DETAIL_TEXT'),
+            'anounce' => $item->field('PREVIEW_TEXT'),
             'date' => ConvertDateTime($item->field('DATE_CREATE'), 'DD.MM.YYYY'),
             'related' => $item->propValue('RELATED'),
             'shows' => ($item->field('SHOW_COUNTER')) ? $item->field('SHOW_COUNTER') : 0

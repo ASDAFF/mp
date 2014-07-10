@@ -193,15 +193,21 @@
 		}
 		
 		public function drawSections(){
+			global $APPLICATION;
 			$sect = array();
 			$catSection = intval($_GET['section']);
 			if(isset($_GET['catalog'])){
 				$sections = $this->getSections(12, intval($_GET['catalog']));
 				if (!array_key_exists($catSection, $sections)) {
-					$sec = CIBlockSection::GetList(false, array('IBLOCK_ID' => 12, 'ID' => $catSection), false, array('IBLOCK_SECTION_ID'))->Fetch();
+					$sec = CIBlockSection::GetList(false, array('IBLOCK_ID' => 12, 'ID' => $catSection), false, array('IBLOCK_SECTION_ID', 'NAME'))->Fetch();
 					$catSection = $sec['IBLOCK_SECTION_ID'];
+					$APPLICATION->SetTitle($sec['NAME']);
+
 				}
 				foreach($sections as $key => $value){
+					if ($catSection==$key) {
+						$APPLICATION->SetTitle($value);
+					}
 					$sect[] = '<a href="/butik/?catalog='.intval($_GET['catalog']).($_GET['section']==$key?'':'&section='.$key).'" class="'.($catSection==$key?'active':'').'">'.$value.'</a>';
 				}
 			}
@@ -219,6 +225,9 @@
 			if(isset($id)) {
 				$sections = $this->getSections(12, $id);
 				foreach($sections as $key => $value){
+					if ($id == $key) {
+						$APPLICATION->SetTitle($value);
+					}
 					$sect[] = '<a href="/butik/?catalog='.intval($_GET['catalog']).($_GET['section']==$key?'':'&section='.$key).'" class="'.($_GET['section']==$key?'active':'').'">'.$value.'</a>';
 				}
 			}
@@ -255,9 +264,11 @@
 		
 
 		public function getName() {
+			global $APPLICATION;
 			if(isset($_GET['catalog'])){
 				$res = CIBlockSection::GetByID(intval($_GET["catalog"]));
 				if($ar_res = $res->GetNext()){
+					$APPLICATION->SetTitle($ar_res['NAME']);
 					$sections = $this->drawSections();	
 					return '<div class="custom-tags"><div class="title"><strong>'.$ar_res['NAME'].($sections!=''?':':'').'</strong></div> '.$sections.' </div><div style="clear:both;"></div>';
 				}				
@@ -266,12 +277,14 @@
 			if(isset($_GET['facility'])){
 				$res = CIBlockElement::GetByID(intval($_GET['facility']));
 				if($ar_res = $res->GetNext())
+					$APPLICATION->SetTitle($ar_res['NAME']);
 					return '<div class="custom-tags"><strong><img src="'.$this->elemIcons[intval($_GET["facility"])].'" />'.$ar_res['NAME'].'</strong>'.' </div><div style="clear:both;"></div>';
 			}
 			
 			if(isset($_GET['gift'])){
 				$res = CIBlockElement::GetByID(intval($_GET['gift']));
 				if($ar_res = $res->GetNext())
+					$APPLICATION->SetTitle($ar_res['NAME']);
 					return '<div class="custom-tags"><strong><img src="'.$this->elemIcons[intval($_GET["gift"])].'" />'.$ar_res['NAME'].'</strong>'.' </div><div style="clear:both;"></div>';
 			}
 		}
@@ -426,6 +439,9 @@
 			$html[] = '<div class="custom-tags">
 				<div class="title"><strong>Бренд:</strong></div>';
 			foreach ($brands as $id => $brand) {
+				if ($_GET['brand'] == $id) {
+					$APPLICATION->SetTitle($brand['name']);
+				}
 				$html[] = '<a href="' . $APPLICATION->GetCurPageParam('brand=' . $brand['id'], array('brand')) . '" class="' . (($_GET['brand'] == $id) ? 'active' : '')  . '">' . $brand['name'] . '</a>';
 			}
 			$html[] = '</div>';

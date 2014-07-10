@@ -77,10 +77,10 @@
 			</div>
 
 			<div class="text">
-			 ИДЕИ
+			 ОПЫТЫ
 			</div>
 			<div style="position: absolute; top: 300px; width: 100%; text-align: center;">
-				<a class="index-cat-evrika" href="mailto:office@muchmore.ru">ПРЕДЛОЖИТЬ</a>
+				<a class="index-cat-evrika" href="mailto:office@muchmore.ru">НАПИСАТЬ</a>
 			</div>
 			<div style="clear:both;"></div>
 		</div>

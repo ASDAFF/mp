@@ -76,12 +76,12 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					<p><?=$arResult['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT']?></p>
 					<div class="soc">
 						<ul>
-							<li>
+							<li style="width:80px;">
 							<!-- Put this script tag to the <head> of your page -->
 							<script type="text/javascript" src="//vk.com/js/api/openapi.js?113"></script>
 
 							<script type="text/javascript">
-							  VK.init({apiId: 4438261, onlyWidgets: true});
+							  VK.init({apiId: 4454187, onlyWidgets: true});
 							</script>
 
 							<!-- Put this div tag to the place, where the Like block will be -->
@@ -99,14 +99,15 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 								  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=681312905274770&version=v2.0";
 								  fjs.parentNode.insertBefore(js, fjs);
 								}(document, 'script', 'facebook-jssdk'));</script>
-								<div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-width="22" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+								<div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+								<!-- <div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-width="22" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div> -->
 							</li>
 							<li>
-								<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://mm.wrdev.ru/" data-text="Muchmore" data-via="muchmore" data-lang="ru" data-related="muchmore" data-hashtags="muchmore">Твитнуть</a>
+								<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://muchmore.ru/" data-text="Muchmore" data-via="muchmore" data-lang="ru" data-related="muchmore" data-hashtags="muchmore">Твитнуть</a>
 								<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 							</li>
 
-							<li><a href="#">Добавить в Wishlist</a></li>
+							<li style="width: 160px;"><a href="#">Добавить в Wishlist</a></li>
 						</ul>
 					</div>
 					
@@ -230,7 +231,33 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 ); ?>
 					</div>
 					</div>
-				</div>		
+				</div>
+				<div class="soc" style="margin-left: 29px; margin-top: -63px;">
+					<ul>
+						<li style="width:80px;">
+						<div id="vk_like_bottom"></div>
+						<script type="text/javascript">
+							VK.Widgets.Like("vk_like_bottom", {type: "mini"});
+						</script>
+						</li>
+						<li>
+							<div id="fb-root"></div>
+							<script>(function(d, s, id) {
+							  var js, fjs = d.getElementsByTagName(s)[0];
+							  if (d.getElementById(id)) return;
+							  js = d.createElement(s); js.id = id;
+							  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=681312905274770&version=v2.0";
+							  fjs.parentNode.insertBefore(js, fjs);
+							}(document, 'script', 'facebook-jssdk'));</script>
+							<div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+							<!-- <div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-width="22" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div> -->
+						</li>
+						<li>
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://muchmore.ru/" data-text="Muchmore" data-via="muchmore" data-lang="ru" data-related="muchmore" data-hashtags="muchmore">Твитнуть</a>
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+						</li>
+					</ul>
+				</div>	
 			</div>
 			<div class="col-05">
 				<?
