@@ -191,6 +191,12 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 				<div class="section2">
 					<ul class="tabs2">
 						<li class="current2">Описание</li>
+						<?if ($arResult['PROPERTIES']['TAB1_NAME']['VALUE'] && $arResult['PROPERTIES']['TAB1_TEXT']['VALUE']['TEXT']) : ?>
+							<li><?=$arResult['PROPERTIES']['TAB1_NAME']['VALUE']?></li>
+						<?endif;?>
+						<?if ($arResult['PROPERTIES']['TAB2_NAME']['VALUE'] && $arResult['PROPERTIES']['TAB2_TEXT']['VALUE']['TEXT']) : ?>
+							<li><?=$arResult['PROPERTIES']['TAB2_NAME']['VALUE']?></li>
+						<?endif?>
 						<li class="comments-tab">Комментарии <span class="comm"><?=$commentsCounter?></span></li>
 					</ul>
 					<div class="box2 visible">
@@ -198,6 +204,20 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 							<?=$arResult['DETAIL_TEXT'];?>
 						</div>
 					</div>
+					<?if ($arResult['PROPERTIES']['TAB1_NAME']['VALUE'] && $arResult['PROPERTIES']['TAB1_TEXT']['VALUE']['TEXT']) : ?>
+						<div class="box2" style="display: none;">
+							<div class="cat-text">
+								<?=$arResult['PROPERTIES']['TAB1_TEXT']['~VALUE']['TEXT']?>
+							</div>
+						</div>
+					<?endif;?>
+					<?if ($arResult['PROPERTIES']['TAB2_NAME']['VALUE'] && $arResult['PROPERTIES']['TAB2_TEXT']['VALUE']['TEXT']) : ?>
+						<div class="box2" style="display: none;">
+							<div class="cat-text">
+								<?=$arResult['PROPERTIES']['TAB2_TEXT']['~VALUE']['TEXT']?>
+							</div>
+						</div>
+					<?endif;?>
 					<div class="box2" style="display: none;">
 					<div class="cat-text">
 						<?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
@@ -232,7 +252,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					</div>
 					</div>
 				</div>
-				<div class="soc" style="margin-left: 29px; margin-top: -63px;">
+				<div class="soc" style="margin-left: 29px;">
 					<ul>
 						<li style="width:80px;">
 						<div id="vk_like_bottom"></div>
