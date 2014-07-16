@@ -15,12 +15,33 @@
     </div>
     <div class="blog-item-text">
         <?=$item['text']?>
+        <ul class="blog-item-social" <?if ($arParams['SHOW_CONNECT']) : ?>style="margin-top: -21px; margin-right: 75px;"<?endif;?>>
+            <li style="width: 89px;">
+                <script type="text/javascript" src="//vk.com/js/api/openapi.js?113"></script>
+                <script type="text/javascript">
+                  VK.init({apiId: 4454187, onlyWidgets: true});
+                </script>
+                <div id="vk_like"></div>
+                <script type="text/javascript">
+                    VK.Widgets.Like("vk_like", {type: "mini"});
+                </script>
+            </li>
+            <li>
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=681312905274770&version=v2.0"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                <!-- <div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div> -->
+            </li>
+            <li style="width: 56px;">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://muchmore.ru/" data-text="Muchmore" data-via="muchmore" data-lang="ru" data-related="muchmore" data-hashtags="muchmore">Твитнуть</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </li>
+        </ul>
         <!-- Товары к статье блога -->
             <?if ($arResult['related']) : ?>
             <div class="related">
-                <h3>Магазин</h3>
                 <?foreach ($arResult['related'] as $id => $related) : ?>
-                <div class="item-block2">
+                <div class="item-block2" style="margin: 0 5px 30px 5px">
                     <div style="height:200px; width:300px;">
                         <a href="/butik/<?=$related['code']?>/">
                             <img style="width:300px; height:199px;" src="<?=$related['picture']['src']?>" alt="">
@@ -30,13 +51,13 @@
                         <?=$related['name']?>
                     </a>
                     <div class="price"><?=$related['price']?> р.</div>
-                    <div class="cabinet-box3" style="float: right; margin-top: -46px;">
+                    <div class="cabinet-box3" style="float: right; margin-top: -46px; display: none;">
                         <ul>
                             <li>
                                 <?if (!$USER->isAuthorized()) : ?>
                                     <a class="open-reg" style="background: #f15824; width: 160px; box-shadow: none;" href="/personal/">Купить</a>
                                 <?else : ?>
-                                    <a style="background: #f15824; width: 160px; box-shadow: none;" class="buy-link" href="/butik/<?=$related['code']?>/?action=BUY&amp;id=<?=$id?>&amp;ELEMENT_CODE=<?=$related['code']?>">В корзину</a>
+                                    <a style="background: #f15824; width: 160px; box-shadow: none;" class="buy-link" href="/butik/<?=$related['code']?>/?action=BUY&amp;id=<?=$id?>&amp;ELEMENT_CODE=<?=$related['code']?>">Купить</a>
                                 <?endif;?>
                             </li>                           
                             <ul>
@@ -53,38 +74,6 @@
             <a class="index-cat-evrika" style="color: #999 !important; border-color: #999 !important;" href="mailto:office@muchmore.ru">СВЯЗАТЬСЯ С АВТОРОМ</a>
         </div>
     <?endif;?>
-    <ul class="blog-item-social" <?if ($arParams['SHOW_CONNECT']) : ?>style="margin-top: -21px; margin-right: 75px;"<?endif;?>>
-        <li style="width: 89px;">
-            <!-- Put this script tag to the <head> of your page -->
-            <script type="text/javascript" src="//vk.com/js/api/openapi.js?113"></script>
-
-            <script type="text/javascript">
-              VK.init({apiId: 4454187, onlyWidgets: true});
-            </script>
-
-            <!-- Put this div tag to the place, where the Like block will be -->
-            <div id="vk_like"></div>
-            <script type="text/javascript">
-            VK.Widgets.Like("vk_like", {type: "mini"});
-            </script>
-            </li>
-            <li>
-                <div id="fb-root"></div>
-                <script>(function(d, s, id) {
-                  var js, fjs = d.getElementsByTagName(s)[0];
-                  if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=681312905274770&version=v2.0";
-                  fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script>
-                <div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-                <!-- <div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div> -->
-            </li>
-            <li style="width: 56px;">
-                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://muchmore.ru/" data-text="Muchmore" data-via="muchmore" data-lang="ru" data-related="muchmore" data-hashtags="muchmore">Твитнуть</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            </li>
-    </ul>
     <div class="cat-text" id="comments">
         <h3>Комментарии</h3>
         <?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(

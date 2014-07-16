@@ -70,8 +70,9 @@ AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler
       $eventName = 'ORDER_PAYED';
       $order = CSaleOrder::GetByID($orderId);
       $user = CUser::GetByID($order['USER_ID'])->Fetch();
+      $tmp = explode(',', $user['NAME']);
       $eventFields = array(
-      'NAME' => $user['NAME'],
+      'NAME' => $tmp[0],
       'EMAIL' => $user['EMAIL']
       );
       $arFields = $eventFields;
@@ -80,8 +81,9 @@ AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler
     function OnOrderDeliverSendEmailHandler($orderId, &$eventName, &$arFields) {
       $order = CSaleOrder::GetByID($orderId);
       $user = CUser::GetByID($order['USER_ID'])->Fetch();
+      $tmp = explode(',', $user['NAME']);
       $eventFields = array(
-      'NAME' => $user['NAME'],
+      'NAME' => $tmp[0],
       'EMAIL' => $user['EMAIL']
       );
       $arFields = $eventFields;

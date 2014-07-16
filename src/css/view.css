@@ -898,9 +898,9 @@ text-decoration:none;
 .blog-item ul.blog-item-social {}
 .blog-item ul.blog-item-social li{}
 
-.content-blog-item {margin-top: 20px;}
+.content-blog-item {margin-top: 20px; width: 900px;}
 .content-blog-item div.blog-item-header {text-align: center;}
-.content-blog-item div.blog-item-header h1 {font-size: 50px; font-weight: normal; margin-bottom: 0;}
+.content-blog-item div.blog-item-header h1 {font-size: 50px; font-weight: normal; margin-bottom: 0; width: 958px; margin-left: 18px;}
 .content-blog-item div.blog-item-header div.blog-item-info {margin: 10px 0 40px 0; color: #999;}
 .content-blog-item div.blog-item-header div.blog-item-info span {margin-left: 20px;}
 .content-blog-item div.blog-item-header div.blog-item-info span:first-child {margin: 0;}
@@ -909,14 +909,14 @@ text-decoration:none;
 .content-blog-item div.blog-item-header div.blog-item-info span.blog-item-like {}
 .content-blog-item div.blog-item-header div.blog-item-info .active-like {color: #f15824;}
 .content-blog-item div.blog-item-header div.blog-item-info span.blog-item-comments {}
-.content-blog-item div.blog-item-header div.blog-item-picture {margin: 10px 10px 0;}
+.content-blog-item div.blog-item-header div.blog-item-picture {margin: 10px 47px 0; width: 903px;}
 .content-blog-item div.blog-item-header div.blog-item-picture img {}
-.content-blog-item div.blog-item-text {text-align: left; padding: 0 50px; min-height: 100px;}
-.content-blog-item ul.blog-item-social {float: right; margin-right: 90px; margin-top: 0;}
+.content-blog-item div.blog-item-text {text-align: left; padding: 0 50px; min-height: 100px; padding-bottom: 53px;}
+.content-blog-item ul.blog-item-social {margin-left: -39px; margin-top: 0;}
 .content-blog-item ul.blog-item-social li {float: left; width: 108px; height: 32px; display: inline;}
 .share-fb {position: absolute; width: 32px; height: 32px; background: url(/src/icons/share-fb.png) no-repeat; background-size: 32px;}
 .share-tw {position: absolute; width: 32px; height: 32px; background: url(/src/icons/share-tw.png) no-repeat; background-size: 32px;}
 
-div.related {margin: 40px 0 40px -40px; width: 1000px;}
+div.related {margin: 40px 0 40px -26px; width: 1000px;}
 div.related h3{text-align: center;}
 
