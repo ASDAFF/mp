@@ -23,7 +23,7 @@
 				e.preventDefault();
 				$('.search').slideToggle();				
 				return false;
-			});+
+			});
 				
 		});
 	</script>
@@ -86,7 +86,7 @@
 		</div>
 	</div>
 	
-	<div class="container" style="min-height: 500px;">
+	<div class="container">
 		<div class="main">
 		
 		<div class="search" style="margin: 0px 20px 28px 20px;">

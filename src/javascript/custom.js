@@ -57,4 +57,9 @@ $(document).ready(function () {
         });
     });
 
+    /**
+     * Hack for blog container
+     */
+    $('.container').css('min-height', Math.ceil($('div.blog-item').length/3)*450 + 100);
+
 });

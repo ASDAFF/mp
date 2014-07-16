@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Бутик");
+$APPLICATION->SetPageProperty("title", "Магазин");
+$APPLICATION->SetTitle("Магазин ");
 ?>
 	<?
 	require_once('.tags.class.php');

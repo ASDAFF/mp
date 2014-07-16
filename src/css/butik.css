@@ -5,8 +5,8 @@
 .sf-menu ul{border:none !important;}
 .catalog-header{margin: 20px 0px 0px 17px;}
 .catalog-header h1{margin: 0px;}
-.custom-tags {position: relative; width:100%; padding: 0px 0px 0px 0px; font: 500 15px 'Open Sans', sans-serif; line-height: 10px;}
+.custom-tags {position: relative; width:100%; padding: 0px 0px 0px 10px; font: 500 15px 'Open Sans', sans-serif; line-height: 10px;}
 .custom-tags img{width: 30px; height: auto; vertical-align: middle; margin: 0px 10px 0px 10px;}
 .custom-tags a{display: inline-block; margin: 5px; padding: 3px; text-decoration: none; color: #666;}
 .custom-tags a.active, .custom-tags a:hover{color: #f15824;}
-.custom-tags div.title{width: 151px; float: left; text-align: right; margin: 5px; padding: 3px;}
+.custom-tags div.title{/*width: 151px;*/ float: left; text-align: right; margin: 5px; padding: 3px;}

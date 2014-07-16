@@ -35,6 +35,11 @@ $arComponentParameters = array(
             "TYPE" => "STRING",
             "VALUE" => $_REQUEST['ELEMENT_CODE'],
         ),
+        "SHOW_CONNECT" => Array(
+            "NAME" => "Показать 'Связаться с автором'",
+            "TYPE" => "STRING",
+            "VALUE" => false,
+        ),
         'AJAX_MODE' => array(),
         "CACHE_TIME" => Array("DEFAULT" => 3600),
     ),

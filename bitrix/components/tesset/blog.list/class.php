@@ -35,7 +35,6 @@ class EvrikaBlogList extends CBitrixComponent
         'SHOW_COUNTER',
         'DATE_CREATE',
         'PROPERTY_LIKES',
-        'PROPERTY_RELATED',
         'DETAIL_PAGE_URL'
         );
 
@@ -158,7 +157,6 @@ class EvrikaBlogList extends CBitrixComponent
             'anounce' => $item->field('PREVIEW_TEXT'),
             'date' => ConvertDateTime($item->field('DATE_CREATE'), 'DD.MM.YYYY'),
             'url' => $item->field('DETAIL_PAGE_URL'),
-            'related' => $item->propValue('RELATED'),
             'shows' => ($item->field('SHOW_COUNTER')) ? $item->field('SHOW_COUNTER') : 0
             );
         $x['likes'] = $this->likes->count($x['id']);

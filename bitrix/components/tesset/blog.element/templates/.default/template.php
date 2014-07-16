@@ -15,11 +15,45 @@
     </div>
     <div class="blog-item-text">
         <?=$item['text']?>
+        <!-- Товары к статье блога -->
+            <?if ($arResult['related']) : ?>
+            <div class="related">
+                <h3>Магазин</h3>
+                <?foreach ($arResult['related'] as $id => $related) : ?>
+                <div class="item-block2">
+                    <div style="height:200px; width:300px;">
+                        <a href="/butik/<?=$related['code']?>/">
+                            <img style="width:300px; height:199px;" src="<?=$related['picture']['src']?>" alt="">
+                        </a>
+                    </div>              
+                    <a href="/butik/<?=$related['code']?>/" class="cat-link">
+                        <?=$related['name']?>
+                    </a>
+                    <div class="price"><?=$related['price']?> р.</div>
+                    <div class="cabinet-box3" style="float: right; margin-top: -46px;">
+                        <ul>
+                            <li>
+                                <?if (!$USER->isAuthorized()) : ?>
+                                    <a class="open-reg" style="background: #f15824; width: 160px; box-shadow: none;" href="/personal/">Купить</a>
+                                <?else : ?>
+                                    <a style="background: #f15824; width: 160px; box-shadow: none;" class="buy-link" href="/butik/<?=$related['code']?>/?action=BUY&amp;id=<?=$id?>&amp;ELEMENT_CODE=<?=$related['code']?>">В корзину</a>
+                                <?endif;?>
+                            </li>                           
+                            <ul>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+                <?endforeach;?>
+            </div>
+            <?endif;?>
     </div>
-    <div style="width: 300px; text-align: center; margin: 0 auto;">
-        <a class="index-cat-evrika" style="color: #999 !important; border-color: #999 !important;" href="mailto:office@muchmore.ru">СВЯЗАТЬСЯ С АВТОРОМ</a>
-    </div>
-    <ul class="blog-item-social">
+    <?if ($arParams['SHOW_CONNECT']) : ?>
+        <div style="width: 300px; text-align: center; margin: 0 auto;">
+            <a class="index-cat-evrika" style="color: #999 !important; border-color: #999 !important;" href="mailto:office@muchmore.ru">СВЯЗАТЬСЯ С АВТОРОМ</a>
+        </div>
+    <?endif;?>
+    <ul class="blog-item-social" <?if ($arParams['SHOW_CONNECT']) : ?>style="margin-top: -21px; margin-right: 75px;"<?endif;?>>
         <li style="width: 89px;">
             <!-- Put this script tag to the <head> of your page -->
             <script type="text/javascript" src="//vk.com/js/api/openapi.js?113"></script>

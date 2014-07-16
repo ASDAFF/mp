@@ -37,6 +37,16 @@ abstract class AbstractItem
     }
 
     /**
+     * Значение свойсвтва по коду в случае взятия полного массива свойств через getProperties
+     * @param  string $code      Символьный код свойства
+     * @param  string $fieldName Поле, в котором хранятся свойств
+     * @return mixed            Значение свойства
+     */
+    public function propValueArray($code, $fieldName = 'properties') {
+        return $this->item[$fieldName][$code]['VALUE'];
+    }
+
+    /**
      * Return any field value by field name
      * @param  strign $fieldName Field name
      * @return mixed            Value of the field

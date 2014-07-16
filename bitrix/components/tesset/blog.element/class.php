@@ -133,11 +133,12 @@ class EvrikaBlogList extends CBitrixComponent
      * @return array              Основной массив элементов
      */
     private function data($rsItems) {
-        if ($item = $rsItems->GetNext()) {
-            $items = $this->composeItem(new Item($item));
+        if ($objX = $rsItems->GetNextElement()) {
+            $x = array_merge($objX->getFields(), array('properties' => $objX->getProperties()));
+            $item = $this->composeItem(new Item($x));
         }
-        CIBlockElement::CounterInc($items['id']);
-        return $items;
+        CIBlockElement::CounterInc($item['id']);
+        return $item;
     }
 
     // --------- ITEM LOGIC -------------- //
@@ -169,7 +170,7 @@ class EvrikaBlogList extends CBitrixComponent
             'text' => $item->field('DETAIL_TEXT'),
             'anounce' => $item->field('PREVIEW_TEXT'),
             'date' => ConvertDateTime($item->field('DATE_CREATE'), 'DD.MM.YYYY'),
-            'related' => $item->propValue('RELATED'),
+            'related' => $item->propValueArray('RELATED', $fieldName = 'properties'),
             'shows' => ($item->field('SHOW_COUNTER')) ? $item->field('SHOW_COUNTER') : 0
             );
         $x['likes'] = array(
@@ -177,6 +178,23 @@ class EvrikaBlogList extends CBitrixComponent
             'already_liked' => $this->likes->isLikedByCurrent($x['id'])
             );
         $x['comments'] = $this->comments($x['id']);
+        $x['related'] = $this->related($x['related']);
+        return $x;
+    }
+
+    /**
+     * Формирует данные об элементе каталога
+     * @param  Item   $item Item instance
+     * @return array       Данные об элементе каталога
+     */
+    public function composeItemCatalog(Item $item) {
+        $x = array(
+            'id' => $item->field('ID'),
+            'name' => $item->field('NAME'),
+            'code' => $item->field('CODE'),
+            'price' => number_format($item->field('CATALOG_PRICE_1'), 0, ',', ' '),
+            'picture' => $item->src('PREVIEW_PICTURE', $resized = false)
+            );
         return $x;
     }
 
@@ -191,5 +209,24 @@ class EvrikaBlogList extends CBitrixComponent
             array("OBJECT_ID_NUMBER" => $id)
         )->SelectedRowsCount();
         return $comments;
+    }
+
+    /**
+     * Привязанные товары к статье
+     * @param  array $related ID товаров
+     * @return array          Товары
+     */
+    public function related($related) {
+        $rsItems = CIBlockElement::GetList($this->sort, array(
+            'IBLOCK_ID' => 1,
+            'ACTTIVE' => 'Y',
+            'ID' => $related
+            ), false, false, array(
+            'ID', 'NAME', 'CODE', 'CATALOG_GROUP_1', 'CATALOG_PRICE_1', 'PREVIEW_PICTURE'
+            ));
+        while ($x = $rsItems->Fetch()) {
+            $items[$x['ID']] = $this->composeItemCatalog(new Item($x));
+        }
+        return $items;
     }
 }
