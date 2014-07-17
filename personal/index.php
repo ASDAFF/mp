@@ -24,7 +24,7 @@ $APPLICATION->SetTitle("Личный кабинет");
 				<div class="cabinet-box">
 					<div class="cab-img">
 						<?if (!$arUser['PERSONAL_PHOTO']) : ?>
-							<img src="/src/images/fl-17.jpg" alt="">
+							<img src="/src/images/no_pic.png" alt="" style="width: 121px;">
 						<?else : ?>
 							<img src="<?=$avatar['src']?>" alt="">
 						<?endif;?>

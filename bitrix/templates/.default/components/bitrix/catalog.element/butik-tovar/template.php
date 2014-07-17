@@ -10,9 +10,10 @@ if (is_array($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
 	}
 }
 
-CModule::IncludeModule('prmedia.treelikecomments');
-$arFilter = array("OBJECT_ID_NUMBER" => $arResult['ID']);
-$commentsCounter = CTreelikeComments::GetList(array("ID" => "DESC"), $arFilter)->SelectedRowsCount();
+// CModule::IncludeModule('prmedia.treelikecomments');
+// $arFilter = array("OBJECT_ID_NUMBER" => $arResult['ID']);
+// $commentsCounter = CTreelikeComments::GetList(array("ID" => "DESC"), $arFilter)->SelectedRowsCount();
+// 
 $showComments = false;
 if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 	$showComments = true;
@@ -220,7 +221,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					<?endif;?>
 					<div class="box2" style="display: none;">
 					<div class="cat-text">
-						<?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
+						<?/*$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
 	"LEFT_MARGIN" => "50",
 	"MAX_DEPTH_LEVEL" => "5",
 	"ASNAME" => "login",
@@ -248,7 +249,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 	"CACHE_TIME" => "3600"
 	),
 	false
-); ?>
+); */?>
 					</div>
 					</div>
 				</div>

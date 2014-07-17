@@ -2,8 +2,8 @@
 AddEventHandler("main", "OnAfterUserAdd", "OnBeforeUserRegisterHandler"); 
 AddEventHandler("main", "OnAfterUserUpdate", "OnAfterUserUpdateHandler"); 
 
-AddEventHandler("sale", "OnOrderPaySendEmail", "OnOrderPaySendEmailHandler"); 
-AddEventHandler("sale", "OnOrderDeliverSendEmail", "OnOrderDeliverSendEmailHandler"); 
+// AddEventHandler("sale", "OnOrderPaySendEmail", "OnOrderPaySendEmailHandler"); 
+// AddEventHandler("sale", "OnOrderDeliverSendEmail", "OnOrderDeliverSendEmailHandler"); 
 AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler"); 
 
 
@@ -17,12 +17,22 @@ AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler
          "USER_ID" => $arFields['ID'],
          "PERSON_TYPE_ID" => 1
       );
+      /**
+       * Добавляем счет пользователя
+       * @var array
+       */
+      $arFields = array(
+        "USER_ID" => $arFields['ID'], 
+        "CURRENCY" => "RUB", 
+        "CURRENT_BUDGET" => 0
+      );
+      $accountID = CSaleUserAccount::Add($arFields);
+
       $PROFILE_ID = CSaleOrderUserProps::Add($arProfileFields);
       //если профиль создан
-      if ($PROFILE_ID)
-      {
+      if ($PROFILE_ID) {
          //формируем массив свойств
-         $PROPS=Array(
+         $PROPS = array(
          array(
                "USER_PROPS_ID" => $PROFILE_ID,
                "ORDER_PROPS_ID" => 2,
@@ -37,8 +47,9 @@ AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler
             )
          );
          //добавляем значения свойств к созданному ранее профилю
-         foreach ($PROPS as $prop)
+         foreach ($PROPS as $prop) {
             CSaleOrderUserPropsValue::Add($prop);
+         }
       }
     }
 
@@ -91,6 +102,20 @@ AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler
     }
 
     function OnOrderStatusSendEmailHandler($ID, &$eventName, &$arFields, $val) {
-     return false;
+      // $order = CSaleOrder::GetByID($ID);
+      // $user = CUser::GetByID($order['USER_ID'])->Fetch();
+      // $tmp = explode(',', $user['NAME']);
+      // $eventFields = array(
+      // 'NAME' => $tmp[0],
+      // 'EMAIL' => $user['EMAIL']
+      // );
+      // $arFields = $eventFields;
+      // if ($val == 'P') {
+      //   $eventName = 'ORDER_PAYED';
+      // } elseif ($val == 'D') {
+      //   $eventName = ($user['PERSONAL_CITY'] == 'Москва') ? 'ORDER_IN_DELIVERY_MOSCOW' : 'ORDER_IN_DELIVERY_RUSSIA';
+      // } else {
+      // }
+      return false;
     }
 ?>
