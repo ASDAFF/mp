@@ -2,32 +2,33 @@
 	<div class="f-01">
 		<h4>MUCHMORE</h4>
 		<ul>
-			<li><a href="#">Магазин</a></li>
+			<li><a href="/butik/">Магазин</a></li>
 			<!-- <li><a href="#">Маркетплейс</a></li> -->
-			<li><a href="#">Эврика</a></li>
-			<li><a href="#">Лайфхак</a></li>
+			<li><a href="/evrika/">Эврика</a></li>
+			<li><a href="/lifehack/">Лайфхак</a></li>
 		</ul>			
 	</div>
 	<div class="f-02">
 		<h4>О НАС</h4>
 		<ul>
-			<li><a href="#">Что&nbsp;мы&nbsp;делаем</a></li>
-			<li><a href="#">Команда</a></li>
-			<li><a href="#">Блоги</a></li>
+			<li><a href="/about/">Что&nbsp;мы&nbsp;делаем</a></li>
+			<li><a href="/team/">Команда</a></li>
+			<li><a href="/blogs/">Блоги</a></li>
 		</ul>			
 	</div>
 	<div class="f-03">
 		<h4>БЫТЬ В КУРСЕ</h4>
 		<ul>
-			<li><a href="#">Статус заказа</a></li>
-			<li><a href="#">Контакты</a></li>
+			<li><a href="/personal/">Статус заказа</a></li>
+			<li><a href="/contacts/">Контакты</a></li>
 		</ul>			
 	</div>
 	<div class="f-04">
 		<h4>ИНФОРМАЦИЯ</h4>
 		<ul>
-			<li><a href="#">Налоги</a></li>
-			<li><a href="#">Контракты</a></li>
+			<li><a href="/taxes/">Налоги</a></li>
+			<li><a href="/contracts/">Контракты</a></li>
+			<li><a href="/delivery/">Оплата и доставка</a></li>
 		</ul>
 	</div>
 	

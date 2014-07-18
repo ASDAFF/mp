@@ -38,9 +38,14 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					<? if(intval($arResult['DETAIL_PICTURE']['ID'])) : ?>
 						<? $file = CFile::ResizeImageGet($arResult['DETAIL_PICTURE']['ID'], array('width'=>960*1.5, 'height'=>10000), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true, false, false, 100); ?>
 						<img src="<?=$file['src']?>" style="width:960px;" alt="" class="detail-photo" style="cursor: pointer;">
-						<?if ($arResult['PROPERTIES']['VIDEO']['VALUE']) :?>
+						<?if ($arResult['PROPERTIES']['VIDEO_VIMEO']['VALUE']) :?>
 							<div  style="display: none; width: 640px; margin: 0 auto;" class="detail-video">
-								<iframe width="640" height="360" src="//www.youtube.com/embed/<?=$arResult['PROPERTIES']['VIDEO']['VALUE']?>" frameborder="0" allowfullscreen></iframe>
+								<iframe src="//player.vimeo.com/video/<?=$arResult['PROPERTIES']['VIDEO_VIMEO']['VALUE']?>" width="640" height="368" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+							</div>
+							<a class="play-btn" href="#" style="display: none;">Play</a>
+						<?elseif ($arResult['PROPERTIES']['VIDEO_YOUTUBE']['VALUE']) :?>
+							<div  style="display: none; width: 640px; margin: 0 auto;" class="detail-video">
+								<iframe width="640" height="360" src="//www.youtube.com/embed/<?=$arResult['PROPERTIES']['VIDEO_YOUTUBE']['VALUE']?>" frameborder="0" allowfullscreen></iframe>
 							</div>
 							<a class="play-btn" href="#" style="display: none;">Play</a>
 						<?endif;?>
@@ -253,7 +258,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					</div>
 					</div>
 				</div>
-				<div class="soc" style="margin-left: 29px;">
+				<div class="soc" style="margin-left: 29px; float: left;">
 					<ul>
 						<li style="width:80px;">
 						<div id="vk_like_bottom"></div>
@@ -278,7 +283,20 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 						</li>
 					</ul>
-				</div>	
+				</div>
+				<div style="float:right; margin-top: -30px; margin-right: 15px;">
+					<div class="cabinet-box3">
+						<ul>
+							<li>
+								<?if ($USER->isAuthorized()) : ?>
+									<a class="buy-link buy-sku" style="background: #f15824;" href="<?=$arResult['BUY_URL']?>">Купить</a>
+								<? else : ?>
+									<a class="open-reg save-buy" style="background: #f15824;" href="/personal/">Купить</a>
+								<?endif; ?>
+							</li>							
+						</ul>
+					</div>
+				</div>		
 			</div>
 			<div class="col-05">
 				<?
@@ -371,9 +389,9 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 							//$file = CFile::ResizeImageGet($item['PREVIEW_PICTURE'], array('width'=>217*1.5, 'height'=>144*1.5), BX_RESIZE_IMAGE_EXACT, true);
 							global $USER;
 							if ($USER->isAuthorized()) {
-								$basketHtml = '<a style="width: 130px;" class="buy-link" href="/butik/'.$data['CODE'].'/?action=BUY&amp;id='.$item.'&amp;ELEMENT_CODE='.$data['CODE'].'">В корзину</a>';
+								$basketHtml = '<a style="width: 100px;" class="buy-link" href="/butik/'.$data['CODE'].'/?action=BUY&amp;id='.$item.'&amp;ELEMENT_CODE='.$data['CODE'].'">В корзину</a>';
 							} else {
-								$basketHtml = '<a class="open-reg" style="background: #f15824; width: 160px;" href="/personal/">Купить</a>';
+								$basketHtml = '<a class="open-reg" style="background: #f15824; width: 100px;" href="/personal/">Купить</a>';
 							}
 							$result[] = '
 								<div class="r-rec">

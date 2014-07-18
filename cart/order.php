@@ -51,5 +51,6 @@
 			);
 		$eventName = ($user['PERSONAL_CITY'] == 'Москва') ? 'NEW_ORDER_MOSCOW' : 'NEW_ORDER_RUSSIA' ;
 		CEvent::Send($eventName, 's1', $eventFields);
+		CEvent::Send('NEW_ORDER_ADMIN', 's1', array());
 		return true;
 	}

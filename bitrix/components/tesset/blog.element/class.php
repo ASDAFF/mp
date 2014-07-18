@@ -80,9 +80,9 @@ class EvrikaBlogList extends CBitrixComponent
         if (!CModule::IncludeModule("iblock")) {
             return false;
         } 
-        if (!CModule::IncludeModule('prmedia.treelikecomments')) {
-            return false;
-        }
+        // if (!CModule::IncludeModule('prmedia.treelikecomments')) {
+        //     return false;
+        // }
         if (!$this->arParams["IBLOCK_ID"]) {
             $this->arParams["IBLOCK_ID"] = 14; 
         }
@@ -204,10 +204,10 @@ class EvrikaBlogList extends CBitrixComponent
      * @return int     Количество комментариев
      */
     public function comments($id) {
-        $comments = CTreelikeComments::GetList(
-            array("ID" => "DESC"), 
-            array("OBJECT_ID_NUMBER" => $id)
-        )->SelectedRowsCount();
+        // $comments = CTreelikeComments::GetList(
+        //     array("ID" => "DESC"), 
+        //     array("OBJECT_ID_NUMBER" => $id)
+        // )->SelectedRowsCount();
         return $comments;
     }
 

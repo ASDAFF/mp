@@ -5,6 +5,7 @@ AddEventHandler("main", "OnAfterUserUpdate", "OnAfterUserUpdateHandler");
 // AddEventHandler("sale", "OnOrderPaySendEmail", "OnOrderPaySendEmailHandler"); 
 // AddEventHandler("sale", "OnOrderDeliverSendEmail", "OnOrderDeliverSendEmailHandler"); 
 AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler"); 
+AddEventHandler("sale", "OnSaleStatusOrder", "OnSaleStatusOrderHandler"); 
 
 
     function OnBeforeUserRegisterHandler(&$arFields)
@@ -117,5 +118,13 @@ AddEventHandler("sale", "OnOrderStatusSendEmail", "OnOrderStatusSendEmailHandler
       // } else {
       // }
       return false;
+    }
+
+    function OnSaleStatusOrderHandler($ID, $val) {
+      if ($val == "F") {
+        $order = CSaleOrder::GetByID($ID);
+        $user = CUser::GetByID($order['USER_ID'])->Fetch();
+        CSaleUserAccount::UpdateAccount($user['ID'], $order['PRICE'] * 0.03, 'RUB', 'order', $ID);
+      }
     }
 ?>
