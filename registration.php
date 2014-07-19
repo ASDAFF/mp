@@ -99,6 +99,23 @@
 			$('#reg-handler').dialog('open');
 			return false;
 		});
+
+		$('.subscribe-me').click(function(e){
+			e.preventDefault();
+			$('#subscribe-handler').dialog('open');
+			$.getJSON('/ajax/subscription.php', {});
+			return false;
+		});
+		
+		$('.subscribe-submit').click(function () {
+			$.getJSON('/ajax/subscription.php', {email: $('.subscribe-email').val()}, function (error) {
+				if (error == '0') {
+					$('.subscribe-actions').text('Вы успешно подписаны на новости Muchmore!');
+				} else {
+					$('.subsribe-error').html(error);
+				}
+			});
+		});
 		
 		
 		$('#reg-handler').dialog({
@@ -122,10 +139,18 @@
 			autoOpen: false,
 		});
 
+		$('#subscribe-handler').dialog({
+			width: 600,
+			height: 200,
+      		modal: true,
+			autoOpen: false,
+		});
+
 		function closeModals() {
 			$('#reg-handler').dialog('close');
 			$('#forget-handler').dialog('close');
 			$('#auth-handler').dialog('close');
+			$('#subscribe-handler').dialog('close');
 		}
 
 		$('.change-auth').on('click', function () {
@@ -230,6 +255,30 @@
 	.right-column p.explain {line-height: 4px;}
 	.head-text {color: #000; font-size: 19px; }
 </style>
+
+
+
+<div id="subscribe-handler" style="display: none; height: 550px; padding-bottom: 50px;">
+	<div class="right-column" style="margin-top: -35px; float: none; margin:-35px auto; padding: 0; text-align: center;">
+		<?if ($USER->isAuthorized()) : ?>
+			<p>Вы успешно подписаны на новости Muchmore!</p>
+			<p>Хорошего дня!</p>
+		<?else : ?>
+			<div class="subscribe-actions">
+				<form method="post">
+					<p class="subsribe-error"></p>
+					<p class="reg-field">
+						<input type="text" class="subscribe-email" placeholder="Email адрес" /><br />
+					</p>
+					<!-- <p><small style="font-size: 13px;">Уже впомнили пароль? <a href="javascript:;" class="change-auth">Войти</a></small></p> -->
+					<p class="reg-field">
+						<a href="javascript:;" class="subscribe-submit">Подписаться</a>
+					</p>
+				</form>
+			</div>
+		<?endif?>
+	</div>
+</div>
 
 <div id="forget-handler" style="display: none; height: 550px; padding-bottom: 50px;">
 	<div class="right-column" style="margin-top: -35px; float: none; margin:-35px auto; padding: 0;">

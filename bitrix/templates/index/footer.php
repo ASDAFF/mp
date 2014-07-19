@@ -27,7 +27,7 @@
 			</div>	
 			<br />	
 			<br />
-			<a href="#" class="link-all">Подписаться по email</a>
+			<a href="#" class="link-all subscribe-me">Подписаться по email</a>
 		</div>			
 				
 	</div>
