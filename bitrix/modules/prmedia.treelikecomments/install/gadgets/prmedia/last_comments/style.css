@@ -1,0 +1,10 @@
+form .delete-comment
+{
+	position: absolute;
+	right: 15px;
+	display: block;
+	height: 19px;
+	width: 19px;
+	background: url('images/close-icon.png') no-repeat center center;
+	cursor: pointer;
+}

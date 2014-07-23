@@ -1,0 +1,90 @@
+div.popular_comments_block {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	border:#d9dde0 1px solid;
+}
+
+div.popular_comments_block div, div.popular_comments_block dl, div.popular_comments_block dt, div.popular_comments_block dd, div.popular_comments_block ul, div.popular_comments_block ol, div.popular_comments_block li, div.popular_comments_block h1, div.popular_comments_block h2, div.popular_comments_block h3, div.popular_comments_block h4, div.popular_comments_block h5, div.popular_comments_block h6, div.popular_comments_block pre, div.popular_comments_block form, div.popular_comments_block fieldset, div.popular_comments_block input, div.popular_comments_block textarea, div.popular_comments_block p, div.popular_comments_block blockquote, div.popular_comments_block th, div.popular_comments_block td { 
+	margin:0;
+	padding:0;
+}
+
+div.popular_comments_block img {
+	border:none;
+}
+
+div.popular_comments_block br.clear {
+	clear:both;
+	height:0;
+	line-height:0;
+	font-size:0;
+}
+
+div.popular_comments_block a {
+	color:#1160d7;
+}
+
+div.popular_comments_block a:hover {
+	text-decoration:none;
+}
+
+div.popular_comments_block p.popular_comments_block_title {
+	font-size:18px;
+	color:#444444;
+	display:block;
+	padding:15px 20px 0 20px;
+	float:left;
+	position:relative;
+}
+
+div.popular_comments_block img.comments_icon {
+	float:right;
+	margin:15px 20px 0 0;
+}
+
+div.popular_comments_block div.comments_list {
+	margin:10px 0 0 0;
+}
+
+div.popular_comments_block div.divider {
+	height:1px;
+	border-style:none;
+	border-top:1px solid #d9dde0;
+	background-color:transparent;
+	margin:0;
+	padding:0;
+	line-height:0;
+	font-size:0;
+}
+
+div.popular_comments_block div.comment_item {
+	padding:15px 20px 15px 20px;
+	overflow:auto;
+}
+
+div.popular_comments_block div.comment_item p {
+	line-height:140%;
+	color:#898989;
+}
+
+div.popular_comments_block div.comment_item p.comment_item_date {
+	font-size:12px;
+	color:#b0b0b0;
+	padding-bottom:3px;
+}
+
+div.popular_comments_block div.comment_item p img {
+	vertical-align:middle;
+}
+
+div.popular_comments_block div.comment_item img.preview
+{
+	float: left;
+	margin: 0 10px 10px 0;
+	width: 110px;
+
+}
+
+div.popular_comments_block div.comment_item p.text {
+	padding:3px 3px 3px 0;
+}

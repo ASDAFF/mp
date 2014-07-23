@@ -76,7 +76,7 @@
     <?endif;?>
     <div class="cat-text" id="comments">
         <h3>Комментарии</h3>
-        <?/*$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
+        <?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
             "LEFT_MARGIN" => "50",
             "MAX_DEPTH_LEVEL" => "5",
             "ASNAME" => "login",
@@ -104,6 +104,6 @@
             "CACHE_TIME" => "3600"
             ),
             false
-        ); */?>
+        ); ?>
     </div>
 </div>

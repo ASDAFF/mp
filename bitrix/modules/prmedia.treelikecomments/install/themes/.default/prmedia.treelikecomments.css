@@ -1,0 +1,9 @@
+/* Menu icon BX < 12 */
+
+#prmedia_treelikecomments_menu_icon {background-image:url(icons/prmedia.treelikecomments/comment_s.gif);}
+#prmedia_treelikecomments_page_icon {background-image:url(icons/prmedia.treelikecomments/comment_b.gif);}
+
+/* Menu icon BX12 */
+
+.prmedia_treelikecomments_menu_icon {background:url('icons/prmedia.treelikecomments/comment_s.gif?v2') 7px 5px no-repeat !important;}
+.prmedia_treelikecomments_page_icon {background:url('icons/prmedia.treelikecomments/comment_b.gif?v2') 7px 5px no-repeat !important;}

@@ -1,0 +1,43 @@
+<?
+$MESS['OBJECT_ID'] = "ID объекта комментирования";
+$MESS['CAN_MODIFY'] = "Разрешить редактирование комментария";
+$MESS['COMMENTS_IBLOCK_ID'] = "ID инфоблока, в котором хранятся комментарии";
+$MESS['AUTH_PATH'] = "Путь до страницы авторизации";
+$MESS['IBLOCK_TYPE'] = "Тип инфоблока";
+$MESS['VISUAL_FIELDS_GROUP_NAME'] = 'Визуальное оформление';
+$MESS['LEFT_MARGIN'] = "Отступ для дочерних комментариев";
+$MESS['SHOW_USERPIC'] = 'Показывать аватар';
+$MESS['SHOW_DATE'] = 'Показывать дату комментария';
+$MESS['SHOW_COUNT'] = 'Показывать количество комментариев';
+$MESS['VISUAL_PARAMS'] = "Визуальные настройки";
+$MESS['SHOW_COMMENT_LINK'] = "Показывать ссылку на комментарий";
+$MESS['SEO_FIELDS_GROUP_NAME'] = 'Настройки SEO';
+$MESS['NO_INDEX'] = 'Не индексировать комментарии';
+$MESS['EXTRA'] = 'Дополнительно';
+$MESS['NO_FOLLOW'] = 'Добавить атрибут rel="nofollow" к ссылкам в комментариях';
+$MESS['ACCESS_FIELDS_GROUP_NAME'] = 'Неавторизованные пользователи';
+$MESS['NON_AUTHORIZED_USER_CAN_COMMENT'] = 'Разрешить неавторизованным пользователям добавлять комменарии';
+$MESS['USE_CAPTCHA'] = 'Показывать CAPTCHA';
+$MESS['FORM_MIN_TIME'] = 'Минимальное время заполнения формы';
+$MESS['NO_CAPTCHA'] = 'Не показывать';
+$MESS['CAPTCHA_BITRIX'] = 'CAPTCHA-Битрикс';
+$MESS['ROBOT'] = 'Я робот (экспериментальная)';
+$MESS['PREMODERATION'] = 'Включить премодерацию';
+$MESS['DATE_FORMAT'] = 'Формат даты';
+$MESS['NOTIFICATIONS'] = 'Уведомления';
+$MESS['ALLOW_RATING'] = 'Разрешить рейтинг';
+$MESS['EDITOR_NO'] = 'Не использовать';
+$MESS['EDITOR_LIGHT'] = 'Панель BB-кодов (не визуальный)';
+$MESS['SHOW_FILEMAN'] = 'Использовать редактор';
+$MESS['TO_USERPAGE'] = 'Путь до страницы пользователя';
+$MESS['MAX_DEPTH_LEVEL'] = 'Максимальный уровень вложенности';
+$MESS['ASNAME'] = 'Показывать в качестве имени';
+$MESS['SHOW_LOGIN'] = 'Логин';
+$MESS['SHOW_NAME_LASTNAME'] = 'Имя и фамилию';
+$MESS['SHOW_NAME'] = 'Имя';
+$MESS['SEND_TO_USER_AFTER_ANSWERING'] = 'Отправлять  пользователю письмо при ответе на комментарий';
+$MESS['SEND_TO_USER_AFTER_MENTION_NAME'] = 'Отправлять  пользователю письмо при упоминании его логина в комментариях';
+$MESS['SEND_TO_ADMIN_AFTER_ADDING'] = 'Отправлять  письмо администратору при добавлении новых комментариев';
+$MESS['SEND_TO_USER_AFTER_ACTIVATE'] = 'Отправлять письмо пользователю после активации';
+
+?>

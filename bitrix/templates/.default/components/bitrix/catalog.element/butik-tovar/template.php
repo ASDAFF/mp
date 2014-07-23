@@ -10,10 +10,10 @@ if (is_array($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
 	}
 }
 
-// CModule::IncludeModule('prmedia.treelikecomments');
-// $arFilter = array("OBJECT_ID_NUMBER" => $arResult['ID']);
-// $commentsCounter = CTreelikeComments::GetList(array("ID" => "DESC"), $arFilter)->SelectedRowsCount();
-// 
+CModule::IncludeModule('prmedia.treelikecomments');
+$arFilter = array("OBJECT_ID_NUMBER" => $arResult['ID']);
+$commentsCounter = CTreelikeComments::GetList(array("ID" => "DESC"), $arFilter)->SelectedRowsCount();
+
 $showComments = false;
 if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 	$showComments = true;
@@ -208,6 +208,19 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					<div class="box2 visible">
 						<div class="cat-text">
 							<?=$arResult['DETAIL_TEXT'];?>
+							<div style="float:right; margin-right: 15px;">
+								<div class="cabinet-box3">
+									<ul>
+										<li>
+											<?if ($USER->isAuthorized()) : ?>
+												<a class="buy-link buy-sku" style="background: #f15824;" href="<?=$arResult['BUY_URL']?>">Купить</a>
+											<? else : ?>
+												<a class="open-reg save-buy" style="background: #f15824;" href="/personal/">Купить</a>
+											<?endif; ?>
+										</li>							
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 					<?if ($arResult['PROPERTIES']['TAB1_NAME']['VALUE'] && $arResult['PROPERTIES']['TAB1_TEXT']['VALUE']['TEXT']) : ?>
@@ -226,7 +239,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					<?endif;?>
 					<div class="box2" style="display: none;">
 					<div class="cat-text">
-						<?/*$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
+						<?$APPLICATION->IncludeComponent("prmedia:treelike_comments", "butik-treecomments", array(
 	"LEFT_MARGIN" => "50",
 	"MAX_DEPTH_LEVEL" => "5",
 	"ASNAME" => "login",
@@ -235,7 +248,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 	"SHOW_COMMENT_LINK" => "N",
 	"DATE_FORMAT" => "d.m.Y",
 	"SHOW_COUNT" => "Y",
-	"OBJECT_ID" => "",
+	"OBJECT_ID" => $arResult['ID'],
 	"CAN_MODIFY" => "N",
 	"PREMODERATION" => "Y",
 	"ALLOW_RATING" => "Y",
@@ -254,7 +267,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 	"CACHE_TIME" => "3600"
 	),
 	false
-); */?>
+); ?>
 					</div>
 					</div>
 				</div>
@@ -283,19 +296,6 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 						</li>
 					</ul>
-				</div>
-				<div style="float:right; margin-top: -30px; margin-right: 15px;">
-					<div class="cabinet-box3">
-						<ul>
-							<li>
-								<?if ($USER->isAuthorized()) : ?>
-									<a class="buy-link buy-sku" style="background: #f15824;" href="<?=$arResult['BUY_URL']?>">Купить</a>
-								<? else : ?>
-									<a class="open-reg save-buy" style="background: #f15824;" href="/personal/">Купить</a>
-								<?endif; ?>
-							</li>							
-						</ul>
-					</div>
 				</div>		
 			</div>
 			<div class="col-05">
