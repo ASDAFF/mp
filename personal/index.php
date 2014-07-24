@@ -77,8 +77,8 @@ $APPLICATION->SetTitle("Личный кабинет");
 								<p>Мегафон, Москва</p>
 							</div>
 						</li>
-						<!-- <li><a class="active" href="/personal/">Профиль</a></li> -->
-						<!-- <li><a href="/personal/orders/">Заказы</a></li> -->
+						<li><a class="active" href="/personal/">Заказы</a></li>
+						<li><a href="/wishlists/<?=$USER->GetLogin()?>/">Wishlist</a></li>
 						<li><a href="/?logout=yes">Выход</a></li>
 					</ul>
 				</div>

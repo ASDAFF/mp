@@ -3,6 +3,13 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Что такое MUCHMORE");
 ?>	<div class="block-gr">
 		<div class="main">
+			<div class="search" style="margin: 0px 20px 28px 20px;">
+					<form action="/search/">
+					<input name="search" type="text" value="Поиск по сайту" class="sinp" onfocus="if(this.value=='Поиск по сайту')this.value='';" onblur="if(this.value=='')this.value='Поиск по сайту';">
+					<p>Поиск по названию или описанию</p><!--  (Поиск по всем категориям изначально, с последующей фильтрацией) -->
+					<input type="submit" style="position:absolute; opacity:0;" />
+					</form>
+			</div>	
 			<div class="fl-01" style="width:100%;">
 				<!-- <h3>Товары со смыслом</h3> -->
 				<div style="width:800px; margin:0px auto;">
@@ -91,9 +98,9 @@ $APPLICATION->SetTitle("Что такое MUCHMORE");
 		
 		
 		<div class="main">
-			<h3>Приходи с тем, что есть</h3>
-			<p>У тебя есть то, чего здесь не хватает? История, прототип, идея, эксклюзивный контракт? </p>
-			<a href="#" class="link-all">Напиши нам</a>
+			<h3>Приходите с тем, что есть</h3>
+			<p>У вас есть то, чего здесь не хватает? История, прототип, идея, эксклюзивный контракт?</p>
+			<a href="mailto:office@muchmore.ru" class="link-all">Напиши нам</a>
 				
 		</div>	
 	</div>		<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

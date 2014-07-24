@@ -18,6 +18,12 @@ $arUrlRewrite = array(
 		"ID" => "",
 		"PATH" => "/evrika/detail.php",
 	),
+	array(
+		"CONDITION" => "#^/wishlists/([^\\/]*)/.*#",
+		"RULE" => "USER=\$1",
+		"ID" => "",
+		"PATH" => "/wishlists/index.php",
+	),
 );
 
 ?>

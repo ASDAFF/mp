@@ -57,6 +57,24 @@ $(document).ready(function () {
         });
     });
 
+    $('.wish-item').on('click', function () {
+        window.likedObj = $(this);
+        $.ajax({
+            type: 'POST',
+            url: '/ajax/wishlist.php',
+            data: {element: $(this).data('object')},
+            success: function (result) {
+                result = JSON.parse(result);
+                if (true === result.plus) {
+                    window.likedObj.addClass('del').text('Удалить из Wishlist');
+                } else {
+                    window.likedObj.removeClass('del').text('Добавить в Wishlist');
+                }
+                // window.likedObj.html(' ' + result.val);
+            }
+        });
+    });
+
     /**
      * Hack for blog container
      */

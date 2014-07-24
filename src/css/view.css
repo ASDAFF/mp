@@ -255,7 +255,7 @@ color:#707070;font-weight:500;font-size:16px;font-family: 'Open Sans', sans-seri
 .text-03 p{margin:36px 73px 0 73px;padding:0;}
 
 /*******************************/
-.cabinet{position:relative;overflow:hidden;min-height:200px;}
+.cabinet{position:relative;overflow:hidden;min-height:310px;}
 
 .cabinet-box{width:790px;padding:21px 0 0 20px;}
 
@@ -906,8 +906,8 @@ text-decoration:none;
 .content-blog-item div.blog-item-header div.blog-item-info span:first-child {margin: 0;}
 .content-blog-item div.blog-item-header div.blog-item-info .blog-item-active-info {cursor: pointer;}
 .content-blog-item div.blog-item-header div.blog-item-info .blog-item-active-info:hover {color: #ccc;}
-.content-blog-item div.blog-item-header div.blog-item-info span.blog-item-like {}
-.content-blog-item div.blog-item-header div.blog-item-info .active-like {color: #f15824;}
+span.blog-item-like {cursor: pointer;}
+.active-like {color: #f15824;}
 .content-blog-item div.blog-item-header div.blog-item-info span.blog-item-comments {}
 .content-blog-item div.blog-item-header div.blog-item-picture {margin: 10px 47px 0; width: 903px;}
 .content-blog-item div.blog-item-header div.blog-item-picture img {}

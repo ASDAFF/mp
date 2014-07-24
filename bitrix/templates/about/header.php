@@ -6,9 +6,19 @@
 	<meta name="Description" content="Главная">
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
 	<link rel="stylesheet" type="text/css" href="/src/css/view.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/src/javascript/fancybox/jquery.fancybox.css">
 	<script type="text/javascript" src="/src/javascript/fancybox/jquery.fancybox.js"></script>
-
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.show-search').click(function(e){
+				e.preventDefault();
+				$('.search').slideToggle();				
+				return false;
+			});
+				
+		});
+	</script>
 </head>
 <body>
 <?$APPLICATION->ShowPanel()?>

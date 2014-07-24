@@ -471,6 +471,18 @@ if (!empty($arResult['DISPLAY_PROPERTIES']))
 $arResult['SKU_PROPS'] = $arSKUPropList;
 $arResult['DEFAULT_PICTURE'] = $arEmptyPreview;
 
+$arResult['wish']['isWished'] = CIBlockElement::GetList(false, array(
+	'IBLOCK_ID' => 23,
+	'ACTIVE' => 'Y',
+	'PROPERTY_OBJECT' => $arResult['ID']
+	), false, false, array('ID'))->SelectedRowsCount();
+
+CBitrixComponent::includeComponentClass("component.model:likes");
+$objElement = new CIBlockElement;
+$likes = new Likes(1);
+
+$arResult['likes']['already_liked'] = $likes->isLikedByCurrent($arResult['ID']);
+$arResult['likes']['value'] = $likes->count($arResult['ID']);
 
 
 ?>
