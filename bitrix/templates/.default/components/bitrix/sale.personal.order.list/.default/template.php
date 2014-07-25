@@ -64,7 +64,7 @@
 
 					<div class="bx_my_order_status_desc">
 						<?if (false === $flag) : ?>
-							<h2>Заказы и статусы</h2>
+							<!-- <h2>Заказы и статусы</h2> -->
 						<?else : ?>
 							<!-- <h2><?=GetMessage("SPOL_STATUS")?> "<?=$arResult["INFO"]["STATUS"][$key]["NAME"] ?>"</h2>
 							<div class="bx_mos_desc"><?=$arResult["INFO"]["STATUS"][$key]["DESCRIPTION"] ?></div> -->

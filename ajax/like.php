@@ -19,7 +19,8 @@ if (false === $like) {
 			'IP' => $_SERVER['REMOTE_ADDR'],
 			'HASH' => $hash, //setCookie
 			'OBJECT_ID' => $_POST['element'],
-			'IBLOCK_ID' => $_POST['ib']
+			'IBLOCK_ID' => $_POST['ib'],
+			'USER' => $USER->GetId()
 			) 
 		));\
 	// var_dump($objElement->LAST_ERROR);

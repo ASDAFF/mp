@@ -24,6 +24,12 @@ $arUrlRewrite = array(
 		"ID" => "",
 		"PATH" => "/wishlists/index.php",
 	),
+	array(
+		"CONDITION" => "#^/likes/([^\\/]*)/.*#",
+		"RULE" => "USER=\$1",
+		"ID" => "",
+		"PATH" => "/likes/index.php",
+	),
 );
 
 ?>

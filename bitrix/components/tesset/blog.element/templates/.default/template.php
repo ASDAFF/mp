@@ -1,5 +1,14 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();?>
 <?$item = $arResult;?>
+<script>
+    $(document).ready(function () {
+        $('.item-block2').hover(function () {
+            $(this).find('div.cabinet-box3').fadeIn();
+        }, function () {
+            $(this).find('div.cabinet-box3').fadeOut();
+        });
+    });
+</script>
 <div class="content-blog-item">
     <div class="blog-item-header">
         <h1><?=$item['name']?></h1>
@@ -55,9 +64,9 @@
                         <ul>
                             <li>
                                 <?if (!$USER->isAuthorized()) : ?>
-                                    <a class="open-reg" style="background: #f15824; width: 160px; box-shadow: none;" href="/personal/">Купить</a>
+                                    <a class="open-reg" style="background: #f15824; width: 160px; box-shadow: none;" href="/personal/">В корзину</a>
                                 <?else : ?>
-                                    <a style="background: #f15824; width: 160px; box-shadow: none;" class="buy-link" href="/butik/<?=$related['code']?>/?action=BUY&amp;id=<?=$id?>&amp;ELEMENT_CODE=<?=$related['code']?>">Купить</a>
+                                    <a style="background: #f15824; width: 160px; box-shadow: none;" class="buy-link" href="/butik/<?=$related['code']?>/?action=BUY&amp;id=<?=$id?>&amp;ELEMENT_CODE=<?=$related['code']?>">В корзину</a>
                                 <?endif;?>
                             </li>                           
                             <ul>

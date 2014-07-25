@@ -115,9 +115,9 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 
 							<li style="width: 160px;">
 								<?if ($arResult['wish']['isWished']) : ?>
-									<a href="javascript:;" class="wish-item del" data-object="<?=$arResult['ID']?>">Удалить из Wishlist</a></li>
+									<a href="javascript:;" class="wish-item del" data-object="<?=$arResult['ID']?>">Удалить из Вишлиста</a></li>
 								<?else : ?>
-									<a href="javascript:;" class="wish-item" data-object="<?=$arResult['ID']?>">Добавить в Wishlist</a></li>
+									<a href="javascript:;" class="wish-item" data-object="<?=$arResult['ID']?>">Добавить в Вишлист</a></li>
 								<?endif;?>
 							<li style="width: 160px;"><span class="fa fa-heart-o blog-item-like blog-item-active-info <?=($arResult['likes']['already_liked']) ? 'active-like' : ''?>" data-object="<?=$arResult['ID']?>" data-ib="<?=$arResult['IBLOCK_ID']?>"> <?=$arResult['likes']['value']?></span></li>
 						</ul>

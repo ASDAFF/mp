@@ -183,6 +183,13 @@
 			$('#auth-handler').dialog('open');
 		<?endif;?>
 
+		$('div.top').find('a:eq(1)').hover(function () {
+			$('div.personal-menu1').show().addClass('active');
+		} , function () {
+			if (!$('div.personal-menu1').hasClass('active')) {
+				$('div.personal-menu1').hide();
+			}
+		});
 	});
 </script>
 
@@ -254,9 +261,32 @@
 	}
 	.right-column p.explain {line-height: 4px;}
 	.head-text {color: #000; font-size: 19px; }
+
+	.personal-menu1 {position: absolute; top: 27px; z-index: 999; right: 21px; width: 118px;} 
+	.personal-menu1 ul {margin-left: -41px; margin-bottom: -15px;}
+	.personal-menu1 ul li {list-style: none; border: 1px solid #fff; background: #ccc;}
+	.personal-menu1 ul li:hover {background: rgba(228, 228, 228, 1);}
+	.personal-menu1 ul li a{padding: 5px; width: 171px; display: block;  text-align: left; color: #000; font-weight: 400; font-size: 16px; font-family: "Open Sans",sans-serif; text-decoration: none; border-radius: 5px;}
+	.personal-menu1 ul li a.active{background: none repeat scroll 0% 0% #F15824;}
+
 </style>
 
+<!--  -->
+<?if ($USER->isAuthorized()) : ?>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('div.top').append('<div class="personal-menu1" style="display: none;"> <ul> <li><a href="/personal/">Заказы</a></li> <li><a href="/wishlists/<?=$USER->GetLogin()?>/">Вишлист</a></li> <li><a href="/likes/<?=$USER->GetLogin()?>/">Понравилось</a></li> </ul> </div>'); 
+		$('div.personal-menu1').on('mouseover', function () {
+			$('div.personal-menu1').show();
+		});
+		$('div.personal-menu1').on('mouseout', function () {
+			$('div.personal-menu1').hide().removeClass('active');
+		});
+	});
+</script>
 
+<?endif;?>
+<!--  -->
 
 <div id="subscribe-handler" style="display: none; height: 550px; padding-bottom: 50px;">
 	<div class="right-column" style="margin-top: -35px; float: none; margin:-35px auto; padding: 0; text-align: center;">
@@ -578,5 +608,6 @@
 		<p class="explain"><small style="font-size: 13px;">Не сохранили пароль? <a href="javascript:;" class="change-forget">Выслать новый пароль</a></small></p>
 	</div>
 </div>
+
 <?
 // die('asdas');

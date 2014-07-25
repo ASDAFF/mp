@@ -1,24 +1,24 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $wishUser = CUser::GetByLogin($_GET['USER'])->Fetch();
-$APPLICATION->SetTitle("Muchmore.ru - Вишлист пользователя " . $wishUser['NAME']);
-$APPLICATION->AddHeadString('<meta property="og:title" content="Muchmore.ru - Вишлист пользователя ' . $wishUser['NAME'] . '"/>');
+$APPLICATION->SetTitle("Muchmore.ru - Понравилось пользователю " . $wishUser['NAME']);
+$APPLICATION->AddHeadString('<meta property="og:title" content="Muchmore.ru - Понравилось пользователю ' . $wishUser['NAME'] . '"/>');
 CModule::IncludeModule('iblock');
+$wishUser = CUser::GetByLogin($_GET['USER'])->Fetch();
 if (false === $wishUser) {
 
 } else {
-	$avatar = CFile::ResizeImageGet($wishUser["PERSONAL_PHOTO"], Array("width" => 170, "height" => 170), BX_RESIZE_IMAGE_PROPORTIONAL_ALT );
 	$rsItems = CIBlockElement::GetList(array(
 		'DATE_CREATE' => 'DESC'
 		), array(
-		'IBLOCK_ID' => 23,
+		'IBLOCK_ID' => 17,
 		'PROPERTY_USER' => $wishUser['ID'],
 		'ACTIVE' => 'Y'
 		), false, false, array(
-		'PROPERTY_OBJECT'
+		'PROPERTY_OBJECT_ID'
 		));
 	while ($item = $rsItems->Fetch()) {
-		$items[] = $item['PROPERTY_OBJECT_VALUE'];
+		$items[] = $item['PROPERTY_OBJECT_ID_VALUE'];
 	}
 }
 	require_once($_SERVER['DOCUMENT_ROOT']  . '/butik/.tags.class.php');
@@ -43,8 +43,8 @@ if (false === $wishUser) {
 	<?=$tags->subTags();?>
 	<div style="clear:both;"></div>
 	<?=$tags->getBrands();?>
-	<h3 style="margin-top: 88px; margin-left: 18px; font-weight: 500; font-family: "Open Sans",sans-serif;">Вишлист пользователя <?=$wishUser['NAME']?></h3>
-	 <div class="soc" style="margin: -44px 0px -39px -20px; float: right;">
+	<h3 style="margin-top: 88px; margin-left: 18px; font-weight: 500; font-family: "Open Sans",sans-serif;">Понравилось пользователю <?=$wishUser['NAME']?></h3>
+	<div class="soc" style="margin: -44px 0px -39px -20px; float: right;">
 		<ul>
 			
 			<li>
@@ -209,4 +209,4 @@ if (false === $wishUser) {
 	false
 );?>
 <?endif;?>
-<br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

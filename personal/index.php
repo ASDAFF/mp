@@ -9,6 +9,20 @@ $APPLICATION->SetTitle("Личный кабинет");
 // 	LocalRedirect($APPLICATION->GetCurDir());
 // }
 ?>
+<style>
+	.personal-menu {margin-left: -41px; margin-bottom: -15px;}
+	.personal-menu li {display: inline-block;}
+	.personal-menu li a{width: 171px; display: block; line-height: 0.7em; padding: 19px 0px; margin: 0px 0px 16px; background: none repeat scroll 0% 0% #BFBFBF; text-align: center; color: #FFF; font-weight: 400; font-size: 16px; font-family: "Open Sans",sans-serif; text-decoration: none; border-radius: 5px;}
+	.personal-menu li a.active{background: none repeat scroll 0% 0% #F15824;}
+
+	/*.personal-menu1 { position: absolute;}
+	.personal-menu1 ul {margin-left: -41px; margin-bottom: -15px;}
+	.personal-menu1 ul li {list-style: none;}
+	.personal-menu1 ul li a{width: 171px; display: block; line-height: 0.7em; padding: 19px 0px; margin: 0px 0px 16px; background: none repeat scroll 0% 0% #BFBFBF; text-align: center; color: #FFF; font-weight: 400; font-size: 16px; font-family: "Open Sans",sans-serif; text-decoration: none; border-radius: 5px;}
+	.personal-menu1 ul li a.active{background: none repeat scroll 0% 0% #F15824;}*/
+
+</style>
+
 <?
 	global $USER;
 	CModule::IncludeModule('sale');
@@ -39,6 +53,12 @@ $APPLICATION->SetTitle("Личный кабинет");
 						<p><?=$arUser['PERSONAL_STREET']?></p>
 						<p><?=$arUser['PERSONAL_PHONE']?></p>
 						<p><?=$arUser['EMAIL']?></p>
+						<!-- <ul class="personal-menu">
+							<li><a class="active" href="/personal/">Заказы</a></li>
+							<li><a href="/wishlists/<?=$USER->GetLogin()?>/">Wishlist</a></li>
+							<li><a href="/likes/<?=$USER->GetLogin()?>/">Понравилось</a></li>
+							<li><a href="/?logout=yes">Выход</a></li>
+						</ul> -->
 							<?$APPLICATION->IncludeComponent("bitrix:sale.personal.order", ".default", array(
 	"PROP_1" => array(
 		0 => "3",
@@ -71,16 +91,19 @@ $APPLICATION->SetTitle("Личный кабинет");
 				
 				<div class="cabinet-box2">
 					<ul>
-						<li style="height: 60px; margin-top:20px;">
+						<li style="height: 60px; margin-top:20px; background: none;">
 							<div class="cat-phone">
 								<p>т: 8-495-517-43-64</p>
 								<p>Мегафон, Москва</p>
 							</div>
 						</li>
-						<li><a class="active" href="/personal/">Заказы</a></li>
-						<li><a href="/wishlists/<?=$USER->GetLogin()?>/">Wishlist</a></li>
-						<li><a href="/?logout=yes">Выход</a></li>
+						<!-- <li><a class="active" href="/personal/">Заказы</a></li> -->
+						<!-- <li><a href="/wishlists/<?=$USER->GetLogin()?>/">Wishlist</a></li> -->
+						<!-- <li><a href="/?logout=yes">Выход</a></li> -->
 					</ul>
+				</div>
+				<div style="position: absolute; right:100px; bottom: 18px;">
+					<a href="/?logout=yes" style="text-decoration: none; color: #999;">Выход</a>
 				</div>
 			</div>
 			
