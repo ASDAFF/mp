@@ -100,7 +100,7 @@ $APPLICATION->SetTitle("Что такое MUCHMORE");
 		<div class="main">
 			<h3>Приходите с тем, что есть</h3>
 			<p>У вас есть то, чего здесь не хватает? История, прототип, идея, эксклюзивный контракт?</p>
-			<a href="mailto:office@muchmore.ru" class="link-all">Напиши нам</a>
+			<a href="mailto:office@muchmore.ru" class="link-all">Напишите нам</a>
 				
 		</div>	
 	</div>		<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

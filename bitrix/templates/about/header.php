@@ -9,6 +9,9 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/src/javascript/fancybox/jquery.fancybox.css">
 	<script type="text/javascript" src="/src/javascript/fancybox/jquery.fancybox.js"></script>
+	<link rel="stylesheet" type="text/css" href="/src/jquery-ui-1.10.4.custom/css/custom-theme/jquery-ui-1.10.4.custom.css">
+	<script type="text/javascript" src="/src/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script type="text/javascript" src="/src/underscore-min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.show-search').click(function(e){
@@ -22,6 +25,8 @@
 </head>
 <body>
 <?$APPLICATION->ShowPanel()?>
+<? require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/templates/butik/cart.php'); ?>
+<? require_once($_SERVER['DOCUMENT_ROOT'].'/registration.php'); ?>
 <div class="all">
 	<div class="header">
 		<div class="main">
