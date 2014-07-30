@@ -69,7 +69,16 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 							if($ar_res = $res->GetNext()) {
 								$file = CFile::ResizeImageGet($ar_res['PREVIEW_PICTURE'], array('width'=>150, 'height'=>150), BX_RESIZE_IMAGE_PROPORTIONAL, true);
 								?>
-								<div class="tpad"><div class="cab-img2"><a href="/butik/?seller=<?=$ar_res['ID'];?>" title="<?=$ar_res['NAME'];?>"><img style="width:100px;" src="<?=$file['src']?>" alt=""></a></div></div>
+								<div class="tpad">
+									<div class="cab-img2">
+										<a href="/butik/?seller=<?=$ar_res['ID'];?>" title="<?=$ar_res['NAME'];?>">
+											<img style="width:100px;" src="<?=$file['src']?>" alt="">
+										</a>
+									</div>
+									<div class="cab-desc" style="width: 101px; text-align: center;">
+										<p><?=$ar_res['NAME']?></p>
+									</div>
+								</div>
 								<?
 							}
 						}
@@ -214,7 +223,7 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 					<div class="box2 visible">
 						<div class="cat-text">
 							<?=$arResult['DETAIL_TEXT'];?>
-							<div style="float:right; margin-right: 15px;">
+							<div style="float:right; margin-top: 28px;">
 								<div class="cabinet-box3">
 									<ul>
 										<li>

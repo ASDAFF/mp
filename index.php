@@ -1,6 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("1С-Битрикс: Управление сайтом");
+$APPLICATION->SetPageProperty("description", "Всё, что нужно для жизни в городе, для занятий спортом, йогой, музыкой, бизнесом и развлечений. Безграничные возможности научиться новому, превзойти, наслаждаться и отличаться.");
+$APPLICATION->SetTitle("Магазин Безграничных Возможностей");
 ?>
 
 <?
@@ -11,7 +12,7 @@ $APPLICATION->SetTitle("1С-Битрикс: Управление сайтом");
 ?>
 			<div class="items">
 				<?
-					$topItems = array(364, 365, 366);
+					$topItems = array(364, 365, 366, 370, 368, 369);
 					foreach($topItems as $topItem)
 						echo $prod->drawSmallProduct($topItem);
 					

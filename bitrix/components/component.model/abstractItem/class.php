@@ -21,7 +21,7 @@ abstract class AbstractItem
         if (false === $resized) {
             $src['src'] = CFile::GetPath($this->item[$field]);
         } else {
-            $src = CFile::ResizeImageGet($this->item[$field], array("width" => $resized[0], "height" => $resized[0] ), BX_RESIZE_IMAGE_EXACT, false);
+            $src = CFile::ResizeImageGet($this->item[$field], array("width" => $resized[0], "height" => $resized[1] ), BX_RESIZE_IMAGE_EXACT, false);
         }
         return $src;
     }

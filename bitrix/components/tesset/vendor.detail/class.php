@@ -5,25 +5,21 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
 CBitrixComponent::includeComponentClass("component.model:item");
 CBitrixComponent::includeComponentClass("component.model:likes");
 /**
-* CRelatedSKU
+* EvrikaBlogList
 * 
-* Связанные товары по ID.
-* Велючает в себя получение информации 
-* только о Торговых предложениях по товару либо торговому предложению
+* Отображение информации о производителе, а также связанных с ним элементов каталога
 * 
 * @author Roman Morozov <tesset.studio@gmail.com>
 * @version 1.0
 */
-class EvrikaBlogList extends CBitrixComponent 
+class VendorDetail extends CBitrixComponent 
 {
     
     /**
      * Изначальное значение сортировки
      * @var array
      */
-    private $sort = array(
-        'DATE_CREATE' => 'DESC'
-        );
+    private $sort = false;
 
     /**
      * Поля для выбора основных элементов
@@ -33,22 +29,12 @@ class EvrikaBlogList extends CBitrixComponent
         'ID',
         'IBLOCK_ID',
         'NAME',
-        'DETAIL_PICTURE',
-        'DETAIL_TEXT',
-        'PREVIEW_TEXT',
-        'SHOW_COUNTER',
-        'DATE_CREATE',
-        'PROPERTY_LIKES',
-        'PROPERTY_RELATED',
-        'DETAIL_PAGE_URL'
+        'PREVIEW_PICTURE', //avatar
+        'DETAIL_TEXT', // description
+        'PROPERTY_VK', //link vk profile
+        'PROPERTY_FB', //link fb profile
+        'PROPERTY_CITY' 
         );
-
-    /**
-     * Параметры для Битриксовой навигации
-     * @var array
-     */
-    private $navParams = array();
-    private $likes;
     
     /**
      * Если не знаешь что за метод, дальше не смотри
@@ -61,7 +47,8 @@ class EvrikaBlogList extends CBitrixComponent
         }
         global $USER;
         global $APPLICATION;
-        $cache = $this->navParams . bitrix_sessid_get() . $USER->GetID();
+        global $arrFilter;
+        $cache = bitrix_sessid_get() . $USER->GetID();
         
         if ($this->startResultCache(0, $cache)) {
             $this->arResult = $this->GetItems();
@@ -69,6 +56,7 @@ class EvrikaBlogList extends CBitrixComponent
             $APPLICATION->SetPageProperty('description', $this->arResult['anounce']);
             $APPLICATION->AddHeadString('<meta property="og:title" content="' . $this->arResult['name'] . '"/>');
             $APPLICATION->AddHeadString('<meta property="og:description" content="' . $this->arResult['anounce'] . '"/>');
+            $arrFilter = $this->arResult['globalFilter'];
             $this->includeComponentTemplate();
         }
     }
@@ -80,11 +68,8 @@ class EvrikaBlogList extends CBitrixComponent
         if (!CModule::IncludeModule("iblock")) {
             return false;
         } 
-        if (!CModule::IncludeModule('prmedia.treelikecomments')) {
-            return false;
-        }
         if (!$this->arParams["IBLOCK_ID"]) {
-            $this->arParams["IBLOCK_ID"] = 14; 
+            $this->arParams["IBLOCK_ID"] = 3; 
         }
         if (!$this->arParams["ELEMENT_CODE"]) {
             $this->arParams["ELEMENT_CODE"] = $_GET['ELEMENT_CODE'];
@@ -92,7 +77,6 @@ class EvrikaBlogList extends CBitrixComponent
         if (!$this->arParams["ELEMENT_CODE"]) {
             return false;
         }
-        $this->likes = new Likes($this->arParams["IBLOCK_ID"]);
         return true;
     }
 
@@ -121,7 +105,7 @@ class EvrikaBlogList extends CBitrixComponent
             $this->sort, 
             $this->filterEx(),
             false,
-            $this->navParams, 
+            false, 
             $this->select
         ));
 
@@ -133,8 +117,7 @@ class EvrikaBlogList extends CBitrixComponent
      * @return array              Основной массив элементов
      */
     private function data($rsItems) {
-        if ($objX = $rsItems->GetNextElement()) {
-            $x = array_merge($objX->getFields(), array('properties' => $objX->getProperties()));
+        if ($x = $rsItems->Fetch()) {
             $item = $this->composeItem(new Item($x));
         }
         CIBlockElement::CounterInc($item['id']);
@@ -166,67 +149,33 @@ class EvrikaBlogList extends CBitrixComponent
             'id' => $item->field('ID'),
             'iblockId' => $item->field('IBLOCK_ID'),
             'name' => $item->field('NAME'),
-            'picture' => $item->src('DETAIL_PICTURE', $resized = false),
-            'text' => $item->field('DETAIL_TEXT'),
-            'anounce' => $item->field('PREVIEW_TEXT'),
-            'date' => ConvertDateTime($item->field('DATE_CREATE'), 'DD.MM.YYYY'),
-            'related' => $item->propValueArray('RELATED', $fieldName = 'properties'),
+            'avatar' => $item->src('PREVIEW_PICTURE', $resized = array(120, 120)),
+            'anounce' => $item->field('DETAIL_TEXT'),
+            'vk' => $item->propValue('VK'),
+            'fb' => $item->propValue('FB'),
+            'city' => $item->propValue('CITY'),
             'shows' => ($item->field('SHOW_COUNTER')) ? $item->field('SHOW_COUNTER') : 0
             );
-        $x['likes'] = array(
-            'value' => $this->likes->count($x['id']),
-            'already_liked' => $this->likes->isLikedByCurrent($x['id'])
-            );
-        $x['comments'] = $this->comments($x['id']);
-        $x['related'] = $this->related($x['related']);
+        $x['globalFilter'] = $this->products($x['id']);
         return $x;
     }
 
     /**
-     * Формирует данные об элементе каталога
-     * @param  Item   $item Item instance
-     * @return array       Данные об элементе каталога
+     * Поиск товаров привязанных к данному производителю по тегу
+     * @param  int $seller ID производителя
+     * @return array         Массив ID товаров
      */
-    public function composeItemCatalog(Item $item) {
-        $x = array(
-            'id' => $item->field('ID'),
-            'name' => $item->field('NAME'),
-            'code' => $item->field('CODE'),
-            'price' => number_format($item->field('CATALOG_PRICE_1'), 0, ',', ' '),
-            'picture' => $item->src('PREVIEW_PICTURE', $resized = false)
-            );
-        return $x;
-    }
-
-    /**
-     * Количество комментариев записи блога
-     * @param  int $id ID статьи блога
-     * @return int     Количество комментариев
-     */
-    public function comments($id) {
-        $comments = CTreelikeComments::GetList(
-            array("ID" => "DESC"), 
-            array("OBJECT_ID_NUMBER" => $id)
-        )->SelectedRowsCount();
-        return $comments;
-    }
-
-    /**
-     * Привязанные товары к статье
-     * @param  array $related ID товаров
-     * @return array          Товары
-     */
-    public function related($related) {
-        $rsItems = CIBlockElement::GetList($this->sort, array(
+    public function products($seller) {
+        $rs = CIBlockElement::GetList(false , array(
             'IBLOCK_ID' => 1,
-            'ACTTIVE' => 'Y',
-            'ID' => $related
+            'ACTIVE' => 'Y',
+            'PROPERTY_SELLER' => $seller
             ), false, false, array(
-            'ID', 'NAME', 'CODE', 'CATALOG_GROUP_1', 'CATALOG_PRICE_1', 'PREVIEW_PICTURE'
+            'ID'
             ));
-        while ($x = $rsItems->Fetch()) {
-            $items[$x['ID']] = $this->composeItemCatalog(new Item($x));
+        while ($x = $rs->Fetch()) {
+            $ids[] = $x['ID'];
         }
-        return $items;
+        return $ids;
     }
 }

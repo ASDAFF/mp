@@ -30,6 +30,12 @@ $arUrlRewrite = array(
 		"ID" => "",
 		"PATH" => "/likes/index.php",
 	),
+	array(
+		"CONDITION" => "#^/vendor/([^\\/]*)/.*#",
+		"RULE" => "ELEMENT_CODE=\$1",
+		"ID" => "",
+		"PATH" => "/vendor/index.php",
+	),
 );
 
 ?>
