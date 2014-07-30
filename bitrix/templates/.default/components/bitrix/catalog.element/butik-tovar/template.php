@@ -71,12 +71,13 @@ if ($_SESSION['COMMENTS']['ADD'] == 'Y') {
 								?>
 								<div class="tpad">
 									<div class="cab-img2">
-										<a href="/butik/?seller=<?=$ar_res['ID'];?>" title="<?=$ar_res['NAME'];?>">
+										<a href="/vendor/<?=$ar_res['CODE'];?>/" title="<?=$ar_res['NAME'];?>">
 											<img style="width:100px;" src="<?=$file['src']?>" alt="">
 										</a>
 									</div>
 									<div class="cab-desc" style="width: 101px; text-align: center;">
 										<p><?=$ar_res['NAME']?></p>
+										<p style="font-size: 13px; margin-top: -14px;"><?=$ar_res['PREVIEW_TEXT']?></p>
 									</div>
 								</div>
 								<?

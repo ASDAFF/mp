@@ -3,18 +3,19 @@
 <style>
     div.vendor-content { width: 960px;}
     div.vendor-content .vendor-header {}
-    div.vendor-content .vendor-header div.avatar { display: inline-block;}
+    div.vendor-content .vendor-header div.avatar { display: inline-block; text-align: center; width: 120px; height: 120px; overflow: hidden; border-radius: 100%; margin-right: 28px; margin-left:20px;} 
     div.vendor-content .vendor-header div.avatar img {}
-    div.vendor-content .vendor-header div.vendor-info { display: inline-block; margin-right: 20px;}
-    div.vendor-content .vendor-header div.vendor-info h1 {}
+    div.vendor-content .vendor-header div.vendor-info { display: inline-block; margin-right: 20px; width: 760px;}
+    div.vendor-content .vendor-header div.vendor-info h1 {font-weight: 500;}
     div.vendor-content .vendor-header div.vendor-info p.vendor-anounce {}
     div.vendor-content .vendor-header div.vendor-info div.vendor-links {}
     div.vendor-content .vendor-header div.vendor-info div.vendor-links ul {padding: 0;}
-    div.vendor-content .vendor-header div.vendor-info div.vendor-links ul li {list-style: none; display: inline-block; width: 200px;}
+    div.vendor-content .vendor-header div.vendor-info div.vendor-links ul li {list-style: none; display: inline-block; margin-left: 20px;}
+    div.vendor-content .vendor-header div.vendor-info div.vendor-links ul li:first-child {margin-left: 0;}
     div.vendor-content .vendor-header div.vendor-info div.vendor-links ul li a {text-decoration: none; color: #F15824;}
     div.vendor-content .vendor-header div.vendor-info div.vendor-links ul li a:hover {text-decoration: underline;}
     div.vendor-content .vendor-products {}
-    div.vendor-content .vendor-products h2 {margin-left: 16px;}
+    div.vendor-content .vendor-products h2 {margin-left: 19px; margin-bottom: -18px; font-weight: 500; text-transform: uppercase; font-size: 16px;}
 </style>
 <div class="vendor-content">
     <div class="vendor-header">
@@ -28,14 +29,14 @@
             </p>
             <div class="vendor-links">
                 <ul>
+                    <?if ($item['city']) : ?>
+                        <li><span class="fa fa-map-marker" style="font-size: 20px;"></span> <?=$item['city']?></li>
+                    <?endif;?>
                     <?if ($item['vk']) : ?>
-                        <li><a href="<?=$item['vk']?>" target="_blank"><span class="fa fa-vk"></span> Профиль VK</a></li>
+                        <li><a href="<?=$item['vk']?>" target="_blank"><span class="fa fa-vk" style="font-size: 20px;"></span></a></li>
                     <?endif;?>
                     <?if ($item['fb']) : ?>
-                        <li><a href="<?=$item['fb']?>" target="_blank"><span class="fa fa-facebook"></span> Профиль Facebook</a></li>
-                    <?endif;?>
-                    <?if ($item['city']) : ?>
-                        <li><span class="fa fa-bank"></span><?=$item['city']?></li>
+                        <li><a href="<?=$item['fb']?>" target="_blank"><span class="fa fa-facebook"  style="font-size: 20px;"></span></a></li>
                     <?endif;?>
                 </ul>
             </div>
@@ -44,6 +45,65 @@
     <div class="vendor-products">
         <?if ($item['globalFilter']) : global $arrFilter; $arrFilter['ID'] = $item['globalFilter']?>
         <h2>Все товары</h2>
+        <div class="soc" style="margin: -3px 0px -58px -20px; float: right;">
+                <ul>
+                    
+                    <li>
+                        <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=681312905274770&version=v2.0";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                        <div class="fb-share-button" data-href="<?=$APPLICATION->GetCurDir();?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                        <!-- <div class="fb-like" data-href="<?=$APPLICATION->GetCurDir();?>" data-width="22" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div> -->
+                    </li>
+                    <li>
+                        <div id="ok_shareWidget"></div>
+                            <script>
+                            !function (d, id, did, st) {
+                              var js = d.createElement("script");
+                              js.src = "http://connect.ok.ru/connect.js";
+                              js.onload = js.onreadystatechange = function () {
+                              if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                                if (!this.executed) {
+                                  this.executed = true;
+                                  setTimeout(function () {
+                                    OK.CONNECT.insertShareWidget(id,did,st);
+                                  }, 0);
+                                }
+                              }};
+                              d.documentElement.appendChild(js);
+                            }(document,"ok_shareWidget","<?=$APPLICATION->GetCurDir()?>","{width:160,height:25,st:'rounded',sz:12,ck:2}");
+                            </script>
+
+                    </li>
+                    <li style="width:110px;">
+                        <!-- Put this script tag to the <head> of your page -->
+                        <script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
+
+                        <!-- Put this script tag to the place, where the Share button will be -->
+                        <script type="text/javascript"><!--
+                        document.write(VK.Share.button(false,{type: "round", text: "Поделиться"}));
+                        --></script>
+                        </script>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?=$APPLICATION->GetCurDir();?>" data-text="Muchmore" data-via="muchmore" data-lang="ru" data-related="muchmore" data-hashtags="muchmore">Твитнуть</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </li>
+
+                    <!-- <li style="width: 160px;">
+                        <?if ($arResult['wish']['isWished']) : ?>
+                            <a href="javascript:;" class="wish-item del" data-object="<?=$arResult['ID']?>">Удалить из Wishlist</a></li>
+                        <?else : ?>
+                            <a href="javascript:;" class="wish-item" data-object="<?=$arResult['ID']?>">Добавить в Wishlist</a></li>
+                        <?endif;?>
+                    <li style="width: 160px;"><span class="fa fa-heart-o blog-item-like blog-item-active-info <?=($arResult['likes']['already_liked']) ? 'active-like' : ''?>" data-object="<?=$arResult['ID']?>" data-ib="<?=$arResult['IBLOCK_ID']?>"> <?=$arResult['likes']['value']?></span></li> -->
+                </ul>
+            </div>
         <!-- ТОВАРЫ ПРОИЗВОДИТЕЛЯ -->
         <?$APPLICATION->IncludeComponent("bitrix:catalog.section", "butik_main_anounce", array(
             "IBLOCK_TYPE" => "1c_catalog",

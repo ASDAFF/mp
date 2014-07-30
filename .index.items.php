@@ -23,7 +23,7 @@
 			}
 		}
 		
-		public function getProduct($product_id){
+		public function getProduct($product_id, $big = false){
 			$data = array();
 			$arSelect = Array("IBLOCK_ID", "ID", "NAME", "PREVIEW_PICTURE", "DETAIL_PICTURE", "CATALOG_GROUP_1", "PREVIEW_TEXT", "PROPERTY_DESCRIPTION", "CODE");
 			$arFilter = Array("IBLOCK_ID"=>$this->iblock_id, "ID" => $product_id, "ACTIVE"=>"Y");
@@ -44,6 +44,9 @@
 					'DESCRIPTION' => $arFields['PREVIEW_TEXT'],
 					'CODE' => $arFields['CODE']
 				);
+				if (true === $big) {
+					$data['DESCRIPTION'] = $arFields['PROPERTY_DESCRIPTION_VALUE']['TEXT'];
+				}
 				
 				if($price = $this->checkOffers($product_id)){
 					$data['PRICE'] = number_format($price, -1, ',', ' ' );
@@ -78,13 +81,14 @@
 			
 			if(!empty($data)){
 				return '
-				<div class="item-block">
-				  <a href="/butik/'.$data['CODE'].'/">
-					<img style="width:300px; height:199px;" src="'.$data['PREVIEW_PICTURE'].'" alt="">					
-					<h3>'.$data['NAME'].'</h3>					
-					<div class="dsc">'.$data['DESCRIPTION'].'</div>
-					<div class="price">'.$data['PRICE'].' р.</div>
-				  </a>
+				<div class="item-block2">
+					<div style="height:200px; width:300px;">
+						<a href="/butik/' . $data['CODE'] . '/"><img style="width:300px; height:199px;" src="' . $data['PREVIEW_PICTURE'] . '" alt=""></a>
+					</div>				
+					<a href="/butik/' . $data['CODE'] . '/" class="cat-link">
+						' . $data['NAME'] . ': ' . $data['DESCRIPTION'] . '
+					</a>
+					<div class="price">' . $data["PRICE"] . ' р.</div>
 				</div>
 				';
 			}
@@ -93,7 +97,7 @@
 		
 		public function drawBigProduct($place_id){
 			$product_id = $this->getProductID($place_id);
-			$data = $this->getProduct($product_id);
+			$data = $this->getProduct($product_id, $big = true);
 			
 			
 			if(!empty($data)){

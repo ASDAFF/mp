@@ -35,15 +35,18 @@
 		// }
 		?>
 	
-		<div class="item-block2">
+		<div class="item-block2" style="height: 450px;">
 			<?
 				$file = CFile::ResizeImageGet($arItem['PREVIEW_PICTURE']['ID'], array('width'=>300*1.5, 'height'=>200*1.5), BX_RESIZE_IMAGE_EXACT, true, false, false, 100);
-				$arItem['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT'] = substr($arItem['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT'], 0, 80) . '...';
+				$arItem['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT'] = substr($arItem['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT'], 0, 150) . '...';
 			?>
 			<div style="height:200px; width:300px;">
 				<a href="/butik/<?=$arItem['CODE']?>/"><img style="width:300px; height:199px;" src="<?=$file['src']?>" alt=""></a>
 			</div>				
-			<a href="/butik/<?=$arItem['CODE']?>/" class="cat-link"><?=!empty($arItem['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT'])?$arItem['NAME'].': '.$arItem['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT']:$arItem['NAME']?></a>
+			<a href="/butik/<?=$arItem['CODE']?>/" class="cat-link" style="height: 200px; text-align: left;">
+				<b><?=$arItem['NAME']?></b>
+				<p><?=$arItem['PROPERTIES']['DESCRIPTION']['VALUE']['TEXT']?></p>
+			</a>
 			<div class="price"><?=(!empty($arItem['OFFERS']))?number_format($arItem['OFFERS'][0]['CATALOG_PRICE_1'], -1, ',', ' ' ):number_format($arItem['CATALOG_PRICE_1'], -1, ',', ' ' );?> р.</div>
 			<div class="cabinet-box3" style="float: right; margin-top: -46px; display: none;">
 					<ul>

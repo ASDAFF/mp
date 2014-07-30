@@ -12,7 +12,7 @@ $APPLICATION->SetTitle("Магазин Безграничных Возможно
 ?>
 			<div class="items">
 				<?
-					$topItems = array(364, 365, 366, 370, 368, 369);
+					$topItems = array(364, 365, 366);
 					foreach($topItems as $topItem)
 						echo $prod->drawSmallProduct($topItem);
 					
@@ -43,7 +43,7 @@ $APPLICATION->SetTitle("Магазин Безграничных Возможно
 				<h4>Недавно добавленные</h4>
 				<div class="items">
 				<?
-					$topItems = array(368, 369, 370);
+					$topItems = array(368, 369, 370, 364, 366, 365);
 					foreach($topItems as $topItem)
 						echo $prod->drawSmallProduct($topItem);
 					
