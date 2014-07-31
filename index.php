@@ -3,7 +3,6 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetPageProperty("description", "Всё, что нужно для жизни в городе, для занятий спортом, йогой, музыкой, бизнесом и развлечений. Безграничные возможности научиться новому, превзойти, наслаждаться и отличаться.");
 $APPLICATION->SetTitle("Магазин Безграничных Возможностей");
 ?>
-
 <?
 	require_once('.index.items.php');
 	$prod = new WRProducts(1);

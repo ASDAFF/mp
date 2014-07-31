@@ -3,8 +3,8 @@
 <head>
 	<?$APPLICATION->ShowHead();?>
 	<title><?$APPLICATION->ShowTitle()?></title>
-	<meta name="Keywords" content="Главная">
-	<meta name="Description" content="Главная">
+	<meta name="Keywords" content="Подарок парню, подарок музыканту, подарок для девушки, оригинальный подарок, подарок для спортсмена, подарок для фотографа, подарок блоггеру, подарок экстремалу, подарок дачнику, подарок охотнику и рыболову, подарок фотографу, подарок художнику, подарок киноману, подарок спортсмену, подарок автолюбителю, подарок любовнице, подарок меломану, подарок для семьи, подарок девушке, подарок хозяйке, подарок боссу, подарок для босса, подарок для ребенка, подарок ребёнку, аксессуары для iPhone, гаджеты, гаджеты для спорта,">
+	<meta name="Description" content="Всё, что нужно для жизни в городе, для занятий спортом, йогой, музыкой, бизнесом и развлечений. Безграничные возможности научиться новому, превзойти, наслаждаться и отличаться.">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/src/css/view.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -26,6 +26,19 @@
 			
 		});
 	</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52713505-1', 'auto');
+  ga('require', 'displayfeatures'); 
+  ga('send', 'pageview');
+  
+
+</script>
+
 </head>
 <body>
 <?$APPLICATION->ShowPanel()?>

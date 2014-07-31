@@ -3,7 +3,7 @@
 <style>
     div.vendor-content { width: 960px;}
     div.vendor-content .vendor-header {}
-    div.vendor-content .vendor-header div.avatar { display: inline-block; text-align: center; width: 120px; height: 120px; overflow: hidden; border-radius: 100%; margin-right: 28px; margin-left:20px;} 
+    div.vendor-content .vendor-header div.avatar { display: inline-block; text-align: center; width: 120px; height: 120px; overflow: hidden; border-radius: 100%; margin-right: 28px; margin-left:20px; vertical-align: top; margin-top: 29px;}
     div.vendor-content .vendor-header div.avatar img {}
     div.vendor-content .vendor-header div.vendor-info { display: inline-block; margin-right: 20px; width: 760px;}
     div.vendor-content .vendor-header div.vendor-info h1 {font-weight: 500;}
@@ -15,7 +15,7 @@
     div.vendor-content .vendor-header div.vendor-info div.vendor-links ul li a {text-decoration: none; color: #F15824;}
     div.vendor-content .vendor-header div.vendor-info div.vendor-links ul li a:hover {text-decoration: underline;}
     div.vendor-content .vendor-products {}
-    div.vendor-content .vendor-products h2 {margin-left: 19px; margin-bottom: -18px; font-weight: 500; text-transform: uppercase; font-size: 16px;}
+    div.vendor-content .vendor-products h2 {margin-left: 19px; margin-bottom: -18px; font-weight: 500; text-transform: uppercase; font-size: 14px; color: #999;}
 </style>
 <div class="vendor-content">
     <div class="vendor-header">

@@ -898,10 +898,10 @@ text-decoration:none;
 .blog-item ul.blog-item-social {}
 .blog-item ul.blog-item-social li{}
 
-.content-blog-item {margin-top: 20px; width: 900px;}
-.content-blog-item div.blog-item-header {text-align: center;}
-.content-blog-item div.blog-item-header h1 {font-size: 50px; font-weight: normal; margin-bottom: 0; width: 958px; margin-left: 18px;}
-.content-blog-item div.blog-item-header div.blog-item-info {margin: 10px 0 40px 0; color: #999;}
+.content-blog-item {margin-top: 20px; width: 960px;}
+.content-blog-item div.blog-item-header {text-align: left;}
+.content-blog-item div.blog-item-header h1 {font-size: 50px; font-weight: normal; margin-bottom: 0; width: 958px; margin-left: 40px;}
+.content-blog-item div.blog-item-header div.blog-item-info {margin: 10px 0 40px 46px; color: #999;}
 .content-blog-item div.blog-item-header div.blog-item-info span {margin-left: 20px;}
 .content-blog-item div.blog-item-header div.blog-item-info span:first-child {margin: 0;}
 .content-blog-item div.blog-item-header div.blog-item-info .blog-item-active-info {cursor: pointer;}

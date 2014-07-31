@@ -61,7 +61,7 @@
 			$catalog = $this->getSections(12);			
 			$i = 0;
 			$k = $this->getK($catalog);
-			echo '<a href="/butik/">'.(isset($_GET['catalog']) && isset($catalog[$_GET['catalog']])?'<span style="color:#f15824;">Каталог</span>':'Каталог').'</a>';
+			echo '<a href="javascript:;">'.(isset($_GET['catalog']) && isset($catalog[$_GET['catalog']])?'<span style="color:#f15824;">Каталог</span>':'Каталог').'</a>';
 			echo '<ul><table class="catalog-menu">';
 			foreach($catalog as $key => $value){	
 				$i++;
